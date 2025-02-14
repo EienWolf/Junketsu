@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { WeaponService } from '../../services/weapon.service';
 import { Weapon } from '../../models/weapon.model';
 import { ActivatedRoute } from '@angular/router';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-weapon',
   templateUrl: './weapon.component.html',
   styleUrls: ['./weapon.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule, SharedModule]
 })
 export class WeaponComponent implements OnInit {
   weapon: Weapon = {
@@ -16,18 +17,20 @@ export class WeaponComponent implements OnInit {
     durability: 0,
     weapon_type: '',
     description: '',
-    base_damage: '',
+    base_damage: 1,
     attack_range: '',
     grip_mode: '',
     wield_effect: '',
-    is_throweable: false,
+    is_throwable: false,
     durability_type: '',
     is_agile: false,
     is_block: false,
     ability: '',
     notes: '',
-    attacks: []
-  };;
+    attacks: [],
+    image: '',
+    id: ''
+  };
 
   constructor(private weaponService: WeaponService, private route: ActivatedRoute) {}
 
@@ -37,9 +40,7 @@ export class WeaponComponent implements OnInit {
       const storedWeapons = localStorage.getItem('weapons');
       if (storedWeapons) {
         const weapons: Weapon[] = JSON.parse(storedWeapons);
-        console.log(storedWeapons);
         this.weapon = weapons[+index];
-        
       }
     }
   }

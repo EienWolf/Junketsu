@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Weapon } from '../../models/weapon.model';
+import { Weapon, Attack } from '../../models/weapon.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -40,7 +40,7 @@ export class WeaponFormComponent {
   }
 
   addAttack() {
-    this.newWeapon.attacks.push({
+    this.newWeapon.attacks.push(new Attack({
       attack_name: '',
       stamina: 0,
       damage_type: '',
@@ -50,7 +50,7 @@ export class WeaponFormComponent {
       critical_success: '',
       is_basic: false,
       is_secondary: false
-    });
+    }));
   }
 
   removeAttack(index: number) {
@@ -111,14 +111,16 @@ export class WeaponFormComponent {
       description: '',
       notes: '',
       ability: '',
-      base_damage: '',
+      base_damage: 1,
       attack_range: '',
       grip_mode: '',
       wield_effect: '',
       attacks: [],
-      is_throweable: false,
+      is_throwable: false,
       is_agile: false,
-      is_block: false
+      is_block: false,
+      image: '',
+      id: ''
     };
   }
 }

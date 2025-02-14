@@ -1,5 +1,4 @@
 <div class="grid grid-cols-6 w-[14.8cm] p-[1.5cm] h-[10.5cm] border border-2 gap-2">
-    <!-- Tipo de arma -->
     <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
       {{ weapon.weapon_type }}
     </div>
@@ -10,14 +9,14 @@
     </div>
   
     <!-- Propiedades de arma -->
-    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
-      {{ weapon.is_throweable }}
+    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500" *ngIf="weapon.is_throwable">
+      {{ weapon.is_throwable }}
     </div>
     <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
       {{ weapon.durability_type }}
     </div>
-    <div class="col-start-2 col-span-4 text-sm">Durabilidad: {{ weapon.durability }}</div>
-    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
+    <div class="col-start-2 col-span-4 text-sm">{{ 'DURABILITY' | translate }}: {{ weapon.durability }}</div>
+    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500" *ngIf="weapon.is_agile">
       {{ weapon.is_agile }}
     </div>
   
@@ -26,14 +25,17 @@
       {{ weapon.description }}
     </div>
   
-    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
+    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500" *ngIf="weapon.is_block">
       {{ weapon.is_block }}
     </div>
   
     <!-- Características del arma con imágenes -->
     <div class="grid grid-cols-12 gap-[1cm] place-items-center col-span-6">
-      <div class="col-span-2 flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
+      <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
         <img [src]="weapon.ability" alt="Ability" class="w-[64px] h-[64px] object-contain" />
+        <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-gray-500 rounded-full flex items-center justify-center text-2xl font-serif">
+          M
+        </div>
       </div>
       <div class="col-span-2 flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
         <img [src]="weapon.grip_mode" alt="Grip Mode" class="w-[64px] h-[64px] object-contain" />
@@ -65,7 +67,7 @@
   <div class="grid grid-cols-6 w-[14.8cm] px-[1.5cm] border border-2 gap-2">
     <div class="col-span-6 grid grid-cols-6" *ngFor="let attack of weapon.attacks">
       <div class="col-span-5 text-lg">
-        {{ attack.attack_name }} ({{ attack.is_secondary ? 'Secundario' : 'Primario' }}) - Stamina: {{ attack.stamina }}
+        {{ attack.attack_name }} {{ attack.is_secondary ? 'Secundario' : '' }} {{ attack.stamina }}
       </div>
       <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500 row-span-2">
         {{ attack.damage_type }}
@@ -73,13 +75,13 @@
       <div class="col-span-3 text-sm">
         {{ attack.damage_formula }}
       </div>
-      <div class="col-span-2 text-sm">
+      <div class="col-span-2 text-sm" *ngIf="attack.isAbilityDifferent">
         {{ attack.ability }}
       </div>
       <div class="col-span-6 text-sm">
         {{ attack.description }}
       </div>
-      <div class="col-span-6 text-sm">
+      <div class="col-span-6 text-sm" *ngIf="attack.isCriticalSuccess">
         <strong>Éxito crítico:</strong> {{ attack.critical_success }}
       </div>
     </div>

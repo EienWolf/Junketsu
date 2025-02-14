@@ -10,14 +10,15 @@ export class WeaponService {
   constructor(private http: HttpClient) {}
   private weapons: Weapon[] = [];
 
+  getWeapon(index: number): Weapon {
+    return this.weapons[index];
+  }
+
   getWeapons(): Weapon[] {
     return this.weapons;
   }
 
   addWeapon(weapon: Weapon) {
     this.weapons.push(weapon);
-  }
-  getWeaponData(): Observable<any> {
-    return this.http.get('assets/weapon-data.json');
   }
 }
