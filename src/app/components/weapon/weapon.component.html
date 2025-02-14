@@ -1,0 +1,87 @@
+<div class="grid grid-cols-6 w-[14.8cm] p-[1.5cm] h-[10.5cm] border border-2 gap-2">
+    <!-- Tipo de arma -->
+    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
+      {{ weapon.weapon_type }}
+    </div>
+  
+    <!-- Nombre del arma -->
+    <div class="col-start-2 col-span-4 text-xl font-bold text-center">
+      {{ weapon.name }}
+    </div>
+  
+    <!-- Propiedades de arma -->
+    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
+      {{ weapon.is_throweable }}
+    </div>
+    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
+      {{ weapon.durability_type }}
+    </div>
+    <div class="col-start-2 col-span-4 text-sm">Durabilidad: {{ weapon.durability }}</div>
+    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
+      {{ weapon.is_agile }}
+    </div>
+  
+    <!-- Descripción del arma -->
+    <div class="col-span-5 row-span-2 text-sm">
+      {{ weapon.description }}
+    </div>
+  
+    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
+      {{ weapon.is_block }}
+    </div>
+  
+    <!-- Características del arma con imágenes -->
+    <div class="grid grid-cols-12 gap-[1cm] place-items-center col-span-6">
+      <div class="col-span-2 flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
+        <img [src]="weapon.ability" alt="Ability" class="w-[64px] h-[64px] object-contain" />
+      </div>
+      <div class="col-span-2 flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
+        <img [src]="weapon.grip_mode" alt="Grip Mode" class="w-[64px] h-[64px] object-contain" />
+      </div>
+      <div class="col-span-2 flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
+        <img [src]="weapon.attack_range" alt="Attack Range" class="w-[64px] h-[64px] object-contain" />
+      </div>
+      <div class="col-span-2 flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
+        <img [src]="weapon.base_damage" alt="Base Damage" class="w-[64px] h-[64px] object-contain" />
+      </div>
+      <div class="col-span-2 flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
+        <img [src]="weapon.wield_effect || weapon.magsize" alt="Effect" class="w-[64px] h-[64px] object-contain" />
+      </div>
+      <div class="col-span-2 flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500" *ngIf="weapon.reloadrate">
+        <img [src]="weapon.reloadrate" alt="Reload Rate" class="w-[64px] h-[64px] object-contain" />
+      </div>
+      <div class="col-start-1 col-span-6 row-start-1 row-span-2">
+        <img [src]="'assets/images/' + weapon.name + '.jpg'" alt="{{ weapon.name }}" class="h-[160px]" />
+      </div>
+    </div>
+  
+    <!-- Notas del arma -->
+    <div class="col-span-6 text-[10px]">
+      <strong>Notas:</strong> {{ weapon.notes }}
+    </div>
+  </div>
+  
+  <!-- Sección de ataques -->
+  <div class="grid grid-cols-6 w-[14.8cm] px-[1.5cm] border border-2 gap-2">
+    <div class="col-span-6 grid grid-cols-6" *ngFor="let attack of weapon.attacks">
+      <div class="col-span-5 text-lg">
+        {{ attack.attack_name }} ({{ attack.is_secondary ? 'Secundario' : 'Primario' }}) - Stamina: {{ attack.stamina }}
+      </div>
+      <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500 row-span-2">
+        {{ attack.damage_type }}
+      </div>
+      <div class="col-span-3 text-sm">
+        {{ attack.damage_formula }}
+      </div>
+      <div class="col-span-2 text-sm">
+        {{ attack.ability }}
+      </div>
+      <div class="col-span-6 text-sm">
+        {{ attack.description }}
+      </div>
+      <div class="col-span-6 text-sm">
+        <strong>Éxito crítico:</strong> {{ attack.critical_success }}
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,53 @@
+
+  <div class="p-4 max-w-md mx-auto bg-white shadow-md rounded-lg">
+    <h2 class="text-xl font-bold mb-4">{{ editingIndex !== null ? 'Edit Weapon' : 'Add Weapon' }}</h2>
+    <form (ngSubmit)="saveWeapon()" class="grid gap-2">
+      <input [(ngModel)]="newWeapon.name" name="name" placeholder="Weapon Name" required class="border p-2 rounded" />
+      <input [(ngModel)]="newWeapon.durability" name="durability" type="number" placeholder="Durability" required class="border p-2 rounded" />
+      <input [(ngModel)]="newWeapon.weapon_type" name="weapon_type" placeholder="Weapon Type" required class="border p-2 rounded" />
+      <textarea [(ngModel)]="newWeapon.description" name="description" placeholder="Description" class="border p-2 rounded"></textarea>
+      <input [(ngModel)]="newWeapon.base_damage" name="base_damage" placeholder="Base Damage" class="border p-2 rounded" />
+      <input [(ngModel)]="newWeapon.attack_range" name="attack_range" placeholder="Attack Range" class="border p-2 rounded" />
+      <input [(ngModel)]="newWeapon.grip_mode" name="grip_mode" placeholder="Grip Mode" class="border p-2 rounded" />
+      <input [(ngModel)]="newWeapon.wield_effect" name="wield_effect" placeholder="Wield Effect" class="border p-2 rounded" />
+      <input [(ngModel)]="newWeapon.is_agile" name="is_agile" type="checkbox" class="border p-2 rounded" /> Agile
+      <input [(ngModel)]="newWeapon.is_block" name="is_block" type="checkbox" class="border p-2 rounded" /> Block
+      <input [(ngModel)]="newWeapon.is_throweable" name="is_throweable" type="checkbox" class="border p-2 rounded" /> Throweable
+      <input [(ngModel)]="newWeapon.magsize" name="magsize" placeholder="Magazine Size" class="border p-2 rounded" />
+      <input [(ngModel)]="newWeapon.reloadrate" name="reloadrate" placeholder="Reload Rate" class="border p-2 rounded" />
+      <input [(ngModel)]="newWeapon.ability" name="ability" placeholder="Ability" class="border p-2 rounded" />
+      <textarea [(ngModel)]="newWeapon.notes" name="notes" placeholder="Notes" class="border p-2 rounded"></textarea>
+      <input [(ngModel)]="newWeapon.durability_type" name="durability_type" placeholder="Durability Type" class="border p-2 rounded" />
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded">{{ editingIndex !== null ? 'Update' : 'Save' }}</button>
+
+      <h3 class="text-lg font-bold mt-4">Attacks</h3>
+      <div *ngFor="let attack of newWeapon.attacks; let i = index" class="border p-2 rounded mt-2">
+        <input [(ngModel)]="attack.attack_name" name="attack_name{{i}}" placeholder="Attack Name" class="border p-2 rounded" />
+        <input [(ngModel)]="attack.stamina" name="stamina{{i}}" type="number" placeholder="Stamina" class="border p-2 rounded" />
+        <input [(ngModel)]="attack.damage_type" name="damage_type{{i}}" placeholder="Damage Type" class="border p-2 rounded" />
+        <input [(ngModel)]="attack.damage_formula" name="damage_formula{{i}}" placeholder="Damage Formula" class="border p-2 rounded" />
+        <input [(ngModel)]="attack.ability" name="ability{{i}}" placeholder="Ability" class="border p-2 rounded" />
+        <textarea [(ngModel)]="attack.description" name="description{{i}}" placeholder="Description" class="border p-2 rounded"></textarea>
+        <input [(ngModel)]="attack.critical_success" name="critical_success{{i}}" placeholder="Critical Success" class="border p-2 rounded" />
+        <label><input type="checkbox" [(ngModel)]="attack.is_basic" name="is_basic{{i}}" /> Basic</label>
+        <label><input type="checkbox" [(ngModel)]="attack.is_secondary" name="is_secondary{{i}}" /> Secondary</label>
+        <button (click)="removeAttack(i)" class="text-red-500">Remove Attack</button>
+      </div>
+      <button type="button" (click)="addAttack()" class="bg-green-500 text-white p-2 rounded mt-2">Add Attack</button>
+    </form>
+    <ul class="mt-4">
+      <li *ngFor="let weapon of weapons; let i = index" class="p-2 border-b flex justify-between">
+        <span>{{ weapon.name }}</span>
+        <div>
+          <button (click)="editWeapon(i)" class="text-blue-500">Edit</button>
+          <button (click)="deleteWeapon(i)" class="text-red-500 ml-2">Delete</button>
+        </div>
+      </li>
+    </ul>
+  
+      <div class="mt-4 flex gap-2">
+        <button (click)="exportWeapons()" class="bg-green-500 text-white p-2 rounded">Export JSON</button>
+        <input type="file" (change)="importWeapons($event)" accept=".json" class="hidden" #fileInput />
+        <button (click)="fileInput.click()" class="bg-blue-500 text-white p-2 rounded">Import JSON</button>
+      </div>
+    </div>
