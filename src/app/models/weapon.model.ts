@@ -22,10 +22,10 @@ export class Attack {
       this.is_secondary = data.is_secondary ?? false;
     }
   
-    get isCriticalSuccess(): boolean {
+    get is_critical_success(): boolean {
       return !!this.critical_success?.trim();
     }
-    get isAbilityDifferent(): boolean {
+    get has_own_ability(): boolean {
       return this.weapon ? this.ability !== this.weapon.ability : false;
     }
   }
@@ -46,8 +46,8 @@ export class Weapon {
     ability?: string = '';
     attack_range: string = ''; //melee, reach_x, short, medium, large
     grip_mode: string = ''; //1h, 2h, 2hr
-    wield_effect?: string; //Fiinesse, Versatil, Heavy
-    magsize?: number;
+    wield_effect?: string; //Finesse, Versatile, Heavy
+    ammo_capacity?: number;
     reloadrate?: number;
     attacks: Attack[];
     image?: string;
@@ -67,11 +67,11 @@ export class Weapon {
       this.ability = data.ability || '';
       this.attack_range = data.attack_range || ''; //melee, reach_x, short, medium, large
       this.grip_mode = data.grip_mode || ''; //1h, 2h, 2hr
-      this.wield_effect = data.wield_effect || ''; //Fiinesse, Versatil, Heavy
+      this.wield_effect = data.wield_effect || ''; //Finesse, Versatile, Heavy
       this.attacks = data.attacks || [];
       this.image = data.image || '';
       this.id = data.id || '';
-      this.magsize = data.magsize || 0;
+      this.ammo_capacity = data.ammo_capacity || 0;
       this.reloadrate = data.reloadrate || 0;
       this.attacks = (data.attacks || []).map(a => {
         const attack = new Attack(a);
@@ -80,11 +80,11 @@ export class Weapon {
       });
     }
 
-    get wieldormagType(): string {
-      return this.magsize ? 'ammo_capacity': 'wield_' + this.wield_effect;
+    get ammo_or_wield_effect(): string {
+      return this.ammo_capacity ? 'ammo_capacity': 'wield_' + this.wield_effect;
     }
-    get wieldormagText(): string {
-      return !!this.magsize ? 'Ammon Capacity': 'Wield Effect';
+    get ammo_or_wield_effect_text(): string {
+      return !!this.ammo_capacity ? 'Ammon Capacity': 'Wield Effect';
     }
 
     get range_type(): string {
@@ -119,7 +119,7 @@ export class Weapon {
       return this.is_agile || this.is_block
     }
 
-    get guardtype(): string{
+    get guard_type(): string{
       return this.is_agile && this.is_block ? 'property_guard' 
         : this.is_agile ? 'property_agile'
           : this.is_block ? 'property_block': 'property_block';
