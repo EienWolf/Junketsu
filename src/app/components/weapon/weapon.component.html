@@ -1,59 +1,55 @@
-<div class="grid grid-cols-6 w-[14.8cm] p-[1.5cm] h-[10.5cm] border border-2 gap-2">
+<div class="relative grid grid-cols-6 w-[14.8cm] p-[1.5cm] h-[10.5cm] border border-2 gap-[0.2cm] bg-gray-100 shadow-lg rounded-lg">
+    <div class="absolute bottom-0 left-0 w-full h-[0.5cm] bg-red-300"></div>
     <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
-      {{ weapon.weapon_type }}
+      <img [src]="'assets/images/weapontype_' + weapon.weapon_type  + '.png'" [alt]="weapon.weapon_type | translate" class="w-[32px] h-[32px] object-contain" />
     </div>
-  
-    <!-- Nombre del arma -->
     <div class="col-start-2 col-span-4 text-xl font-bold text-center">
       {{ weapon.name }}
     </div>
-  
-    <!-- Propiedades de arma -->
+
     <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500" *ngIf="weapon.is_throwable">
-      {{ weapon.is_throwable }}
+      <img [src]="'assets/images/property_thrown.png'" [alt]="'Thrown' | translate" class="w-[32px] h-[32px] object-contain" />
     </div>
     <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500">
-      {{ weapon.durability_type }}
+      <img [src]="'assets/images/weapontype_' + weapon.durability_type  + '.png'" [alt]="weapon.durability_type | translate" class="w-[32px] h-[32px] object-contain" />
     </div>
     <div class="col-start-2 col-span-4 text-sm">{{ 'Durability' | translate }}: {{ weapon.durability }}</div>
     <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500" *ngIf="weapon.is_agile">
-      {{ weapon.is_agile }}
+      <img [src]="'assets/images/property_agile.png'" [alt]="'Agile' | translate" class="w-[32px] h-[32px] object-contain" />
     </div>
-  
-    <!-- Descripción del arma -->
+
     <div class="col-span-5 row-span-2 text-sm">
       {{ weapon.description }}
     </div>
   
     <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-gray-300 border-2 border-gray-500" *ngIf="weapon.is_block">
-      {{ weapon.is_block }}
+      <img [src]="'assets/images/property_block.png'" [alt]="'Block' | translate" class="w-[32px] h-[32px] object-contain" />
     </div>
   
-    <!-- Características del arma con imágenes -->
-    <div class="grid grid-cols-12 gap-[1cm] place-items-center col-span-6">
+    <div class="grid grid-cols-12 place-items-center col-span-6">
       <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
-        <img [src]="'assets/images/ability_' + weapon.ability + '.svg'" [alt]="'Ability' | translate" class="w-[64px] h-[64px] object-contain" />
+        <img [src]="'assets/images/ability_' + weapon.ability + '.png'" [alt]="'Ability' | translate" class="w-[64px] h-[64px] object-contain" />
       </div>
       <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
-        <img [src]="'assets/images/grip_' + weapon.grip_mode + '.svg'" [alt]="'Grip mode' | translate" class="w-[64px] h-[64px] object-contain" />
+        <img [src]="'assets/images/grip_' + weapon.grip_mode + '.png'" [alt]="'Grip mode' | translate" class="w-[64px] h-[64px] object-contain" />
       </div>
       <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
-        <img [src]="'assets/images/range_' + weapon.range_type + '.svg'" [alt]="'Range Type' | translate" class="w-[64px] h-[64px] object-contain" />
+        <img [src]="'assets/images/range_' + weapon.range_type + '.png'" [alt]="'Range Type' | translate" class="w-[64px] h-[64px] object-contain" />
         <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-gray-500 rounded-full flex items-center justify-center text-2xl font-serif" *ngIf="weapon.has_range_value">
           {{ weapon.range_value }}
         </div>
       </div>
-      <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
-        <img [src]="'assets/images/base_damage.svg'" [alt]="'Base Damage' | translate" class="w-[64px] h-[64px] object-contain" /> {{weapon.base_damage}}
+      <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500 shadow-inner text-black font-bold text-3xl">
+        {{weapon.base_damage}}
       </div>
       <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500">
-        <img [src]="'assets/images/' + weapon.wieldormagType + '.svg'" [alt]="weapon.wieldormagText | translate" class="w-[64px] h-[64px] object-contain" />
+        <img [src]="'assets/images/' + weapon.wieldormagType + '.png'" [alt]="weapon.wieldormagText | translate" class="w-[64px] h-[64px] object-contain" />
         <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-gray-500 rounded-full flex items-center justify-center text-2xl font-serif" *ngIf="weapon.magsize">
           {{ weapon.magsize }}
         </div>
       </div>
       <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-gray-300 border-2 border-gray-500" *ngIf="weapon.reloadrate">
-        <img [src]="'assets/images/reload_rate.svg'" [alt]="'Reload Rate' | translate" class="w-[64px] h-[64px] object-contain" />
+        <img [src]="'assets/images/reload_rate.png'" [alt]="'Reload Rate' | translate" class="w-[64px] h-[64px] object-contain" />
         <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-gray-500 rounded-full flex items-center justify-center text-2xl font-serif">
           {{ weapon.reloadrate }}
         </div>
@@ -62,15 +58,13 @@
         <img [src]="weapon.image" alt="{{ weapon.name }}" class="h-[160px]" />
       </div>
     </div>
-  
-    <!-- Notas del arma -->
+
     <div class="col-span-6 text-[10px]">
       <strong>{{ 'Notes' | translate }}</strong> {{ weapon.notes }}
     </div>
   </div>
-  
-  <!-- Sección de ataques -->
-  <div class="grid grid-cols-6 w-[14.8cm] px-[1.5cm] border border-2 gap-2">
+
+  <div class="grid grid-cols-6 w-[14.8cm] px-[1.5cm] py-[0.5cm] border border-2 gap-[0.5cm] bg-gray-100 shadow-lg rounded-lg">
     <div class="col-span-6 grid grid-cols-6" *ngFor="let attack of weapon.attacks">
       <div class="col-span-5 text-lg">
         {{ attack.is_basic ? 'Basico' : '' }} {{ attack.attack_name }} {{ attack.is_secondary ? 'Secundario' : '' }} {{ attack.stamina }}

@@ -71,6 +71,8 @@ export class Weapon {
       this.attacks = data.attacks || [];
       this.image = data.image || '';
       this.id = data.id || '';
+      this.magsize = data.magsize || 0;
+      this.reloadrate = data.reloadrate || 0;
       this.attacks = (data.attacks || []).map(a => {
         const attack = new Attack(a);
         attack.weapon = this;
@@ -79,10 +81,10 @@ export class Weapon {
     }
 
     get wieldormagType(): string {
-      return this.magsize ? 'reload_magsize': 'wield_' + this.wield_effect;
+      return this.magsize ? 'ammo_capacity': 'wield_' + this.wield_effect;
     }
     get wieldormagText(): string {
-      return this.magsize ? 'Ammon Capacity': 'Wield Effect';
+      return !!this.magsize ? 'Ammon Capacity': 'Wield Effect';
     }
 
     get range_type(): string {
