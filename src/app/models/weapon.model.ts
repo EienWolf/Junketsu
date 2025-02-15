@@ -114,4 +114,18 @@ export class Weapon {
       }
       return value;
     }
+
+    get is_Guard(): boolean{
+      return this.is_agile || this.is_block
+    }
+
+    get guardtype(): string{
+      return this.is_agile && this.is_block ? 'property_guard' 
+        : this.is_agile ? 'property_agile'
+          : this.is_block ? 'property_block': 'property_block';
+    }
+
+    get is_long_description(): boolean {
+      return (this.description?.length ?? 0) > 144;
+    }
 }
