@@ -16,6 +16,8 @@
       <input [(ngModel)]="newWeapon.magsize" name="magsize" placeholder="Magazine Size" class="border p-2 rounded" />
       <input [(ngModel)]="newWeapon.reloadrate" name="reloadrate" placeholder="Reload Rate" class="border p-2 rounded" />
       <input [(ngModel)]="newWeapon.ability" name="ability" placeholder="Ability" class="border p-2 rounded" />
+      <input [(ngModel)]="newWeapon.image" name="image" placeholder="Imagen url" class="border p-2 rounded" />
+      <input [(ngModel)]="newWeapon.id" name="id" placeholder="id" class="border p-2 rounded" />
       <textarea [(ngModel)]="newWeapon.notes" name="notes" placeholder="Notes" class="border p-2 rounded"></textarea>
       <input [(ngModel)]="newWeapon.durability_type" name="durability_type" placeholder="Durability Type" class="border p-2 rounded" />
       <button type="submit" class="bg-blue-500 text-white p-2 rounded">{{ editingIndex !== null ? 'Update' : 'Save' }}</button>

@@ -20,17 +20,17 @@ export class WeaponFormComponent {
 
   saveWeapon() {
     if (this.editingIndex !== null) {
-      this.weapons[this.editingIndex] = { ...this.newWeapon };
+      this.weapons[this.editingIndex] = this.newWeapon ;
       this.editingIndex = null;
     } else {
-      this.weapons.push({ ...this.newWeapon });
+      this.weapons.push(this.newWeapon);
     }
     this.saveToLocalStorage();
     this.newWeapon = this.resetWeapon();
   }
 
   editWeapon(index: number) {
-    this.newWeapon = { ...this.weapons[index] };
+    this.newWeapon = this.weapons[index] ;
     this.editingIndex = index;
   }
 
@@ -103,24 +103,6 @@ export class WeaponFormComponent {
   }
 
   resetWeapon(): Weapon {
-    return {
-      name: '',
-      durability: 0,
-      weapon_type: '',
-      durability_type: '',
-      description: '',
-      notes: '',
-      ability: '',
-      base_damage: 1,
-      attack_range: '',
-      grip_mode: '',
-      wield_effect: '',
-      attacks: [],
-      is_throwable: false,
-      is_agile: false,
-      is_block: false,
-      image: '',
-      id: ''
-    };
+    return new Weapon();
   }
 }

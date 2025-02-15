@@ -12,35 +12,19 @@ import { SharedModule } from '../../shared.module';
   imports: [CommonModule, SharedModule]
 })
 export class WeaponComponent implements OnInit {
-  weapon: Weapon = {
-    name: '',
-    durability: 0,
-    weapon_type: '',
-    description: '',
-    base_damage: 1,
-    attack_range: '',
-    grip_mode: '',
-    wield_effect: '',
-    is_throwable: false,
-    durability_type: '',
-    is_agile: false,
-    is_block: false,
-    ability: '',
-    notes: '',
-    attacks: [],
-    image: '',
-    id: ''
-  };
+  weapon: Weapon = new Weapon();
 
-  constructor(private weaponService: WeaponService, private route: ActivatedRoute) {}
+  constructor(private weaponService: WeaponService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     const index = this.route.snapshot.paramMap.get('index');
     if (index !== null) {
-      const storedWeapons = localStorage.getItem('weapons');
-      if (storedWeapons) {
-        const weapons: Weapon[] = JSON.parse(storedWeapons);
-        this.weapon = weapons[+index];
+      const storedWeaponsJson = localStorage.getItem('weapons');
+      if (storedWeaponsJson) {
+        const storedWeapons = JSON.parse(storedWeaponsJson);
+        const storedWeaponsMap = storedWeapons.map((data: any) => new Weapon(data));
+        this.weapon = storedWeaponsMap[0];
       }
     }
   }
