@@ -22,9 +22,14 @@ export class Attack {
       this.is_secondary = data.is_secondary ?? false;
     }
   
-    get is_critical_success(): boolean {
+    get has_critical_success(): boolean {
       return !!this.critical_success?.trim();
     }
+
+    get has_description(): boolean {
+      return !!this.description?.trim();
+    }
+    
     get has_own_ability(): boolean {
       return this.weapon ? this.ability !== this.weapon.ability : false;
     }
@@ -65,9 +70,9 @@ export class Weapon {
       this.notes = data.notes || '';
       this.base_damage = data.base_damage || 1;
       this.ability = data.ability || '';
-      this.attack_range = data.attack_range || ''; //melee, reach_x, short, medium, large
-      this.grip_mode = data.grip_mode || ''; //1h, 2h, 2hr
-      this.wield_effect = data.wield_effect || ''; //Finesse, Versatile, Heavy
+      this.attack_range = data.attack_range || '';
+      this.grip_mode = data.grip_mode || '';
+      this.wield_effect = data.wield_effect || '';
       this.attacks = data.attacks || [];
       this.image = data.image || '';
       this.id = data.id || '';
