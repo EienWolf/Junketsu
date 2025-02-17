@@ -40,17 +40,7 @@ export class WeaponFormComponent {
   }
 
   addAttack() {
-    this.newWeapon.attacks.push(new Attack({
-      attack_name: '',
-      stamina: 0,
-      damage_type: '',
-      damage_formula: '',
-      ability: '',
-      description: '',
-      critical_success: '',
-      is_basic: false,
-      is_secondary: false
-    }));
+    this.newWeapon.attacks.push(new Attack());
   }
 
   removeAttack(index: number) {

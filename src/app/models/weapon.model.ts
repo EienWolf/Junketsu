@@ -1,9 +1,9 @@
 export class Attack {
     attack_name: string = '';
     stamina: number = 1;
-    damage_type: string = '';
+    damage_type: string = ''; //slashing, impact
     damage_formula: string = '';
-    ability?: string;
+    ability?: string; //might, precision, evoke, focus
     description?: string;
     critical_success?: string;
     is_basic: boolean = false;
@@ -41,14 +41,14 @@ export class Weapon {
     name: string = '';
     durability: number = 3;
     weapon_type: string = '';
-    durability_type: string = '';
+    durability_type: string = ''; //trick_weapon, legacy, firearm, regular, scrap
     is_throwable: boolean = false;
     is_block: boolean = false;
     is_agile: boolean = false;
     description?: string;
     notes?: string;
     base_damage: number = 1;
-    ability?: string = '';
+    ability?: string = ''; //might, precision, evoke, focus
     attack_range: string = ''; //melee, reach_x, short, medium, large
     grip_mode: string = ''; //1h, 2h, 2hr
     wield_effect?: string; //Finesse, Versatile, Heavy
@@ -83,6 +83,9 @@ export class Weapon {
         attack.weapon = this;
         return attack;
       });
+    }
+    get has_notes(): boolean {
+      return !!this.notes?.trim();
     }
 
     get ammo_or_wield_effect(): string {

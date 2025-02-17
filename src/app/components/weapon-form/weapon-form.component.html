@@ -33,7 +33,7 @@
         <input [(ngModel)]="attack.critical_success" name="critical_success{{i}}" placeholder="Critical Success" class="border p-2 rounded" />
         <label><input type="checkbox" [(ngModel)]="attack.is_basic" name="is_basic{{i}}" /> Basic</label>
         <label><input type="checkbox" [(ngModel)]="attack.is_secondary" name="is_secondary{{i}}" /> Secondary</label>
-        <button (click)="removeAttack(i)" class="text-red-500">Remove Attack</button>
+        <button type="button" (click)="removeAttack(i)" class="text-red-500">Remove Attack</button>
       </div>
       <button type="button" (click)="addAttack()" class="bg-green-500 text-white p-2 rounded mt-2">Add Attack</button>
     </form>

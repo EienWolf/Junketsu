@@ -35,13 +35,11 @@ export class WeaponComponent implements OnInit {
 
   generatePDF() {
     const div = this.pdfContent.nativeElement;
-    html2canvas(div, { scale: 3 }).then((canvas) => {
+    html2canvas(div, { scale: 3, useCORS: true }).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('portrait', 'mm', 'a7');
-
       const imgWidth = 148;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
       pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
       pdf.save('weapon.pdf');
     });
