@@ -43,6 +43,7 @@
         <div>
           <button (click)="editWeapon(i)" class="text-blue-500">Edit</button>
           <button (click)="deleteWeapon(i)" class="text-red-500 ml-2">Delete</button>
+          <button [routerLink]="['/weapons/'+weapon.id]" class="text-red-500 ml-2">View</button>
         </div>
       </li>
     </ul>

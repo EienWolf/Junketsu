@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Weapon, Attack } from '../../models/weapon.model';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared.module';
+
 
 @Component({
   selector: 'app-weapon-form',
   templateUrl: './weapon-form.component.html',
   styleUrls: ['./weapon-form.component.css'],
-  imports: [FormsModule, CommonModule]
+  imports: [FormsModule, SharedModule]
 })
 export class WeaponFormComponent {
   weapons: Weapon[] = [];

@@ -57,6 +57,7 @@ export class Weapon {
     attacks: Attack[];
     image?: string;
     id: string = '';
+    shapes?: string[];
 
     constructor(data: Partial<Weapon> = {}) {
       this.name = data.name || '';

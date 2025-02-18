@@ -1,24 +1,23 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WeaponService } from '../../services/weapon.service';
-import { Weapon } from '../../models/weapon.model';
+import { Weapon } from '../../../models/weapon.model';
 import { ActivatedRoute } from '@angular/router';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from '../../../shared.module';
 import { NgxPrintModule } from 'ngx-print';
-import { WeaponCardA5VerticalComponent } from '../../utilities/print/weapon-card-a5-vertical/weapon.component';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-weapon',
   templateUrl: './weapon.component.html',
   styleUrls: ['./weapon.component.css'],
-  imports: [CommonModule, SharedModule, NgxPrintModule, WeaponCardA5VerticalComponent]
+  imports: [CommonModule, SharedModule, NgxPrintModule]
 })
 export class WeaponComponent implements OnInit {
   weapon: Weapon = new Weapon();
-  // a5card: WeaponCardA5VerticalComponent = new WeaponCardA5VerticalComponent();
-  @ViewChild('pdfvertical') pdfContent!: WeaponCardA5VerticalComponent;
+  @ViewChild('pdfContent') pdfContent!: ElementRef;
 
-  constructor(private weaponService: WeaponService, private route: ActivatedRoute) {
+  constructor( private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -33,12 +32,19 @@ export class WeaponComponent implements OnInit {
           
         }
         this.weapon = weapon || new Weapon();
-        console.log(this.weapon.id);
       }
     }
   }
 
   generatePDF() {
-    this.pdfContent.generatePDF();
+    const div = this.pdfContent.nativeElement;
+    html2canvas(div, { scale: 3, useCORS: true }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('portrait', 'mm', 'a7');
+      const imgWidth = 148;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save('weapon.pdf');
+    });
   }
 }

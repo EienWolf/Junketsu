@@ -1,4 +1,4 @@
-<div id="print-section w-[14.8cm] h-[21cm] p-0 m-0">
+<div #pdfContent id="print-section w-[14.8cm] h-[21cm] p-0 m-0">
 <div class="relative grid grid-cols-6 w-[14.8cm] p-[1.5cm] h-[10.5cm] gap-[0.2cm]">
     <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-background border-2 border-border">
       <img [src]="'assets/images/weapon_type_' + weapon.weapon_type  + '.png'" [alt]="weapon.weapon_type | translate" class="w-[32px] h-[32px] object-contain" />
@@ -103,10 +103,4 @@
       </div>
     </div>
   </div>
-</div>
-<button (click)="generatePDF()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
-  Download PDF
-</button>
-<div class="opacity-0">
-<print-WeaponCardA5Vertical #pdfvertical [index]="weapon.id"></print-WeaponCardA5Vertical>
 </div>

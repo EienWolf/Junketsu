@@ -1,6 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
-@config "../tailwind.config.ts";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@theme {
+	--color-primary: var(--theme-color-primary);
+	--color-secondary: var(--theme-color-secondary);
+	--color-background: var(--theme-color-background);
+	--color-surface: var(--theme-color-surface);
+	--color-text: var(--theme-color-text);
+	--color-textSecondary: var(--theme-color-textSecondary);
+	--color-border: var(--theme-color-border);
+	--color-error: var(--theme-color-error);
+	--color-success: var(--theme-color-success);
+	--color-info: var(--theme-color-info);
+	--color-warning: var(--theme-color-warning);
+}
+@layer base {
+	:root {
+		--theme-color-primary: #fff;
+		--theme-color-secondary: #fff;
+		--theme-color-background: #d1d5dc;
+		--theme-color-border: #6a7282;
+		--theme-color-surface: #fff;
+		--theme-color-text: #000;
+		--theme-color-textSecondary: #fff;
+		--theme-color-error: #fff;
+		--theme-color-success: #fff;
+		--theme-color-info: #fff;
+		--theme-color-warning: #fff;
+	}
+}
+
+@layer base {
+	[data-theme="dark"] {
+		--theme-color-primary: #000;
+		--theme-color-secondary: #000;
+		--theme-color-background: #000;
+		--theme-color-surface: #000000;
+		--theme-color-text: #000;
+		--theme-color-textSecondary: #000;
+		--theme-color-border: #ff0000;
+		--theme-color-error: #000;
+		--theme-color-success: #000;
+		--theme-color-info: #000;
+		--theme-color-warning: #000;
+	}
+}
+
 @layer base {
 	img {
 		@apply inline-block;

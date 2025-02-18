@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -9,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
   ],
   exports: [
-    TranslateModule
+    TranslateModule, CommonModule, RouterModule
   ]
 })
 export class SharedModule { }
