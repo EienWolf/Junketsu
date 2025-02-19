@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Weapon, Attack } from '../../models/weapon.model';
 import { SharedModule } from '../../shared.module';
+import { WeaponService } from '../../services/weapon.service';
 
 
 @Component({
@@ -13,31 +14,25 @@ import { SharedModule } from '../../shared.module';
 export class WeaponFormComponent {
   weapons: Weapon[] = [];
   newWeapon: Weapon = this.resetWeapon();
-  editingIndex: number | null = null;
+  is_editing: boolean = false;
 
-  constructor() {
-    this.loadWeapons();
+  constructor(private weaponService: WeaponService) {
+    this.weapons = weaponService.getWeapons();
   }
 
   saveWeapon() {
-    if (this.editingIndex !== null) {
-      this.weapons[this.editingIndex] = this.newWeapon ;
-      this.editingIndex = null;
-    } else {
-      this.weapons.push(this.newWeapon);
-    }
-    this.saveToLocalStorage();
+    this.weaponService.updateWeapon(this.newWeapon);
     this.newWeapon = this.resetWeapon();
+    this.is_editing = false;
   }
 
-  editWeapon(index: number) {
-    this.newWeapon = this.weapons[index] ;
-    this.editingIndex = index;
+  editWeapon(index: number | string) {
+    this.newWeapon = this.weaponService.getWeapon(index);
+    this.is_editing = true;
   }
 
-  deleteWeapon(index: number) {
-    this.weapons.splice(index, 1);
-    this.saveToLocalStorage();
+  deleteWeapon(index: number | string) {
+    this.weaponService.deleteWeapon(index);
   }
 
   addAttack() {
@@ -48,49 +43,12 @@ export class WeaponFormComponent {
     this.newWeapon.attacks.splice(index, 1);
   }
 
-  saveToLocalStorage() {
-    localStorage.setItem('weapons', JSON.stringify(this.weapons));
-  }
-
-  loadWeapons() {
-    const storedWeapons = localStorage.getItem('weapons');
-    if (storedWeapons) {
-      this.weapons = JSON.parse(storedWeapons);
-    }
-  }
-
   exportWeapons() {
-    const dataStr = JSON.stringify(this.weapons, null, 2);
-    const blob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'weapons.json';
-    a.click();
-
-    URL.revokeObjectURL(url);
+    this.weaponService.exportWeapons();
   }
 
   importWeapons(event: any) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const importedWeapons = JSON.parse(reader.result as string);
-        if (Array.isArray(importedWeapons)) {
-          this.weapons = importedWeapons;
-          this.saveToLocalStorage();
-        } else {
-          alert('Archivo JSON inválido');
-        }
-      } catch (error) {
-        alert('Error al leer el archivo JSON');
-      }
-    };
-    reader.readAsText(file);
+    this.weaponService.importWeapons(event, 'replace');
   }
 
   resetWeapon(): Weapon {

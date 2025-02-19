@@ -1,6 +1,6 @@
 
   <div class="p-4 max-w-md mx-auto bg-white shadow-md rounded-lg">
-    <h2 class="text-xl font-bold mb-4">{{ editingIndex !== null ? 'Edit Weapon' : 'Add Weapon' }}</h2>
+    <h2 class="text-xl font-bold mb-4">{{ is_editing ? 'Edit Weapon' : 'Add Weapon' }}</h2>
     <form (ngSubmit)="saveWeapon()" class="grid gap-2">
       <input [(ngModel)]="newWeapon.name" name="name" placeholder="Weapon Name" required class="border p-2 rounded" />
       <input [(ngModel)]="newWeapon.durability" name="durability" type="number" placeholder="Durability" required class="border p-2 rounded" />
@@ -20,7 +20,7 @@
       <input [(ngModel)]="newWeapon.id" name="id" placeholder="id" class="border p-2 rounded" />
       <textarea [(ngModel)]="newWeapon.notes" name="notes" placeholder="Notes" class="border p-2 rounded"></textarea>
       <input [(ngModel)]="newWeapon.durability_type" name="durability_type" placeholder="Durability Type" class="border p-2 rounded" />
-      <button type="submit" class="bg-blue-500 text-white p-2 rounded">{{ editingIndex !== null ? 'Update' : 'Save' }}</button>
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded">{{ is_editing !== null ? 'Update' : 'Save' }}</button>
 
       <h3 class="text-lg font-bold mt-4">Attacks</h3>
       <div *ngFor="let attack of newWeapon.attacks; let i = index" class="border p-2 rounded mt-2">
@@ -41,8 +41,8 @@
       <li *ngFor="let weapon of weapons; let i = index" class="p-2 border-b flex justify-between">
         <span>{{ weapon.name }}</span>
         <div>
-          <button (click)="editWeapon(i)" class="text-blue-500">Edit</button>
-          <button (click)="deleteWeapon(i)" class="text-red-500 ml-2">Delete</button>
+          <button (click)="editWeapon(weapon.id)" class="text-blue-500">Edit</button>
+          <button (click)="deleteWeapon(weapon.id)" class="text-red-500 ml-2">Delete</button>
           <button [routerLink]="['/weapons/'+weapon.id]" class="text-red-500 ml-2">View</button>
         </div>
       </li>

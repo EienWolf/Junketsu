@@ -1,14 +1,14 @@
-<div id="print-section w-[14.8cm] h-[21cm] p-0 m-0">
-<div class="relative grid grid-cols-6 w-[14.8cm] p-[1.5cm] h-[10.5cm] gap-[0.2cm]">
+<div class="px-4 m-0">
+<div class="relative grid grid-cols-6">
     <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-background border-2 border-border">
-      <img [src]="'assets/images/weapon_type_' + weapon.weapon_type  + '.png'" [alt]="weapon.weapon_type | translate" class="w-[32px] h-[32px] object-contain" />
+      <img [src]="'assets/images/weapon_type_' + weapon.weapon_type  + '.png'" [alt]="weapon.weapon_type | translate" class="object-contain" />
     </div>
     <div class="col-start-2 col-span-4 text-2xl font-bold text-center">
       {{ weapon.name }}
     </div>
     <div class="relative">
       <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-background border-2 border-border absolute right-0" [ngClass]="{ 'invisible': !weapon.is_throwable }">
-        <img [src]="'assets/images/property_thrown.png'" [alt]="'Thrown' | translate" class="w-[32px] h-[32px] object-contain" />
+        <img [src]="'assets/images/property_thrown.png'" [alt]="'Thrown' | translate" class="object-contain" />
       </div>
     </div>
     
@@ -26,7 +26,7 @@
     </div>
     <div class="relative">
       <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-background border-2 border-border absolute right-0" [ngClass]="{ 'invisible': !weapon.is_Guard}">
-        <img [src]="'assets/images/' + weapon.guard_type  + '.png'" [alt]="'Agile' | translate" class="w-[32px] h-[32px] object-contain" />
+        <img [src]="'assets/images/' + weapon.guard_type  + '.png'" [alt]="'Agile' | translate" class="object-contain" />
       </div>
     </div>
     <div class="col-span-6 row-span-2">
@@ -49,13 +49,13 @@
         {{weapon.base_damage}}
       </div>
       <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-background border-2 border-border">
-        <img [src]="'assets/images/' + weapon.ammo_or_wield_effect + '.png'" [alt]="weapon.ammo_or_wield_effect_text | translate" class="w-[64px] h-[64px] object-contain" />
+        <img [src]="'assets/images/' + weapon.ammo_or_wield_effect + '.png'" [alt]="weapon.ammo_or_wield_effect_text | translate" class="object-contain" />
         <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-[#6a7282] rounded-full flex items-center justify-center text-2xl font-serif" *ngIf="weapon.ammo_capacity">
           {{ weapon.ammo_capacity }}
         </div>
       </div>
       <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-background border-2 border-border" *ngIf="weapon.reloadrate">
-        <img [src]="'assets/images/reload_rate.png'" [alt]="'Reload Rate' | translate" class="w-[64px] h-[64px] object-contain" />
+        <img [src]="'assets/images/reload_rate.png'" [alt]="'Reload Rate' | translate" class="object-contain" />
         <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-border rounded-full flex items-center justify-center text-2xl font-serif">
           {{ weapon.reloadrate }}
         </div>
@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-6 w-[14.8cm] px-[1.5cm] py-[0.5cm] gap-[0.5cm]">
+  <div class="grid grid-cols-6">
     <div class="col-span-6 grid grid-cols-6" *ngFor="let attack of weapon.attacks">
       <div class="col-span-5 text-xl flex items-center">
         <img [src]="'assets/images/basic_attack.png'" [alt]="'Basic attack' | translate" class="w-7 h-7 object-contain" *ngIf="attack.is_basic" />
@@ -107,6 +107,11 @@
 <button (click)="generatePDF()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
   Download PDF
 </button>
-<div class="opacity-0">
-<print-WeaponCardA5Vertical #pdfvertical [index]="weapon.id"></print-WeaponCardA5Vertical>
-</div>
+@switch (this.printOption) {
+  @case ('a5Vertical') {
+    <print-WeaponCardA5Vertical #pdfvertical [index]="weapon.id"></print-WeaponCardA5Vertical>
+  }
+  @default {
+    
+  }
+}

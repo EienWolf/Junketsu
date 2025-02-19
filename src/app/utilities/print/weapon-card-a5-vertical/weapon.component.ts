@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild, AfterViewInit, Output } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Weapon } from '../../../models/weapon.model';
 import { SharedModule } from '../../../shared.module';
@@ -12,7 +12,7 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./weapon.component.css'],
   imports: [CommonModule, SharedModule, NgxPrintModule]
 })
-export class WeaponCardA5VerticalComponent implements AfterViewInit {
+export class WeaponCardA5VerticalComponent implements OnInit {
   weapon: Weapon = new Weapon();
   @ViewChild('pdfContent') pdfContent!: ElementRef;
   @Input() public index: string | undefined;
@@ -20,7 +20,7 @@ export class WeaponCardA5VerticalComponent implements AfterViewInit {
   constructor() {
     
   }
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     console.log();
     if (this.index !== null) {
       const storedWeaponsJson = localStorage.getItem('weapons');
