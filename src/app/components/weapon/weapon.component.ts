@@ -37,8 +37,6 @@ export class WeaponComponent implements OnInit, AfterViewInit {
       if (this.pdfComponent) {
         this.pdfComponent.generatePDF();
         this.printOption = 'none';
-      } else {
-        console.error("El componente no está disponible");
       }
     }, 0);
     

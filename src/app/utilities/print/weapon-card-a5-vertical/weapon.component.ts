@@ -5,6 +5,7 @@ import { SharedModule } from '../../../shared.module';
 import { NgxPrintModule } from 'ngx-print';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { WeaponService } from '../../../services/weapon.service';
 
 @Component({
   selector: 'print-WeaponCardA5Vertical',
@@ -15,25 +16,13 @@ import html2canvas from 'html2canvas';
 export class WeaponCardA5VerticalComponent implements OnInit {
   weapon: Weapon = new Weapon();
   @ViewChild('pdfContent') pdfContent!: ElementRef;
-  @Input() public index: string | undefined;
+  @Input() public index: string | string = '';
 
-  constructor() {
+  constructor(private weaponService: WeaponService) {
     
   }
   ngOnInit(): void {
-    console.log();
-    if (this.index !== null) {
-      const storedWeaponsJson = localStorage.getItem('weapons');
-      if (storedWeaponsJson) {
-        const storedWeapons = JSON.parse(storedWeaponsJson);
-        const storedWeaponsMap: Weapon[] = storedWeapons.map((data: any) => new Weapon(data));
-        var weapon = storedWeaponsMap.find(weapon => weapon.id === this.index);
-        if (!!weapon) {
-          
-        }
-        this.weapon = weapon || new Weapon();
-      }
-    }
+    this.weapon = this.weaponService.getWeapon(this.index);
   }
 
   @Output() public generatePDF():boolean {
