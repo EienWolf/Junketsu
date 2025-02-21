@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+@config "../tailwind.config.ts";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @theme {
 	--color-primary: var(--theme-color-primary);
 	--color-secondary: var(--theme-color-secondary);
@@ -14,6 +16,7 @@
 	--color-success: var(--theme-color-success);
 	--color-info: var(--theme-color-info);
 	--color-warning: var(--theme-color-warning);
+	
 }
 @layer base {
 	:root {
@@ -30,6 +33,7 @@
 		--theme-color-success: #fff;
 		--theme-color-info: #fff;
 		--theme-color-warning: #fff;
+		
 
 		/* Icons */
 		--icon-ability-evoke: url('/assets/images/icons/ability-evoke.svg');
@@ -88,8 +92,27 @@
 }
 
 @layer base {
+	
+}
+
+@layer base {
+	img {
+		@apply inline-block;
+	}
+}
+
+@layer primeng, tailwind_utilities;
+
+@layer tailwind_utilities{
+	@tailwind utilities;
+	:root {
+		--p-surface-0: #f00;
+		--p-surface-400: #f00;
+		--p-surface-300: #f00;
+	}
 	[data-theme="dark"] {
 		/* Colors */
+		color-scheme:light;
 		--theme-color-primary: #fff;
 		--theme-color-secondary: #fff;
 		--theme-color-background: #fff;
@@ -106,10 +129,3 @@
 		--icon-property-guard: url('/assets/images/icons/property-guard.dark.svg');
 	}
 }
-
-@layer base {
-	img {
-		@apply inline-block;
-	}
-}
-@tailwind utilities;
