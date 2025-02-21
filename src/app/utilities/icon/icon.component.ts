@@ -12,7 +12,17 @@ const globalSvgCache = new Map<string, SafeHtml>();
   imports: [CommonModule]
 })
 export class SvgIconComponent implements OnInit, OnDestroy {
-  @Input() iconName!: string;
+  private _icon_name: string ='';
+  @Input() 
+  set iconName(value: string)
+  {
+    this._icon_name = value;
+    this.currentIconValue = this.getCssVariableValue();
+    this.loadSvg(this.currentIconValue);
+  }
+  get iconName(): string {
+    return this._icon_name;
+  }
   @Input() iconClass: string = '';
   @Input() forceTheme: boolean = true;
   constructor(private el: ElementRef, private sanitizer: DomSanitizer){
@@ -23,8 +33,6 @@ export class SvgIconComponent implements OnInit, OnDestroy {
   currentIconValue: string | undefined;
 
   ngOnInit() {
-    this.currentIconValue = this.getCssVariableValue();
-    this.loadSvg(this.currentIconValue);
     if (this.forceTheme) {
       this.createThemeChangeObservable();
     } else {
@@ -66,11 +74,13 @@ export class SvgIconComponent implements OnInit, OnDestroy {
         return;
       }
       const response = await fetch(iconUrl);
-      const svg = await response.text();
-      this.iconSvg = this.sanitizer.bypassSecurityTrustHtml(svg);
-      globalSvgCache.set(iconUrl, this.iconSvg);
+      if (response.ok) {
+        const svg = await response.text();
+        this.iconSvg = this.sanitizer.bypassSecurityTrustHtml(svg);
+        globalSvgCache.set(iconUrl, this.iconSvg);
+      }
     } catch (error) {
-      console.error('Error loading SVG:', error);
+      console.log('Error loading SVG:', error);
       this.iconSvg = '';
     }
   }
