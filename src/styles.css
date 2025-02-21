@@ -24,7 +24,7 @@
 		--theme-color-fill: #d1d5dc;
 		--theme-color-border: #6a7282;
 		--theme-color-surface: #fff;
-		--theme-color-text: #000;
+		--theme-color-text: #fff;
 		--theme-color-textSecondary: #fff;
 		--theme-color-error: #fff;
 		--theme-color-success: #fff;
@@ -32,29 +32,30 @@
 		--theme-color-warning: #fff;
 
 		/* Icons */
-		--icon-ability-evoke: url('/assets/images/ability-evoke.png');
-		--icon-ability-focus: url('/assets/images/ability-focus.png');
-		--icon-ability-might: url('/assets/images/ability-might.png');
-		--icon-ability-precision: url('/assets/images/ability-precision.png');
-		--icon-ammon-capacity: url('/assets/images/ammon-capacity.png');
-		--icon-basic-attack: url('/assets/images/basic-attack.png');
-		--icon-durability-type-scrap: url('/assets/images/durability-type-scrap.png');
-		--icon-durability-type-regular: url('/assets/images/durability-type-regular.png');
-		--icon-durability-type-legacy: url('/assets/images/durability-type-legacy.png');
-		--icon-property-agile: url('/assets/images/property-agile.png');
-		--icon-property-block: url('/assets/images/property-block.png');
-		--icon-property-guard: url('/assets/images/property-guard.png');
-		--icon-property-thrown: url('/assets/images/property-thrown.png');
-		--icon-range-large: url('/assets/images/range-large.png');
-		--icon-range-medium: url('/assets/images/range-medium.png');
-		--icon-range-short: url('/assets/images/range-short.png');
-		--icon-range-melee: url('/assets/images/range-melee.png');
-		--icon-range-reach: url('/assets/images/range-reach.png');
-		--icon-reload-rate: url('/assets/images/reload-rate.png');
-		--icon-secondary-attack: url('/assets/images/secondary-attack.png');
-		--icon-wield-finesse: url('/assets/images/wield-finesse.png');
-		--icon-wield-versatile: url('/assets/images/wield-versatile.png');
-		--icon-wield-heavy: url('/assets/images/wield-heavy.png');
+		--icon-ability-evoke: url('/assets/images/icons/ability-evoke.svg');
+		--icon-ability-focus: url('/assets/images/icons/ability-focus.svg');
+		--icon-ability-might: url('/assets/images/icons/ability-might.svg');
+		--icon-ability-precision: url('/assets/images/icons/ability-precision.svg');
+		--icon-ammon-capacity: url('/assets/images/icons/ammon-capacity.svg');
+		--icon-basic-attack: url('/assets/images/icons/basic-attack.svg');
+		--icon-durability-type-scrap: url('/assets/images/icons/durability-type-scrap.svg');
+		--icon-durability-type-regular: url('/assets/images/icons/durability-type-regular.svg');
+		--icon-durability-type-legacy: url('/assets/images/icons/durability-type-legacy.svg');
+		--icon-property-agile: url('/assets/images/icons/property-agile.svg');
+		--icon-property-block: url('/assets/images/icons/property-block.svg');
+		--icon-property-guard: url('/assets/images/icons/property-guard.svg');
+		--icon-property-thrown: url('/assets/images/icons/property-thrown.svg');
+		--icon-range-large: url('/assets/images/icons/range-large.svg');
+		--icon-range-medium: url('/assets/images/icons/range-medium.svg');
+		--icon-range-short: url('/assets/images/icons/range-short.svg');
+		--icon-range-melee: url('/assets/images/icons/range-melee.svg');
+		--icon-range-reach: url('/assets/images/icons/range-reach.svg');
+		--icon-reload-rate: url('/assets/images/icons/reload-rate.svg');
+		--icon-secondary-attack: url('/assets/images/icons/secondary-attack.svg');
+		--icon-wield-finesse: url('/assets/images/icons/wield-finesse.svg');
+		--icon-wield-versatile: url('/assets/images/icons/wield-versatile.svg');
+		--icon-wield-heavy: url('/assets/images/icons/wield-heavy.svg');
+		--icon-stamina: url('/assets/images/icons/stamina.svg');
 	}	
 }
 
@@ -83,25 +84,26 @@
 	.icon-wield-finesse { background-image: var(--icon-wield-finesse); }
 	.icon-wield-versatile { background-image: var(--icon-wield-versatile); }
 	.icon-wield-heavy { background-image: var(--icon-wield-heavy); }
+	.icon-stamina { background-image: var(--icon-stamina); }
 }
 
 @layer base {
 	[data-theme="dark"] {
 		/* Colors */
-		--theme-color-primary: #000;
-		--theme-color-secondary: #000;
-		--theme-color-background: #000;
-		--theme-color-fill: #000;
-		--theme-color-surface: #000000;
-		--theme-color-text: #000;
-		--theme-color-textSecondary: #000;
+		--theme-color-primary: #fff;
+		--theme-color-secondary: #fff;
+		--theme-color-background: #fff;
+		--theme-color-fill: #fff;
+		--theme-color-surface: #fff;
+		--theme-color-text: #fff;
+		--theme-color-textSecondary: #fff;
 		--theme-color-border: #ff0000;
-		--theme-color-error: #000;
-		--theme-color-success: #000;
-		--theme-color-info: #000;
-		--theme-color-warning: #000;
+		--theme-color-error: #fff;
+		--theme-color-success: #fff;
+		--theme-color-info: #fff;
+		--theme-color-warning: #fff;
 		/* Icons */
-		
+		--icon-property-guard: url('/assets/images/icons/property-guard.dark.svg');
 	}
 }
 

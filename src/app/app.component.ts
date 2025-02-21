@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NavComponent } from "./components/nav/nav.component";
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -10,21 +11,31 @@ import { NavComponent } from "./components/nav/nav.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('es_MX');
+  DEFAULT_LANGUAGE:string = 'es_MX';
+  constructor(@Inject(DOCUMENT) private document: Document, private translate: TranslateService) {
+    this.translate.setDefaultLang(this.DEFAULT_LANGUAGE);
     this.detectLanguage();
   }
 
   changeLanguage(lang: string) {
-    this.translate.use(lang);
+    let languages = ['es_MX', 'en_US'];
+    if (!languages.some(m => m == lang)) {
+      localStorage.setItem('language', (this.translate.currentLang || this.translate.defaultLang));
+      return;
+    }
+    if ((this.translate.currentLang || this.translate.defaultLang) != lang) {
+      this.translate.use(lang);
+    }
     localStorage.setItem('language', lang);
   }
 
   detectLanguage() {
-    const browserLang = navigator.language.replace('-', '_');
-    const savedLang = localStorage.getItem('language');
-    const langToUse = savedLang || (browserLang.match(/es_MX|en_US/) ? browserLang : 'es_MX');
-    this.changeLanguage(langToUse);
+    let lang = localStorage.getItem('language');
+    if (lang == null) {
+      const browserLang = navigator.language.replace('-', '_');
+      lang = (browserLang.match(/es_MX|en_US/) ? browserLang : 'es_MX');
+    }
+    this.changeLanguage(lang);
   }
   title = 'junketsu';
 }

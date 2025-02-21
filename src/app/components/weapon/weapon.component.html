@@ -1,5 +1,5 @@
-<div class="px-4 m-0">
-<div class="relative grid grid-cols-6">
+<div class="px-4 m-0 grid grid-cols-2">
+  <div class="relative col-span-2 xl:col-span-1 grid grid-cols-6">
     <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-background border-2 border-border">
       <img [src]="'assets/images/weapon_type_' + weapon.weapon_type  + '.png'" [alt]="weapon.weapon_type | translate" class="object-contain" />
     </div>
@@ -25,8 +25,10 @@
       </div>
     </div>
     <div class="relative">
-      <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-background border-2 border-border absolute right-0" [ngClass]="{ 'invisible': !weapon.is_Guard}">
-        <img [src]="'assets/images/' + weapon.guard_type  + '.png'" [alt]="'Agile' | translate" class="object-contain" />
+      <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 bg-background  border-border absolute right-0" [ngClass]="{ 'invisible': !weapon.is_Guard}">
+        <div class="w-full h-full p-1 mx-auto">
+          <app-svg-icon iconName="--icon-property-guard" iconClass="fill-black stroke-blue-900 stroke-4"></app-svg-icon>
+        </div>
       </div>
     </div>
     <div class="col-span-6 row-span-2">
@@ -70,7 +72,7 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-6">
+  <div class="col-span-2 xl:col-span-1 grid grid-cols-6">
     <div class="col-span-6 grid grid-cols-6" *ngFor="let attack of weapon.attacks">
       <div class="col-span-5 text-xl flex items-center">
         <img [src]="'assets/images/basic_attack.png'" [alt]="'Basic attack' | translate" class="w-7 h-7 object-contain" *ngIf="attack.is_basic" />
@@ -105,7 +107,7 @@
   </div>
 </div>
 <button (click)="generatePDF()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
-  Download PDF
+  {{ 'weapon.Download' | translate}}
 </button>
 @switch (this.printOption) {
   @case ('a5Vertical') {

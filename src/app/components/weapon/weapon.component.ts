@@ -4,12 +4,13 @@ import { Weapon } from '../../models/weapon.model';
 import { ActivatedRoute } from '@angular/router';
 import { SharedModule } from '../../shared.module';
 import { WeaponCardA5VerticalComponent } from '../../utilities/print/weapon-card-a5-vertical/weapon.component';
+import { SvgIconComponent } from "../../utilities/icon/icon.component";
 
 @Component({
   selector: 'app-weapon',
   templateUrl: './weapon.component.html',
   styleUrls: ['./weapon.component.css'],
-  imports: [SharedModule, WeaponCardA5VerticalComponent],
+  imports: [SharedModule, WeaponCardA5VerticalComponent, SvgIconComponent],
 })
 export class WeaponComponent implements OnInit, AfterViewInit {
   weapon: Weapon = new Weapon();
