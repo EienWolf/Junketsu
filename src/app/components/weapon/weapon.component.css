@@ -1,0 +1,8 @@
+.icon-svg{
+    @apply stroke-[var(--p-highlight-color)] stroke-2 hover:stroke-[var(--p-highlight-focus-color)] fill-[var(--p-text-color)] hover:fill-[var(--p-text-hover-color)];
+}
+.icon-svg-container {
+    @apply flex items-center justify-center rounded-full border-2
+    bg-[var(--p-content-border-color)] hover:bg-[var(--p-content-hover-background)]
+    border-[var(--p-content-border-color)] hover:border-[var(--p-highlight-color)];
+}

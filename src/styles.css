@@ -4,8 +4,7 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-	--color-primary: var(--theme-color-primary);
-	--color-secondary: var(--theme-color-secondary);
+	/* --color-secondary: var(--theme-color-secondary);
 	--color-background: var(--theme-color-background);
 	--color-fill: var(--theme-color-fill);
 	--color-border: var(--theme-color-border);
@@ -15,14 +14,14 @@
 	--color-error: var(--theme-color-error);
 	--color-success: var(--theme-color-success);
 	--color-info: var(--theme-color-info);
-	--color-warning: var(--theme-color-warning);
+	--color-warning: var(--theme-color-warning); */
 	
 }
 @layer base {
 	:root {
 		/* Colors */
-		--theme-color-primary: #fff;
-		--theme-color-secondary: #fff;
+		/* --theme-color-primary: #fff; */
+		/* --theme-color-secondary: #fff;
 		--theme-color-background: #d1d5dc;
 		--theme-color-fill: #d1d5dc;
 		--theme-color-border: #6a7282;
@@ -33,7 +32,7 @@
 		--theme-color-success: #fff;
 		--theme-color-info: #fff;
 		--theme-color-warning: #fff;
-		
+		 */
 
 		/* Icons */
 		--icon-ability-evoke: url('/assets/images/icons/ability-evoke.svg');
@@ -61,6 +60,10 @@
 		--icon-wield-heavy: url('/assets/images/icons/wield-heavy.svg');
 		--icon-stamina: url('/assets/images/icons/stamina.svg');
 		--icon-tracker: url('/assets/images/icons/tracker.svg');
+		--icon-grip-0h: url('/assets/images/icons/grip-0h.svg');
+		--icon-grip-1h: url('/assets/images/icons/grip-1h.svg');
+		--icon-grip-2h: url('/assets/images/icons/grip-2h.svg');
+		--icon-grip-2hr: url('/assets/images/icons/grip-2hr.svg');
 	}	
 }
 
@@ -107,14 +110,12 @@
 @layer tailwind_utilities{
 	@tailwind utilities;
 	:root {
-		--p-surface-0: #f00;
-		--p-surface-400: #f00;
-		--p-surface-300: #f00;
+
 	}
 	[data-theme="dark"] {
 		/* Colors */
-		color-scheme:light;
-		--theme-color-primary: #fff;
+		/* color-scheme:light; */
+		/* --theme-color-primary: #fff;
 		--theme-color-secondary: #fff;
 		--theme-color-background: #fff;
 		--theme-color-fill: #fff;
@@ -125,8 +126,10 @@
 		--theme-color-error: #fff;
 		--theme-color-success: #fff;
 		--theme-color-info: #fff;
-		--theme-color-warning: #fff;
+		--theme-color-warning: #fff; */
 		/* Icons */
 		--icon-property-guard: url('/assets/images/icons/property-guard.dark.svg');
 	}
+
+	
 }

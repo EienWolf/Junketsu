@@ -1,55 +1,38 @@
-<div class="px-4 m-0 grid grid-cols-2 bg-white">
-  <div class="relative col-span-2 xl:col-span-1 grid grid-cols-6">
-    
-    <div class="relative col-span-1">
-      <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 bg-background border-border">
-        <div class="w-full h-full p-1 mx-auto">
-          <app-svg-icon [iconName]="'--icon-weapon-type-' + weapon.weapon_type" iconClass="fill-black stroke-border stroke-4"></app-svg-icon>
-        </div>
-      </div>
-    </div>
-   
+<div class="p-4 m-0 grid grid-cols-2 text-color bg-[var(--p-content-background)]">
+  <div class="relative col-span-2 xl:col-span-1 xl:pr-2 grid grid-cols-6">
     <div class="col-start-2 col-span-4 text-2xl font-bold text-center">
       {{ weapon.name }}
     </div>
 
-    <div class="relative col-span-1">
-      <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 bg-background border-border absolute right-0" [ngClass]="{ 'invisible': !weapon.is_throwable }">
-        <div class="w-full h-full p-1 mx-auto">
-          <app-svg-icon [iconName]="'--icon-property-throw'" iconClass="fill-black stroke-border stroke-4"></app-svg-icon>
-        </div>
+    <div class="col-start-6 col-span-1 items-center justify-end grid">
+      <div class="w-8 h-8 icon-svg-container" [ngClass]="{ 'invisible': !weapon.is_throwable }">
+        @if (weapon.is_throwable) {
+          <app-svg-icon class="w-6 h-6 icon-svg" 
+            [iconName]="'--icon-property-thrown'"></app-svg-icon>
+        }
       </div>
     </div>
 
     <div class="col-start-1 col-span-5 text-xl flex items-center gap-1">
-      <div class="relative">
-        <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 bg-background border-border">
-          <div class="w-full h-full p-1 mx-auto">
-            <app-svg-icon [iconName]="'--icon-durability-type-' + weapon.durability_type" iconClass="fill-black stroke-border stroke-4"></app-svg-icon>
-          </div>
-        </div>
+      <div class="w-8 h-8 icon-svg-container">
+          <app-svg-icon class="w-6 h-6 icon-svg" 
+            [iconName]="'--icon-durability-type-' + weapon.durability_type"></app-svg-icon>
       </div>
 
-      <div class="flex pl-1">
-        <div class="flex items-center justify-items-center">
-          @for (item of [].constructor(15); track $index) {
-            <div class="relative">
-              <div class="flex items-center justify-center">
-                <div class="w-8 h-8 mx-auto">
-                  <app-svg-icon [iconName]="'--icon-tracker'" [iconClass]="weapon.durability > $index ? 'fill-black' : 'fill-white' + ' stroke-border stroke-4'"></app-svg-icon>
-                </div>
-              </div>
-            </div>
-          }
-        </div>
+      <div class="flex">
+        @for (item of [].constructor(15); track $index) {
+          <app-svg-icon [iconClass]="weapon.durability > $index ? '': 'fill-[var(--p-content-background)] hover:fill-[var(--p-content-hover-color)]'" 
+            class="w-8 h-8 icon-svg" [iconName]="'--icon-tracker'"></app-svg-icon>
+        }
       </div>
     </div>
 
-    <div class="relative col-span-1">
-      <div class="flex items-center justify-center w-8 h-8 rounded-full border-2 bg-background border-border absolute right-0" [ngClass]="{ 'invisible': !weapon.is_Guard}">
-        <div class="w-full h-full p-1 mx-auto">
-          <app-svg-icon [iconName]="'--icon-property-' + weapon.guard_type" iconClass="fill-black stroke-border stroke-4"></app-svg-icon>
-        </div>
+    <div class="col-span-1 items-center justify-end grid">
+      <div class="w-8 h-8 icon-svg-container" [ngClass]="{ 'invisible': !weapon.is_Guard}">
+        @if (weapon.is_Guard) {
+          <app-svg-icon class="w-6 h-6 icon-svg" 
+            [iconName]="'--icon-property-' + weapon.guard_type"></app-svg-icon>
+        }
       </div>
     </div>
 
@@ -58,25 +41,24 @@
     </div>
 
     <div class="grid grid-cols-12 place-items-center col-span-6">
-      <div class="relative col-span-2">
-        <div class="flex items-center justify-center w-16 h-16 rounded-full border-2 bg-background border-border">
-          <app-svg-icon class="w-[70%] h-[70%] mx-auto" [iconName]="'--icon-ability-' + weapon.ability" iconClass="fill-black stroke-border stroke-4"></app-svg-icon>
+      <div class="col-span-2">
+        <div class="w-16 h-16 icon-svg-container">
+          <app-svg-icon class="w-11 h-11 icon-svg"
+            [iconName]="'--icon-ability-' + weapon.ability"></app-svg-icon>
         </div>
       </div>
-      
-      <div class="relative col-span-2">
-        <div class="flex items-center justify-center w-16 h-16 rounded-full border-2 bg-background border-border">
-          <div class="w-full h-full p-1 mx-auto">
-            <app-svg-icon [iconName]="'--icon-grip-' + weapon.grip_mode" iconClass="fill-black stroke-border stroke-4"></app-svg-icon>
-          </div>
+
+      <div class="col-span-2">
+        <div class="w-16 h-16 icon-svg-container">
+          <app-svg-icon class="w-11 h-11 icon-svg" 
+            [iconName]="'--icon-grip-' + weapon.grip_mode"></app-svg-icon>
         </div>
       </div>
-     
-      <div class="relative col-span-2">
-        <div class="flex items-center justify-center w-16 h-16 rounded-full border-2 bg-background border-border">
-          <div class="w-full h-full p-1 mx-auto">
-            <app-svg-icon [iconName]="'--icon-range-' + weapon.range_type" iconClass="fill-black stroke-border stroke-4"></app-svg-icon>
-          </div>
+
+      <div class="col-span-2">
+        <div class="w-16 h-16 icon-svg-container">
+          <app-svg-icon class="w-11 h-11 icon-svg" 
+            [iconName]="'--icon-range-' + weapon.range_type"></app-svg-icon>
           @if (weapon.has_range_value) {
             <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-border rounded-full flex items-center justify-center text-2xl font-serif">
               {{ weapon.range_value }}
@@ -85,16 +67,16 @@
         </div>
       </div>
 
-
-      <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-background border-2 border-border shadow-inner text-black font-bold text-3xl">
-        {{weapon.base_damage}}
+      <div class="col-span-2">
+        <div class="w-16 h-16 icon-svg-container">
+          <span class="font-bold text-3xl">{{weapon.base_damage}}</span>
+        </div>
       </div>
 
-      <div class="relative col-span-2">
-        <div class="flex items-center justify-center w-16 h-16 rounded-full border-2 bg-background border-border">
-          <div class="w-full h-full p-1 mx-auto">
-            <app-svg-icon [iconName]="'--icon-' + weapon.ammo_or_wield_effect" iconClass="fill-black stroke-border stroke-4"></app-svg-icon>
-          </div>
+      <div class="col-span-2">
+        <div class="w-16 h-16 icon-svg-container">
+          <app-svg-icon class="w-11 h-11 icon-svg" 
+          [iconName]="'--icon-' + weapon.ammo_or_wield_effect"></app-svg-icon>
           @if (weapon.ammo_capacity) {
             <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-[#6a7282] rounded-full flex items-center justify-center text-2xl font-serif">
               {{ weapon.ammo_capacity }}
@@ -104,11 +86,10 @@
       </div>
 
       @if (weapon.reloadrate) {
-        <div class="relative col-span-2">
-          <div class="flex items-center justify-center w-16 h-16 rounded-full border-2 bg-background border-border">
-            <div class="w-full h-full p-1 mx-auto">
-              <app-svg-icon [iconName]="'--icon-reload-rate'" iconClass="fill-black stroke-border stroke-4"></app-svg-icon>
-            </div>
+        <div class="col-span-2">
+          <div class="w-16 h-16 icon-svg-container">
+            <app-svg-icon class="w-11 h-11 icon-svg" 
+              [iconName]="'--icon-reload-rate'"></app-svg-icon>
             <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-border rounded-full flex items-center justify-center text-2xl font-serif">
               {{ weapon.reloadrate }}
             </div>
@@ -126,47 +107,35 @@
     </div>
   </div>
 
-  <div class="col-span-2 xl:col-span-1 grid grid-cols-6">
+  <div class="col-span-2 xl:col-span-1 xl:pl-2 grid grid-cols-6">
     @for (attack of weapon.attacks; track $index) {
       <div class="col-span-6 grid grid-cols-6">
-        <div class="col-span-5 text-xl flex items-center">
+        <div class="col-span-5 text-xl flex items-center gap-1">
           @if (attack.is_basic) {
-            <app-svg-icon [iconName]="'--icon-basic-attack'" iconClass="w-6 h-6 fill-black stroke-border stroke-4"></app-svg-icon>
+            <app-svg-icon class="w-6 h-6 icon-svg" 
+              [iconName]="'--icon-basic-attack'" ></app-svg-icon>
           }
           <span>{{ attack.attack_name }}</span>
           @if (attack.is_secondary) {
-            <app-svg-icon [iconName]="'--icon-secondary-attack'" iconClass="w-6 h-6 fill-black stroke-border stroke-4"></app-svg-icon>
+            <app-svg-icon class="w-6 h-6 icon-svg" 
+              [iconName]="'--icon-secondary-attack'" ></app-svg-icon>
           }
           <span class="relative top-[-2px]">[</span>
-          <div class="flex items-center justify-items-center">
+          <div class="flex">
             @for (item of [].constructor(attack.stamina); track $index) {
-              <div class="relative">
-                <div class="flex items-center justify-center">
-                  <div class="w-6 h-6 mx-auto">
-                    <app-svg-icon [iconName]="'--icon-stamina'" [iconClass]="'fill-black stroke-border stroke-4'"></app-svg-icon>
-                  </div>
-                </div>
-              </div>
+              <app-svg-icon class="w-6 h-6 icon-svg" 
+                [iconName]="'--icon-stamina'"></app-svg-icon>
             }
           </div>
           <span class="relative top-[-2px]">]</span>
         </div>
 
-        
-        <div class="relative row-span-2 items-center justify-end grid">
-          <div class="flex w-8 h-8 rounded-full border-2 bg-background border-border">
-            <div class="w-full h-full p-1 mx-auto">
-              <app-svg-icon [iconName]="'--icon-damage-type-' + attack.damage_type" iconClass="fill-black stroke-border stroke-4"></app-svg-icon>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-span-3 text-sm">
+        <div class="col-span-2 text-sm">
           {{ attack.damage_formula }}
         </div>
 
         @if (attack.has_own_ability) {
-          <div class="col-span-2 text-sm">
+          <div class="col-span-1 text-sm">
             {{ attack.ability }}
           </div>
         }
@@ -194,6 +163,6 @@
     <print-WeaponCardA5Vertical #pdfvertical [index]="weapon.id"></print-WeaponCardA5Vertical>
   }
   @default {
-    
+
   }
 }

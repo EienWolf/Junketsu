@@ -8,9 +8,9 @@ export class Attack {
     critical_success?: string;
     is_basic: boolean = false;
     is_secondary: boolean = false;
-    weapon?: Weapon;
+    private readonly _weapon?: Weapon;
 
-    constructor(data: Partial<Attack> = {}) {
+    Init(data: Partial<Attack> = {}) {
       this.attack_name = data.attack_name || '';
       this.stamina = data.stamina || 1;
       this.damage_type = data.damage_type || '';
@@ -20,6 +20,12 @@ export class Attack {
       this.critical_success = data.critical_success || '';
       this.is_basic = data.is_basic ?? false;
       this.is_secondary = data.is_secondary ?? false;
+    }
+    constructor(data: Partial<Attack> = {}, weapon: Weapon | undefined = undefined) {
+      this.Init(data);
+      if (weapon !== undefined) {
+        this._weapon = weapon;
+      }
     }
   
     get has_critical_success(): boolean {
@@ -31,7 +37,14 @@ export class Attack {
     }
     
     get has_own_ability(): boolean {
-      return this.weapon ? this.ability !== this.weapon.ability : false;
+      return this._weapon ? this.ability !== this._weapon.ability : false;
+    }
+
+    toJSON() {
+      const publicProps = Object.fromEntries(
+        Object.entries(this).filter(([key]) => !key.startsWith('#') && !key.startsWith('_'))
+      );
+      return publicProps;
     }
   }
   
@@ -79,9 +92,10 @@ export class Weapon {
       this.id = data.id || '';
       this.ammo_capacity = data.ammo_capacity || 0;
       this.reloadrate = data.reloadrate || 0;
+
       this.attacks = (data.attacks || []).map(a => {
-        const attack = new Attack(a);
-        attack.weapon = this;
+        const attack = new Attack(a, this);
+        // attack.weapon = this;
         return attack;
       });
     }
@@ -90,7 +104,7 @@ export class Weapon {
     }
 
     get ammo_or_wield_effect(): string {
-      return this.ammo_capacity ? 'ammo_capacity': 'wield_' + this.wield_effect;
+      return this.ammo_capacity ? 'ammo-capacity': 'wield-' + this.wield_effect;
     }
     get ammo_or_wield_effect_text(): string {
       return !!this.ammo_capacity ? 'Ammon Capacity': 'Wield Effect';
@@ -129,12 +143,23 @@ export class Weapon {
     }
 
     get guard_type(): string{
-      return this.is_agile && this.is_block ? 'property_guard' 
-        : this.is_agile ? 'property_agile'
-          : this.is_block ? 'property_block': 'property_block';
+      return this.is_agile && this.is_block ? 'guard' 
+        : this.is_agile ? 'agile'
+          : this.is_block ? 'block': 'block';
     }
 
     get is_long_description(): boolean {
       return (this.description?.length ?? 0) > 144;
     }
+    
+    toJSON() {
+      const publicProps = Object.fromEntries(
+        Object.entries(this).filter(([key]) => !key.startsWith('#') && !key.startsWith('_'))
+      );
+      return {
+        ...publicProps,
+        attacks: this.attacks.map(attack => attack.toJSON()),
+      };
+    }
 }
+

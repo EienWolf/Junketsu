@@ -9,11 +9,13 @@ export class WeaponService {
     this.loadFromLocalStorage();
   }
   private loadFromLocalStorage() {
-    const storedWeaponsJson = localStorage.getItem('weapons');
+    const storedWeaponsJson = localStorage.getItem('weapons') || '';
     this.weapons = storedWeaponsJson ? JSON.parse(storedWeaponsJson).map((data: any) => new Weapon(data)) : [];
   }
   private saveToLocalStorage() {
-    localStorage.setItem('weapons', JSON.stringify(this.weapons));
+    const serializedWeapons = this.weapons.map(weapon => weapon.toJSON());
+    const dataStr = JSON.stringify(serializedWeapons, null, 2);
+    localStorage.setItem('weapons', dataStr);
   }
 
   private weapons: Weapon[] = [];
@@ -45,7 +47,8 @@ export class WeaponService {
   }  
 
   exportWeapons() {
-    const dataStr = JSON.stringify(this.weapons, null, 2);
+    const serializedWeapons = this.weapons.map(weapon => weapon.toJSON());
+    const dataStr = JSON.stringify(serializedWeapons, null, 2);
     const blob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
