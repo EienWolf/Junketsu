@@ -1,53 +1,114 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared.module';
+import { DOCUMENT } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'nav-bar',
-  imports: [SharedModule],
+  imports: [SharedModule, MenubarModule, SelectButtonModule, FormsModule, MenuModule, ButtonModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
 
-export class NavComponent { 
-  default_theme: string = '';
+export class NavComponent implements OnInit { 
+  // DEFAULT_THEME: string = 'light';
+  // DEFAULT_LANGUAGE: string = 'es_MX';
 
-  toggle_theme(): void {
-    if (this.default_theme == '') {
-      this.default_theme = 'dark';
-    }else{
-      this.default_theme = '';
-    }
-    this.change_theme(this.default_theme);
+  languages = [
+    { label: 'English (US)', value: 'en_US' },
+    { label: 'Spanish', value: 'es_MX' },
+  ];
+  selectedLanguage = this.languages[1];
+
+  themes = [
+    { label: 'Light', value: 'light' },
+    { label: 'Dark', value: 'dark' }
+  ];
+  selectedTheme = this.themes[0];
+
+  items: MenuItem[] = [
+    {
+      label: 'Weapons',
+      icon: 'pi pi-fw pi-shield',
+      routerLink: '/weapons',
+    },
+  ];
+
+  lang_items: MenuItem[] = [
+    {
+      label: 'English',
+      routerLink: '/weapons',
+    },
+    {
+      label: 'Spanish',
+      routerLink: '/weapons',
+    },
+  ];
+
+  constructor(@Inject(DOCUMENT) private document: Document, private translate: TranslateService) {
+  }
+
+  ngOnInit(): void {
+    this.detectLanguage();
+    let current_theme = localStorage.getItem('theme') || '';
+    this.change_theme(current_theme);
+  }
+
+  changeLanguage() {
+    this.changeLanguageV2(this.selectedLanguage.value);
+  }
+
+  changeTheme() {
+    this.change_theme(this.selectedTheme.value);
   }
 
   change_theme(theme: string) {
-    // Obtener tema actual
     let current_theme = localStorage.getItem('theme');
-    
-    // Si no hay tema guardado, usar preferencia del sistema
     if (!current_theme) {
         current_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "";
         localStorage.setItem('theme', current_theme);
     }
 
-    // Aplicar tema actual si es necesario
     const currentDataTheme = document.documentElement.getAttribute('data-theme');
     if (current_theme !== currentDataTheme) {
         document.documentElement.setAttribute('data-theme', current_theme);
     }
 
-    // Cambiar al nuevo tema si es diferente
     if (current_theme !== theme) {
-        console.log(`Cambiando de ${current_theme} a ${theme}`);
         localStorage.setItem('theme', theme);
-        
-        // Actualizar atributo data-theme
-        if (theme === '') {
+        if (theme === 'light') {
             document.documentElement.removeAttribute('data-theme');
         } else {
             document.documentElement.setAttribute('data-theme', theme);
         }
     }
+  }
+
+  changeLanguageV2(lang: string) {
+    let languages = ['es_MX', 'en_US'];
+    if (!languages.some(m => m == lang)) {
+      localStorage.setItem('language', (this.translate.currentLang || this.translate.defaultLang));
+      return;
+    }
+    if ((this.translate.currentLang || this.translate.defaultLang) != lang) {
+      this.translate.use(lang);
+    }
+    localStorage.setItem('language', lang);
+  }
+
+  detectLanguage() {
+    let lang = localStorage.getItem('language');
+    if (lang == null) {
+      const browserLang = navigator.language.replace('-', '_');
+      lang = (browserLang.match(/es_MX|en_US/) ? browserLang : 'es_MX');
+    }
+    this.changeLanguageV2(lang);
   }
 }
 

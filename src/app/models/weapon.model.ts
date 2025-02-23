@@ -103,6 +103,23 @@ export class Weapon {
       return !!this.notes?.trim();
     }
 
+    get dynamic_notes(): string[] {
+      let text: string[] = [];
+      if (this.grip_mode == '2h' || this.grip_mode == '2hr') {
+        text.push('weapon.enum.notes.grip.' + this.grip_mode);
+      }
+      if (this.range_type != 'melee') {
+        text.push('weapon.enum.notes.range.' + this.range_type);
+      }
+      if (!this.ammo_capacity) {
+        text.push('weapon.enum.notes.wield.' + this.wield_effect);
+      }
+      if (this.is_Guard) {
+        text.push('weapon.enum.notes.guard.' + this.guard_type);
+      }
+      return text;
+    }
+
     get ammo_or_wield_effect(): string {
       return this.ammo_capacity ? 'ammo-capacity': 'wield-' + this.wield_effect;
     }

@@ -17,38 +17,16 @@ export class AppComponent {
   constructor(@Inject(DOCUMENT) private document: Document, private translate: TranslateService
     , private primeng: PrimeNG) {
     this.translate.setDefaultLang(this.DEFAULT_LANGUAGE);
-    this.detectLanguage();
     this.primeng.theme.set({
       preset: Aura,
           options: {
             darkModeSelector: '[data-theme="dark"]',
               cssLayer: {
                   name: 'primeng',
-                  order: 'tailwind-base, primeng,  tailwind-utilities'
+                  order: 'base, primeng, tailwind-utilities'
               }
           }
       });
-  }
-
-  changeLanguage(lang: string) {
-    let languages = ['es_MX', 'en_US'];
-    if (!languages.some(m => m == lang)) {
-      localStorage.setItem('language', (this.translate.currentLang || this.translate.defaultLang));
-      return;
-    }
-    if ((this.translate.currentLang || this.translate.defaultLang) != lang) {
-      this.translate.use(lang);
-    }
-    localStorage.setItem('language', lang);
-  }
-
-  detectLanguage() {
-    let lang = localStorage.getItem('language');
-    if (lang == null) {
-      const browserLang = navigator.language.replace('-', '_');
-      lang = (browserLang.match(/es_MX|en_US/) ? browserLang : 'es_MX');
-    }
-    this.changeLanguage(lang);
   }
   title = 'junketsu';
 }

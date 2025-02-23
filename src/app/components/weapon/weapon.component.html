@@ -1,4 +1,4 @@
-<div class="p-4 m-0 grid grid-cols-2 text-color bg-[var(--p-content-background)]">
+<div class="p-4 m-0 grid grid-cols-2 text-color bg-[var(--p-content-background)] min-w-md">
   <div class="relative col-span-2 xl:col-span-1 xl:pr-2 grid grid-cols-6">
     <div class="col-start-2 col-span-4 text-2xl font-bold text-center">
       {{ weapon.name }}
@@ -7,7 +7,7 @@
     <div class="col-start-6 col-span-1 items-center justify-end grid">
       <div class="w-8 h-8 icon-svg-container" [ngClass]="{ 'invisible': !weapon.is_throwable }">
         @if (weapon.is_throwable) {
-          <app-svg-icon class="w-6 h-6 icon-svg" 
+          <app-svg-icon class="w-6 h-6 icon-svg"
             [iconName]="'--icon-property-thrown'"></app-svg-icon>
         }
       </div>
@@ -15,122 +15,141 @@
 
     <div class="col-start-1 col-span-5 text-xl flex items-center gap-1">
       <div class="w-8 h-8 icon-svg-container">
-          <app-svg-icon class="w-6 h-6 icon-svg" 
+          <app-svg-icon class="w-6 h-6 icon-svg"
             [iconName]="'--icon-durability-type-' + weapon.durability_type"></app-svg-icon>
       </div>
 
       <div class="flex">
-        @for (item of [].constructor(15); track $index) {
-          <app-svg-icon [iconClass]="weapon.durability > $index ? '': 'fill-[var(--p-content-background)] hover:fill-[var(--p-content-hover-color)]'" 
+        @for (item of [].constructor(10); track $index) {
+          <app-svg-icon [iconClass]="weapon.durability > $index ? '': 'fill-[var(--p-content-background)] hover:fill-[var(--p-content-hover-color)]'"
             class="w-8 h-8 icon-svg" [iconName]="'--icon-tracker'"></app-svg-icon>
         }
       </div>
     </div>
 
-    <div class="col-span-1 items-center justify-end grid">
-      <div class="w-8 h-8 icon-svg-container" [ngClass]="{ 'invisible': !weapon.is_Guard}">
-        @if (weapon.is_Guard) {
-          <app-svg-icon class="w-6 h-6 icon-svg" 
-            [iconName]="'--icon-property-' + weapon.guard_type"></app-svg-icon>
-        }
-      </div>
+    <div class="col-span-1 items-center justify-end grid text-center">
+      @if (weapon.is_Guard) {
+        <div class="w-8 h-8 icon-svg-container">
+            <app-svg-icon class="w-6 h-6 icon-svg"
+              [iconName]="'--icon-property-' + weapon.guard_type"></app-svg-icon>
+        </div>
+      }
     </div>
 
-    <div class="col-span-6 row-span-2">
+    <div class="col-span-6 row-span-2 min-h-4">
       <div [class.long]="weapon.is_long_description" class="text-sm leading-5 max-h-[3.75rem] overflow-hidden [&.long]:text-xs [&.long]:max-h-[5rem]">{{ weapon.description }}</div>
     </div>
 
-    <div class="grid grid-cols-12 place-items-center col-span-6">
+    <div class="grid grid-cols-12 place-items-center col-span-6 text-center">
       <div class="col-span-2">
         <div class="w-16 h-16 icon-svg-container">
           <app-svg-icon class="w-11 h-11 icon-svg"
             [iconName]="'--icon-ability-' + weapon.ability"></app-svg-icon>
         </div>
+        <span class="text-[10px]">{{ 'weapon.enum.ability.' + weapon.ability | translate }}</span>
       </div>
 
       <div class="col-span-2">
         <div class="w-16 h-16 icon-svg-container">
-          <app-svg-icon class="w-11 h-11 icon-svg" 
+          <app-svg-icon class="w-11 h-11 icon-svg"
             [iconName]="'--icon-grip-' + weapon.grip_mode"></app-svg-icon>
         </div>
+        <span class="text-[10px]">{{ 'weapon.enum.grip.' + weapon.grip_mode | translate }}</span>
       </div>
 
       <div class="col-span-2">
         <div class="w-16 h-16 icon-svg-container">
-          <app-svg-icon class="w-11 h-11 icon-svg" 
+          <app-svg-icon class="w-11 h-11 icon-svg"
             [iconName]="'--icon-range-' + weapon.range_type"></app-svg-icon>
           @if (weapon.has_range_value) {
-            <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-border rounded-full flex items-center justify-center text-2xl font-serif">
-              {{ weapon.range_value }}
+            <div class="w-8 h-8 icon-svg-info">
+              <span class="font-bold text-lg font-serif">{{ weapon.range_value }}</span>
             </div>
           }
         </div>
+        <span class="text-[10px]">{{ 'weapon.enum.range.' + weapon.range_type | translate }}</span>
       </div>
 
       <div class="col-span-2">
         <div class="w-16 h-16 icon-svg-container">
-          <span class="font-bold text-3xl">{{weapon.base_damage}}</span>
+          <span class="font-bold text-3xl font-serif">{{weapon.base_damage}}</span>
         </div>
+        <span class="text-[10px]">{{ 'weapon.basic-damage' | translate }}</span>
       </div>
 
       <div class="col-span-2">
         <div class="w-16 h-16 icon-svg-container">
-          <app-svg-icon class="w-11 h-11 icon-svg" 
+          <app-svg-icon class="w-11 h-11 icon-svg"
           [iconName]="'--icon-' + weapon.ammo_or_wield_effect"></app-svg-icon>
           @if (weapon.ammo_capacity) {
-            <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-[#6a7282] rounded-full flex items-center justify-center text-2xl font-serif">
-              {{ weapon.ammo_capacity }}
+            <div class="w-8 h-8 icon-svg-info">
+              <span class="font-bold text-lg font-serif">{{ weapon.ammo_capacity }}</span>
             </div>
           }
         </div>
+        @if (weapon.ammo_capacity) {
+          <span class="text-[10px]">{{ 'weapon.ammo-capacity' | translate }}</span>
+        } @else{
+          <span class="text-[10px]">{{ 'weapon.enum.wield.' + weapon.wield_effect | translate }}</span>
+        }
       </div>
 
-      @if (weapon.reloadrate) {
-        <div class="col-span-2">
-          <div class="w-16 h-16 icon-svg-container">
-            <app-svg-icon class="w-11 h-11 icon-svg" 
+      <div class="col-span-2">
+        @if (weapon.reloadrate) {
+        <div class="w-16 h-16 icon-svg-container">
+            <app-svg-icon class="w-11 h-11 icon-svg"
               [iconName]="'--icon-reload-rate'"></app-svg-icon>
-            <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-border rounded-full flex items-center justify-center text-2xl font-serif">
-              {{ weapon.reloadrate }}
+            <div class="w-8 h-8 icon-svg-info">
+              <span class="font-bold text-lg font-serif">{{ weapon.reloadrate }}</span>
             </div>
-          </div>
         </div>
-      }
+        <span class="text-[10px]">{{'weapon.reload-rate' | translate }}</span>
+        }
+      </div>
 
-      <div class="col-start-1 col-span-6 row-start-1 row-span-2">
-        <img [src]="weapon.image" alt="{{ weapon.name }}" class="h-[160px]" />
+      <div class="col-start-1 col-span-6 row-start-1 row-span-4">
+        <img [src]="weapon.image" alt="{{ weapon.name }}" class="h-44" />
       </div>
     </div>
 
-    <div class="col-span-6 text-[10px] text-center" *ngIf="weapon.has_notes">
-      <strong>{{ 'Notes' | translate }}</strong> {{ weapon.notes }}
+    <div class="col-span-6">
+      <div class="text-[10px]">
+        <strong>{{ 'weapon.notes' | translate }}</strong> 
+        @if (weapon.has_notes) {
+          <span class="pl-1">{{ weapon.notes }}</span>
+        } @else {
+          @for (item of weapon.dynamic_notes; track $index) {
+            <span class="pl-1">{{ item | translate }}</span>
+          }
+        }
+      </div>
     </div>
+    <div class="col-span-6 py-2"></div>
   </div>
-
   <div class="col-span-2 xl:col-span-1 xl:pl-2 grid grid-cols-6">
     @for (attack of weapon.attacks; track $index) {
       <div class="col-span-6 grid grid-cols-6">
         <div class="col-span-5 text-xl flex items-center gap-1">
           @if (attack.is_basic) {
-            <app-svg-icon class="w-6 h-6 icon-svg" 
+            <app-svg-icon class="w-6 h-6 icon-svg"
               [iconName]="'--icon-basic-attack'" ></app-svg-icon>
           }
           <span>{{ attack.attack_name }}</span>
           @if (attack.is_secondary) {
-            <app-svg-icon class="w-6 h-6 icon-svg" 
+            <app-svg-icon class="w-6 h-6 icon-svg"
               [iconName]="'--icon-secondary-attack'" ></app-svg-icon>
           }
           <span class="relative top-[-2px]">[</span>
           <div class="flex">
             @for (item of [].constructor(attack.stamina); track $index) {
-              <app-svg-icon class="w-6 h-6 icon-svg" 
+              <app-svg-icon class="w-6 h-6 icon-svg"
                 [iconName]="'--icon-stamina'"></app-svg-icon>
             }
           </div>
           <span class="relative top-[-2px]">]</span>
         </div>
 
-        <div class="col-span-2 text-sm">
+        <div class="col-span-6 text-sm">
           {{ attack.damage_formula }}
         </div>
 
@@ -148,7 +167,7 @@
 
         @if (attack.has_critical_success) {
           <div class="col-span-6 text-sm" *ngIf="attack.has_critical_success">
-            <strong>{{ 'Critical success' | translate }}</strong> {{ attack.critical_success }}
+            <strong>{{ 'attack.critical-success' | translate }}</strong> {{ attack.critical_success }}
           </div>
         }
       </div>
@@ -160,7 +179,7 @@
 </button>
 @switch (this.printOption) {
   @case ('a5Vertical') {
-    <print-WeaponCardA5Vertical #pdfvertical [index]="weapon.id"></print-WeaponCardA5Vertical>
+    <print-WeaponCardA5Vertical #pdf_vertical [index]="weapon.id"></print-WeaponCardA5Vertical>
   }
   @default {
 

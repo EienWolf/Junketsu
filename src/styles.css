@@ -96,16 +96,12 @@
 }
 
 @layer base {
-	
-}
-
-@layer base {
 	img {
 		@apply inline-block;
 	}
 }
 
-@layer primeng, tailwind_utilities;
+/* @layer primeng, tailwind_utilities; */
 
 @layer tailwind_utilities{
 	@tailwind utilities;
@@ -130,6 +126,4 @@
 		/* Icons */
 		--icon-property-guard: url('/assets/images/icons/property-guard.dark.svg');
 	}
-
-	
 }

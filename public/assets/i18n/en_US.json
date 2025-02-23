@@ -1,5 +1,55 @@
 {
   "weapon": {
-    "Download": "Download PDF"
+    "Download": "Download PDF",
+    "enum": {
+      "ability": {
+        "evoke": "Evoke",
+        "precision": "Precision",
+        "focus": "Focus",
+        "might": "Might"
+      },
+      "grip": {
+        "0h": "Hand free",
+        "1h": "One hand",
+        "2h": "Two hand",
+        "2hr": "Dedicate hands"
+      },
+      "range": {
+        "melee": "Melee",
+        "reach": "Reach",
+        "short": "Short",
+        "medium": "Medium",
+        "large": "Large"
+      },
+      "wield": {
+        "finesse": "Finesse",
+        "versatile": "Versatile",
+        "heavy": "Heavy"
+      },
+      "notes":{
+        "grip":{
+          "2h": "You have two penalization dice when attack with only one hand.",
+          "2hr": "You can't use this weapon to one hand."
+        },
+        "wield": {
+          "versatile": "The attack gain +2 to damage when the weapon is wielding to two hands.",
+          "heavy": "The attack loss -2 to damage when the weapon is wielding to one hand."
+        },
+        "guard": {
+          "agile": "This weapon can be use in riposte action.",
+          "block": "This weapon cam be use in block action without loss durability."
+        },
+        "range": {
+          "reach": "Your attack range is more large."
+        }
+      }
+    },
+    "reload-rate": "Reload",
+    "basic-damage": "Damage",
+    "ammo-capacity": "Ammon",
+    "notes": "Notes:"
+  },
+  "attack":{
+    "critical-success": "Critical Success"
   }
 }

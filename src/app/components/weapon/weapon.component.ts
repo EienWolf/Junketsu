@@ -15,12 +15,8 @@ import { SvgIconComponent } from "../../utilities/icon/icon.component";
 export class WeaponComponent implements OnInit, AfterViewInit {
   weapon: Weapon = new Weapon();
   printOption: string = 'none';
-  @ViewChild('pdfvertical') pdfComponent!: WeaponCardA5VerticalComponent;
+  @ViewChild('pdf_vertical') pdfComponent!: WeaponCardA5VerticalComponent;
   constructor(private weaponService: WeaponService, private route: ActivatedRoute, private cdr: ChangeDetectorRef) {
-  }
-
-  async sleep(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   ngOnInit(): void {
@@ -40,6 +36,5 @@ export class WeaponComponent implements OnInit, AfterViewInit {
         this.printOption = 'none';
       }
     }, 0);
-    
   }
 }
