@@ -179,9 +179,16 @@
 </button>
 @switch (this.printOption) {
   @case ('a5Vertical') {
-    <print-WeaponCardA5Vertical #pdf_vertical [index]="weapon.id"></print-WeaponCardA5Vertical>
+    <p-dialog [modal]="true" [(visible)]="visible" [closeOnEscape]="true">
+      <ng-template #headless>
+        <div class="min-w-[700px] min-h-[1000px]">
+          <print-WeaponCardA5Vertical #pdf_vertical [index]="weapon.id"></print-WeaponCardA5Vertical>
+        </div>
+      </ng-template>
+    </p-dialog>
+    
   }
   @default {
-
   }
 }
+

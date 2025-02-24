@@ -5,15 +5,17 @@ import { ActivatedRoute } from '@angular/router';
 import { SharedModule } from '../../shared.module';
 import { WeaponCardA5VerticalComponent } from '../../utilities/print/weapon-card-a5-vertical/weapon.component';
 import { SvgIconComponent } from "../../utilities/icon/icon.component";
+import { Dialog } from 'primeng/dialog';
 
 @Component({
   selector: 'app-weapon',
   templateUrl: './weapon.component.html',
   styleUrls: ['./weapon.component.css'],
-  imports: [SharedModule, WeaponCardA5VerticalComponent, SvgIconComponent],
+  imports: [SharedModule, WeaponCardA5VerticalComponent, SvgIconComponent, Dialog],
 })
 export class WeaponComponent implements OnInit, AfterViewInit {
   weapon: Weapon = new Weapon();
+  visible: boolean = false;
   printOption: string = 'none';
   @ViewChild('pdf_vertical') pdfComponent!: WeaponCardA5VerticalComponent;
   constructor(private weaponService: WeaponService, private route: ActivatedRoute, private cdr: ChangeDetectorRef) {
@@ -30,11 +32,6 @@ export class WeaponComponent implements OnInit, AfterViewInit {
 
   generatePDF() {
     this.printOption = 'a5Vertical';
-    setTimeout(() => {
-      if (this.pdfComponent) {
-        this.pdfComponent.generatePDF();
-        this.printOption = 'none';
-      }
-    }, 0);
+    this.visible = true;
   }
 }

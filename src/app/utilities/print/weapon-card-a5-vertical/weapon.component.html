@@ -1,106 +1,176 @@
-<div #pdfContent id="print-section w-[14.8cm] h-[21cm] p-0 m-0">
-<div class="relative grid grid-cols-6 w-[14.8cm] p-[1.5cm] h-[10.5cm] gap-[0.2cm]">
-    <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-background border-2 border-border">
-      <img [src]="'assets/images/weapon_type_' + weapon.weapon_type  + '.png'" [alt]="weapon.weapon_type | translate" class="w-[32px] h-[32px] object-contain" />
-    </div>
+<div #a5v_pdf [ngClass]="m_less ? 'max-w-[446px] min-w-[446px]': 'p-[15mm] max-w-[560px] min-w-[560px]'" class="m-0 grid grid-cols-2 text-color bg-[var(--p-content-background)] max-w-[560px] min-w-[560px]">
+  <div class="relative col-span-2 grid grid-cols-6">
     <div class="col-start-2 col-span-4 text-2xl font-bold text-center">
       {{ weapon.name }}
     </div>
-    <div class="relative">
-      <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-background border-2 border-border absolute right-0" [ngClass]="{ 'invisible': !weapon.is_throwable }">
-        <img [src]="'assets/images/property_thrown.png'" [alt]="'Thrown' | translate" class="w-[32px] h-[32px] object-contain" />
+
+    <div class="col-start-6 col-span-1 items-center justify-end grid">
+      <div class="w-8 h-8 icon-svg-container" [ngClass]="{ 'invisible': !weapon.is_throwable }">
+        @if (weapon.is_throwable) {
+          <app-svg-icon class="w-6 h-6 icon-svg"
+            [iconName]="'--icon-property-thrown'"></app-svg-icon>
+        }
       </div>
     </div>
-    
+
     <div class="col-start-1 col-span-5 text-xl flex items-center gap-1">
-      <img [src]="'assets/images/durability_type_' + weapon.durability_type  + '.png'" [alt]="weapon.durability_type | translate" class="w-[32px] h-[32px] object-contain rounded-full bg-[#d1d5dc] border-2 border-[#6a7282]" />
-      <div class="flex pl-1">
-        <div class="flex items-center justify-items-center">
-          @for (item of [].constructor(15); track $index) {
-            <svg class="w-6 h-6 fill-text stroke-border" [ngClass]="{ 'fill-white': weapon.durability <= $index }" viewBox="0 0 100 100">
-                <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke-width="4" />
-            </svg>
-          }
+      <div class="w-8 h-8 icon-svg-container">
+          <app-svg-icon class="w-6 h-6 icon-svg"
+            [iconName]="'--icon-durability-type-' + weapon.durability_type"></app-svg-icon>
+      </div>
+
+      <div class="flex">
+        @for (item of [].constructor(10); track $index) {
+          <app-svg-icon [iconClass]="weapon.durability > $index ? '': 'fill-[var(--p-content-background)] hover:fill-[var(--p-content-hover-color)]'"
+            class="w-8 h-8 icon-svg" [iconName]="'--icon-tracker'"></app-svg-icon>
+        }
+      </div>
+    </div>
+
+    <div class="col-span-1 items-center justify-end grid text-center">
+      @if (weapon.is_Guard) {
+        <div class="w-8 h-8 icon-svg-container">
+            <app-svg-icon class="w-6 h-6 icon-svg"
+              [iconName]="'--icon-property-' + weapon.guard_type"></app-svg-icon>
         </div>
-      </div>
+      }
     </div>
-    <div class="relative">
-      <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-background border-2 border-border absolute right-0" [ngClass]="{ 'invisible': !weapon.is_Guard}">
-        <img [src]="'assets/images/' + weapon.guard_type  + '.png'" [alt]="'Agile' | translate" class="w-[32px] h-[32px] object-contain" />
-      </div>
-    </div>
-    <div class="col-span-6 row-span-2">
+
+    <div class="col-span-6 row-span-2 min-h-4">
       <div [class.long]="weapon.is_long_description" class="text-sm leading-5 max-h-[3.75rem] overflow-hidden [&.long]:text-xs [&.long]:max-h-[5rem]">{{ weapon.description }}</div>
     </div>
-    <div class="grid grid-cols-12 place-items-center col-span-6">
-      <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-background border-2 border-border">
-        <img [src]="'assets/images/ability_' + weapon.ability + '.png'" [alt]="'Ability' | translate" class="object-contain" />
-      </div>
-      <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-background border-2 border-border">
-        <img [src]="'assets/images/grip_' + weapon.grip_mode + '.png'" [alt]="'Grip mode' | translate" class="object-contain" />
-      </div>
-      <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-[#d1d5dc] border-2 border-border">
-        <img [src]="'assets/images/range_' + weapon.range_type + '.png'" [alt]="'Range Type' | translate" class="object-contain" />
-        <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-border rounded-full flex items-center justify-center text-2xl font-serif" *ngIf="weapon.has_range_value">
-          {{ weapon.range_value }}
+
+    <div class="grid grid-cols-12 place-items-center col-span-6 text-center">
+      <div class="col-span-2">
+        <div class="w-16 h-16 icon-svg-container">
+          <app-svg-icon class="w-11 h-11 icon-svg"
+            [iconName]="'--icon-ability-' + weapon.ability"></app-svg-icon>
         </div>
+        <span class="text-[10px]">{{ 'weapon.enum.ability.' + weapon.ability | translate }}</span>
       </div>
-      <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-background border-2 border-border shadow-inner text-black font-bold text-3xl">
-        {{weapon.base_damage}}
-      </div>
-      <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-background border-2 border-border">
-        <img [src]="'assets/images/' + weapon.ammo_or_wield_effect + '.png'" [alt]="weapon.ammo_or_wield_effect_text | translate" class="w-[64px] h-[64px] object-contain" />
-        <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-[#6a7282] rounded-full flex items-center justify-center text-2xl font-serif" *ngIf="weapon.ammo_capacity">
-          {{ weapon.ammo_capacity }}
+
+      <div class="col-span-2">
+        <div class="w-16 h-16 icon-svg-container">
+          <app-svg-icon class="w-11 h-11 icon-svg"
+            [iconName]="'--icon-grip-' + weapon.grip_mode"></app-svg-icon>
         </div>
+        <span class="text-[10px]">{{ 'weapon.enum.grip.' + weapon.grip_mode | translate }}</span>
       </div>
-      <div class="col-span-2 relative flex items-center justify-center w-[64px] h-[64px] rounded-full bg-background border-2 border-border" *ngIf="weapon.reloadrate">
-        <img [src]="'assets/images/reload_rate.png'" [alt]="'Reload Rate' | translate" class="w-[64px] h-[64px] object-contain" />
-        <div class="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 w-10 h-10 bg-white border-2 border-border rounded-full flex items-center justify-center text-2xl font-serif">
-          {{ weapon.reloadrate }}
+
+      <div class="col-span-2">
+        <div class="w-16 h-16 icon-svg-container">
+          <app-svg-icon class="w-11 h-11 icon-svg"
+            [iconName]="'--icon-range-' + weapon.range_type"></app-svg-icon>
+          @if (weapon.has_range_value) {
+            <div class="w-8 h-8 icon-svg-info">
+              <span class="font-bold text-lg font-serif">{{ weapon.range_value }}</span>
+            </div>
+          }
         </div>
+        <span class="text-[10px]">{{ 'weapon.enum.range.' + weapon.range_type | translate }}</span>
       </div>
-      <div class="col-start-1 col-span-6 row-start-1 row-span-2">
-        <img [src]="weapon.image" alt="{{ weapon.name }}" class="h-[160px]" />
+
+      <div class="col-span-2">
+        <div class="w-16 h-16 icon-svg-container">
+          <span class="font-bold text-3xl font-serif">{{weapon.base_damage}}</span>
+        </div>
+        <span class="text-[10px]">{{ 'weapon.basic-damage' | translate }}</span>
+      </div>
+
+      <div class="col-span-2">
+        <div class="w-16 h-16 icon-svg-container">
+          <app-svg-icon class="w-11 h-11 icon-svg"
+          [iconName]="'--icon-' + weapon.ammo_or_wield_effect"></app-svg-icon>
+          @if (weapon.ammo_capacity) {
+            <div class="w-8 h-8 icon-svg-info">
+              <span class="font-bold text-lg font-serif">{{ weapon.ammo_capacity }}</span>
+            </div>
+          }
+        </div>
+        @if (weapon.ammo_capacity) {
+          <span class="text-[10px]">{{ 'weapon.ammo-capacity' | translate }}</span>
+        } @else{
+          <span class="text-[10px]">{{ 'weapon.enum.wield.' + weapon.wield_effect | translate }}</span>
+        }
+      </div>
+
+      <div class="col-span-2">
+        @if (weapon.reloadrate) {
+        <div class="w-16 h-16 icon-svg-container">
+            <app-svg-icon class="w-11 h-11 icon-svg"
+              [iconName]="'--icon-reload-rate'"></app-svg-icon>
+            <div class="w-8 h-8 icon-svg-info">
+              <span class="font-bold text-lg font-serif">{{ weapon.reloadrate }}</span>
+            </div>
+        </div>
+        <span class="text-[10px]">{{'weapon.reload-rate' | translate }}</span>
+        }
+      </div>
+
+      <div class="col-start-1 col-span-6 row-start-1 row-span-4">
+        <img [src]="weapon.image" alt="{{ weapon.name }}" class="h-44" />
       </div>
     </div>
 
-    <div class="col-span-6 text-[10px] text-center" *ngIf="weapon.has_notes">
-      <strong>{{ 'Notes' | translate }}</strong> {{ weapon.notes }}
+    <div class="col-span-6">
+      <div class="text-[10px]">
+        <strong>{{ 'weapon.notes' | translate }}</strong> 
+        @if (weapon.has_notes) {
+          <span class="pl-1">{{ weapon.notes }}</span>
+        } @else {
+          @for (item of weapon.dynamic_notes; track $index) {
+            <span class="pl-1">{{ item | translate }}</span>
+          }
+        }
+      </div>
     </div>
+    <div class="col-span-6 py-2"></div>
   </div>
+  <div class="col-span-2 grid grid-cols-6">
+    @for (attack of weapon.attacks; track $index) {
+      <div class="col-span-6 grid grid-cols-6">
+        <div class="col-span-5 text-xl flex items-center gap-1">
+          @if (attack.is_basic) {
+            <app-svg-icon class="w-6 h-6 icon-svg"
+              [iconName]="'--icon-basic-attack'" ></app-svg-icon>
+          }
+          <span>{{ attack.attack_name }}</span>
+          @if (attack.is_secondary) {
+            <app-svg-icon class="w-6 h-6 icon-svg"
+              [iconName]="'--icon-secondary-attack'" ></app-svg-icon>
+          }
+          <span class="relative top-[-2px]">[</span>
+          <div class="flex">
+            @for (item of [].constructor(attack.stamina); track $index) {
+              <app-svg-icon class="w-6 h-6 icon-svg"
+                [iconName]="'--icon-stamina'"></app-svg-icon>
+            }
+          </div>
+          <span class="relative top-[-2px]">]</span>
+        </div>
 
-  <div class="grid grid-cols-6 w-[14.8cm] px-[1.5cm] py-[0.5cm] gap-[0.5cm]">
-    <div class="col-span-6 grid grid-cols-6" *ngFor="let attack of weapon.attacks">
-      <div class="col-span-5 text-xl flex items-center">
-        <img [src]="'assets/images/basic_attack.png'" [alt]="'Basic attack' | translate" class="w-7 h-7 object-contain" *ngIf="attack.is_basic" />
-        <span>{{ attack.attack_name }}</span>
-        <img [src]="'assets/images/secondary_attack.png'" [alt]="'Secondary attack' | translate" class="w-7 h-7 object-contain" *ngIf="attack.is_secondary" /> 
-        <span class="relative top-[-2px]">[</span>
-        <div class="flex items-center justify-items-center">
-          <svg *ngFor="let n of [].constructor(attack.stamina); let i = index"  class="w-6 h-6" viewBox="0 0 100 100">
-            <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" fill="#364153" stroke="#6a7282" stroke-width="4"/>
-          </svg>
+        <div class="col-span-6 text-sm">
+          {{ attack.damage_formula }}
         </div>
-        <span class="relative top-[-2px]">]</span>
+
+        @if (attack.has_own_ability) {
+          <div class="col-span-1 text-sm">
+            {{ attack.ability }}
+          </div>
+        }
+
+        @if (attack.has_description) {
+          <div class="col-span-6 text-sm">
+            {{ attack.description }}
+          </div>
+        }
+
+        @if (attack.has_critical_success) {
+          <div class="col-span-6 text-sm" *ngIf="attack.has_critical_success">
+            <strong>{{ 'attack.critical-success' | translate }}</strong> {{ attack.critical_success }}
+          </div>
+        }
       </div>
-      <div class="relative row-span-2">
-        <div class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-background border-2 border-border absolute right-0">
-          <img [src]="'assets/images/range_' + attack.damage_type + '.png'" [alt]="'Damage Type' | translate" class="w-[64px] h-[64px] object-contain" />
-        </div>
-      </div>
-      <div class="col-span-3 text-sm">
-        {{ attack.damage_formula }}
-      </div>
-      <div class="col-span-2 text-sm" *ngIf="attack.has_own_ability">
-        {{ attack.ability }}
-      </div>
-      <div class="col-span-6 text-sm" *ngIf="attack.has_description">
-        {{ attack.description }}
-      </div>
-      <div class="col-span-6 text-sm" *ngIf="attack.has_critical_success">
-        <strong>{{ 'Critical success' | translate }}</strong> {{ attack.critical_success }}
-      </div>
-    </div>
+    }
   </div>
 </div>
