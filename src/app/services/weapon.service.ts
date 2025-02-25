@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Weapon } from '../models/weapon.model';
+import { SupabaseService } from './supabase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeaponService {
-  constructor() {
+  constructor(private readonly supabase: SupabaseService) {
+    if (this.supabase.session) {
+      //this.supabase.downLoadConfig().then((data) => {});
+    }
     this.loadFromLocalStorage();
   }
   private loadFromLocalStorage() {
