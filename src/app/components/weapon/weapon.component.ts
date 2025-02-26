@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { WeaponService } from '../../services/weapon.service';
 import { Weapon } from '../../models/weapon.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared.module';
 import { WeaponCardA5VerticalComponent } from '../../utilities/print/weapon-card-a5-vertical/weapon.component';
 import { SvgIconComponent } from "../../utilities/icon/icon.component";
@@ -11,7 +11,7 @@ import { Dialog } from 'primeng/dialog';
   selector: 'app-weapon',
   templateUrl: './weapon.component.html',
   styleUrls: ['./weapon.component.css'],
-  imports: [SharedModule, WeaponCardA5VerticalComponent, SvgIconComponent, Dialog],
+  imports: [SharedModule, WeaponCardA5VerticalComponent, SvgIconComponent, Dialog]
 })
 export class WeaponComponent implements OnInit, AfterViewInit {
   weapon: Weapon = new Weapon();
@@ -19,11 +19,13 @@ export class WeaponComponent implements OnInit, AfterViewInit {
   printOption: string = 'none';
   @ViewChild('pdf_vertical') pdfComponent!: WeaponCardA5VerticalComponent;
   constructor(private weaponService: WeaponService, private route: ActivatedRoute, private cdr: ChangeDetectorRef) {
+  
   }
 
   ngOnInit(): void {
-    const index = this.route.snapshot.paramMap.get('index') || '';
-    this.weapon = this.weaponService.getWeapon(index);
+    this.route.params.subscribe(param => {
+      this.weapon = this.weaponService.getWeapon(param['index']);
+    })
   }
 
   ngAfterViewInit(): void {

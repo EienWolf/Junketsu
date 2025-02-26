@@ -1,56 +1,114 @@
-
-  <div class="p-4 max-w-md mx-auto bg-white shadow-md rounded-lg">
-    <h2 class="text-xl font-bold mb-4">{{ is_editing ? 'Edit Weapon' : 'Add Weapon' }}</h2>
-    <form (ngSubmit)="saveWeapon()" class="grid gap-2">
-      <input [(ngModel)]="newWeapon.name" name="name" placeholder="Weapon Name" required class="border p-2 rounded" />
-      <input [(ngModel)]="newWeapon.durability" name="durability" type="number" placeholder="Durability" required class="border p-2 rounded" />
-      <input [(ngModel)]="newWeapon.weapon_type" name="weapon_type" placeholder="Weapon Type" required class="border p-2 rounded" />
-      <textarea [(ngModel)]="newWeapon.description" name="description" placeholder="Description" class="border p-2 rounded"></textarea>
-      <input [(ngModel)]="newWeapon.base_damage" name="base_damage" placeholder="Base Damage" class="border p-2 rounded" />
-      <input [(ngModel)]="newWeapon.attack_range" name="attack_range" placeholder="Attack Range" class="border p-2 rounded" />
-      <input [(ngModel)]="newWeapon.grip_mode" name="grip_mode" placeholder="Grip Mode" class="border p-2 rounded" />
-      <input [(ngModel)]="newWeapon.wield_effect" name="wield_effect" placeholder="Wield Effect" class="border p-2 rounded" />
-      <input [(ngModel)]="newWeapon.is_agile" name="is_agile" type="checkbox" class="border p-2 rounded" /> Agile
-      <input [(ngModel)]="newWeapon.is_block" name="is_block" type="checkbox" class="border p-2 rounded" /> Block
-      <input [(ngModel)]="newWeapon.is_throwable" name="is_throwable" type="checkbox" class="border p-2 rounded" /> Throwable
-      <input [(ngModel)]="newWeapon.ammo_capacity" name="ammo_capacity" placeholder="Magazine Size" class="border p-2 rounded" />
-      <input [(ngModel)]="newWeapon.reloadrate" name="reloadrate" placeholder="Reload Rate" class="border p-2 rounded" />
-      <input [(ngModel)]="newWeapon.ability" name="ability" placeholder="Ability" class="border p-2 rounded" />
-      <input [(ngModel)]="newWeapon.image" name="image" placeholder="Image url" class="border p-2 rounded" />
-      <input [(ngModel)]="newWeapon.id" name="id" placeholder="id" class="border p-2 rounded" />
-      <textarea [(ngModel)]="newWeapon.notes" name="notes" placeholder="Notes" class="border p-2 rounded"></textarea>
-      <input [(ngModel)]="newWeapon.durability_type" name="durability_type" placeholder="Durability Type" class="border p-2 rounded" />
-      <button type="submit" class="bg-blue-500 text-white p-2 rounded">{{ is_editing !== null ? 'Update' : 'Save' }}</button>
-
-      <h3 class="text-lg font-bold mt-4">Attacks</h3>
-      <div *ngFor="let attack of newWeapon.attacks; let i = index" class="border p-2 rounded mt-2">
-        <input [(ngModel)]="attack.attack_name" name="attack_name{{i}}" placeholder="Attack Name" class="border p-2 rounded" />
-        <input [(ngModel)]="attack.stamina" name="stamina{{i}}" type="number" placeholder="Stamina" class="border p-2 rounded" />
-        <input [(ngModel)]="attack.damage_type" name="damage_type{{i}}" placeholder="Damage Type" class="border p-2 rounded" />
-        <input [(ngModel)]="attack.damage_formula" name="damage_formula{{i}}" placeholder="Damage Formula" class="border p-2 rounded" />
-        <input [(ngModel)]="attack.ability" name="ability{{i}}" placeholder="Ability" class="border p-2 rounded" />
-        <textarea [(ngModel)]="attack.description" name="description{{i}}" placeholder="Description" class="border p-2 rounded"></textarea>
-        <input [(ngModel)]="attack.critical_success" name="critical_success{{i}}" placeholder="Critical Success" class="border p-2 rounded" />
-        <label><input type="checkbox" [(ngModel)]="attack.is_basic" name="is_basic{{i}}" /> Basic</label>
-        <label><input type="checkbox" [(ngModel)]="attack.is_secondary" name="is_secondary{{i}}" /> Secondary</label>
-        <button type="button" (click)="removeAttack(i)" class="text-red-500">Remove Attack</button>
+<!-- weapon-form.component.html -->
+<form [formGroup]="weaponForm" (ngSubmit)="onSubmit()" class="p-4 space-y-6 max-w-6xl mx-auto">
+  <!-- Sección Información Básica -->
+  <p-card header="Información Básica" class="mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Nombre e ID -->
+      <div class="field">
+        <label for="name" class="block mb-2 font-medium">Nombre del Arma</label>
+        <input pInputText id="name" formControlName="name" class="w-full">
+        <small *ngIf="weaponForm.get('name')?.errors" class="text-red-500 block mt-1">
+          <span *ngIf="weaponForm.get('name')?.hasError('required')">Campo requerido</span>
+          <span *ngIf="weaponForm.get('name')?.hasError('minlength')">Mínimo 2 caracteres</span>
+          <span *ngIf="weaponForm.get('name')?.hasError('maxlength')">Máximo 100 caracteres</span>
+        </small>
       </div>
-      <button type="button" (click)="addAttack()" class="bg-green-500 text-white p-2 rounded mt-2">Add Attack</button>
-    </form>
-    <ul class="mt-4">
-      <li *ngFor="let weapon of weapons; let i = index" class="p-2 border-b flex justify-between">
-        <span>{{ weapon.name }}</span>
-        <div>
-          <button (click)="editWeapon(weapon.id)" class="text-blue-500">Edit</button>
-          <button (click)="deleteWeapon(weapon.id)" class="text-red-500 ml-2">Delete</button>
-          <button [routerLink]="['/weapons/'+weapon.id]" class="text-red-500 ml-2">View</button>
-        </div>
-      </li>
-    </ul>
-  
-      <div class="mt-4 flex gap-2">
-        <button (click)="exportWeapons()" class="bg-green-500 text-white p-2 rounded">Export JSON</button>
-        <input type="file" (change)="importWeapons($event)" accept=".json" class="hidden" #fileInput />
-        <button (click)="fileInput.click()" class="bg-blue-500 text-white p-2 rounded">Import JSON</button>
+
+      <div class="field">
+        <label for="id" class="block mb-2 font-medium">ID Único</label>
+        <input pInputText id="id" formControlName="id" class="w-full">
+        <small class="text-gray-500 block mt-1">Autogenerado si se deja vacío</small>
+      </div>
+
+      <!-- Descripciones -->
+      <div class="field md:col-span-2">
+        <label for="short_description" class="block mb-2 font-medium">Descripción Corta</label>
+        <textarea id="short_description" formControlName="short_description" 
+                  rows="2" class="w-full"></textarea>
+        <small class="text-gray-500 block mt-1">Máximo 144 caracteres</small>
+      </div>
+
+      <div class="field md:col-span-2">
+        <label for="description" class="block mb-2 font-medium">Descripción Completa</label>
+        <textarea id="description" formControlName="description" 
+                  rows="4" class="w-full"></textarea>
       </div>
     </div>
+  </p-card>
+
+  <!-- Sección Propiedades de Combate -->
+  <p-card header="Propiedades de Combate" class="mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Habilidad y Daño -->
+      <div class="field">
+        <label class="block mb-2 font-medium">Habilidad Principal</label>
+        <p-selectButton [options]="enums.Ability" formControlName="ability"></p-selectButton>
+      </div>
+
+      <div class="field">
+        <label class="block mb-2 font-medium">Daño Base</label>
+        <input type="number" formControlName="base_damage" min="1" class="w-full">
+      </div>
+
+      <!-- Rango y Alcance -->
+      <div class="field">
+        <label class="block mb-2 font-medium">Rango de Ataque</label>
+        <p-selectButton [options]="enums.Attack_Range" formControlName="attack_range"></p-selectButton>
+      </div>
+
+      <div class="field" *ngIf="weaponForm.get('attack_range')?.value === 'reach'">
+        <label class="block mb-2 font-medium">Alcance (múltiplos de 5)</label>
+        <input type="number" formControlName="reach_range" min="5" step="5" class="w-full">
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Sección Durabilidad -->
+  <p-card header="Durabilidad" class="mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="field">
+        <label class="block mb-2 font-medium">Tipo de Durabilidad</label>
+        <p-selectButton [options]="enums.Durability_Type" formControlName="durability_type"></p-selectButton>
+      </div>
+
+      <div class="field">
+        <label class="block mb-2 font-medium">Valor de Durabilidad</label>
+        <input type="number" formControlName="durability" min="0" max="10" class="w-full">
+      </div>
+
+      <div class="field flex items-center gap-2">
+        <input type="checkbox" formControlName="is_throwable">
+        <label>¿Es arrojadiza?</label>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Sección Munición/Agarre -->
+  <p-card header="Munición y Agarre" class="mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="field">
+        <label class="block mb-2 font-medium">Modo de Agarre</label>
+        <p-selectButton [options]="enums.Grip_Mode" formControlName="grip_mode"></p-selectButton>
+      </div>
+
+      <div class="field">
+        <label class="block mb-2 font-medium">Efecto de Empuñadura</label>
+        <p-selectButton [options]="enums.Wield_Effect" formControlName="wield_effect"></p-selectButton>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Sección Imagen -->
+  <p-card header="Imagen del Arma" class="mb-6">
+    <div class="field">
+      <label class="block mb-2 font-medium">URL de la Imagen</label>
+      <input type="text" formControlName="image" class="w-full">
+    </div>
+  </p-card>
+
+  <!-- Botón de Envío -->
+  <div class="text-right">
+    <button pButton type="submit" label="Guardar Arma" [disabled]="!weaponForm.valid"
+           class="p-button-primary text-lg px-6 py-3"></button>
+  </div>
+</form>

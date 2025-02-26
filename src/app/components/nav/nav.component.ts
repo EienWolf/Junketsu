@@ -3,11 +3,13 @@ import { SharedModule } from '../../shared.module';
 import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { MenubarModule } from 'primeng/menubar';
-import { MenuModule } from 'primeng/menu';
+import { MenuItemContent, MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FormsModule } from '@angular/forms';
+import { WeaponService } from '../../services/weapon.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'nav-bar',
@@ -32,13 +34,7 @@ export class NavComponent implements OnInit {
   ];
   selectedTheme = this.themes[0];
 
-  items: MenuItem[] = [
-    {
-      label: 'Weapons',
-      icon: 'pi pi-fw pi-shield',
-      routerLink: '/weapons',
-    },
-  ];
+  items: MenuItem[];
 
   lang_items: MenuItem[] = [
     {
@@ -51,7 +47,22 @@ export class NavComponent implements OnInit {
     },
   ];
 
-  constructor(@Inject(DOCUMENT) private document: Document, private translate: TranslateService) {
+  constructor(@Inject(DOCUMENT) private document: Document, private translate: TranslateService, private weaponservice: WeaponService) {
+    this.items = [
+      {
+        label: 'Weapons',
+        icon: 'pi pi-fw pi-shield',
+        items: this.weaponservice.getWeapons().map(weapon => ({
+          label: weapon.name,
+          id: weapon.id,
+          routerLink: '/weapons/' + weapon.id
+        }))
+      },
+    ];
+    this.items.find(m=> m.label == 'Weapons')?.items?.push(({
+      label: 'Create new +',
+      routerLink: '/weapons'
+    }))
   }
 
   ngOnInit(): void {
