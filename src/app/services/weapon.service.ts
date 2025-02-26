@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Weapon } from '../models/weapon.model';
-import { SupabaseService } from './supabase.service';
+import { Profile, SupabaseService } from './supabase.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,15 @@ import { SupabaseService } from './supabase.service';
 export class WeaponService {
   constructor(private readonly supabase: SupabaseService) {
     if (this.supabase.session) {
-      //this.supabase.downLoadConfig().then((data) => {});
+      const { user } = this.supabase.session;
+      // let profile: Profile;
+      this.supabase.profile(user).then((data) =>{
+        if (data?.data?.config_url) {
+          this.supabase.downLoadConfig(data?.data?.config_url).then((config) => {
+            console.log(config.data);
+          });
+        }
+      })
     }
     this.loadFromLocalStorage();
   }
@@ -19,6 +27,11 @@ export class WeaponService {
   private saveToLocalStorage() {
     const serializedWeapons = this.weapons.map(weapon => weapon.toJSON());
     const dataStr = JSON.stringify(serializedWeapons, null, 2);
+    if (this.supabase.session) {
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const file = new File([blob], 'config.json');
+      this.supabase.uploadConfig(file);
+    }
     localStorage.setItem('weapons', dataStr);
   }
 
