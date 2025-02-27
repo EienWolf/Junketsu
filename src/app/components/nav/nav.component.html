@@ -1,5 +1,5 @@
 
-<p-menubar [model]="items" [styleClass]="'bg-primary p-4'">
+<p-menubar [model]="items" [styleClass]="'bg-primary'">
   <ng-template #start>
     <a [routerLink]="['/']" class="flex items-center space-x-3 rtl:space-x-reverse">
       <span class="self-center text-2xl font-semibold whitespace-nowrap">Junketsu</span>
@@ -9,28 +9,38 @@
     <ng-container *ngIf="item.routerLink; else urlRef">
         <a [routerLink]="[item.routerLink]" class="p-menubar-item-link">
             <span [class]="item.icon"></span>
-            <span class="ml-2">{{ item.label }}</span>
+            <span class="ml-2">{{ item.label | translate }}</span>
         </a>
     </ng-container>
     <ng-template #urlRef>
         <a *ngIf="item.url; else noLink" [href]="item.url" class="p-menubar-item-link">
             <span [class]="item.icon"></span>
-            <span class="ml-2">{{ item.label }}</span>
+            <span class="ml-2">{{ item.label | translate }}</span>
         </a>
     </ng-template>
     <ng-template #noLink>
         <div class="p-menubar-item-link">
             <span [class]="item.icon"></span>
-            <span class="ml-2">{{ item.label }}</span>
+            <span class="ml-2">{{ item.label | translate }}</span>
             <span class="pi pi-fw pi-angle-down ml-2"></span>
         </div>
     </ng-template>
   </ng-template>
   <ng-template #end>
     <p-button icon="pi pi-bell"/>
-    <p-menu #menu [model]="lang_items" [popup]="true" />
     <p-button (click)="menu.toggle($event)" icon="pi pi-cog"/>
-    <p-button icon="pi pi-sign-in" [routerLink]="'/auth'"/>
+    <p-button icon="pi pi-sign-in" [routerLink]="'/auth'" iconPos="right" [label]="'nav.sign-in.label' | translate"/>
+
+    <p-menu #menu [model]="config_Items" [popup]="true">
+      <ng-template #submenuheader let-item>
+        <span class="text-primary font-bold">{{ item.label | translate }}</span>
+      </ng-template>
+      <ng-template #item let-item>
+        <a pRipple class="flex items-center p-menu-item-link">
+            <span [class]="item.icon"></span>
+            <span class="ml-2">{{ item.label | translate }}</span>
+        </a>
+      </ng-template>
+    </p-menu>
   </ng-template>
 </p-menubar>
-

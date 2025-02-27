@@ -1,4 +1,34 @@
 {
+  "nav": {
+    "items":{
+      "weapon": {
+        "label": "Weapons"
+      }
+    },
+    "config": {
+      "language": {
+        "label": "Language"
+      },
+      "theme": {
+        "label": "Theme",
+        "light": "Light",
+        "os": "Browser Preference(Value)",
+        "dark": "Dark"
+      },
+      "data": {
+        "label": "Data",
+        "export": "Export",
+        "import": "Import"
+      },
+      "session": {
+        "label": "Session",
+        "connect": "Connect"
+      }
+    },
+    "sign-in": {
+      "label": "Sign In"
+    }
+  },
   "weapon": {
     "Download": "Download PDF",
     "enum": {
@@ -26,8 +56,8 @@
         "versatile": "Versatile",
         "heavy": "Heavy"
       },
-      "notes":{
-        "grip":{
+      "notes": {
+        "grip": {
           "2h": "You have two penalization dice when attack with only one hand.",
           "2hr": "You can't use this weapon to one hand."
         },
@@ -49,7 +79,7 @@
     "ammo-capacity": "Ammon",
     "notes": "Notes:"
   },
-  "attack":{
+  "attack": {
     "critical-success": "Critical Success"
   }
 }

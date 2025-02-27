@@ -19,39 +19,18 @@ import { RouterLink } from '@angular/router';
 })
 
 export class NavComponent implements OnInit { 
-  // DEFAULT_THEME: string = 'light';
-  // DEFAULT_LANGUAGE: string = 'es_MX';
-
-  languages = [
-    { label: 'English (US)', value: 'en_US' },
-    { label: 'Spanish', value: 'es_MX' },
-  ];
-  selectedLanguage = this.languages[1];
-
-  themes = [
-    { label: 'Light', value: 'light' },
-    { label: 'Dark', value: 'dark' }
-  ];
-  selectedTheme = this.themes[0];
-
+  current_theme: string;
+  current_language: string;
+  config_Items: MenuItem[] = [];
   items: MenuItem[];
 
-  lang_items: MenuItem[] = [
-    {
-      label: 'English',
-      routerLink: '/weapons',
-    },
-    {
-      label: 'Spanish',
-      routerLink: '/weapons',
-    },
-  ];
-
   constructor(@Inject(DOCUMENT) private document: Document, private translate: TranslateService, private weaponservice: WeaponService) {
+    this.current_theme = this.detect_theme();
+    this.current_language = this.detect_language();
     this.items = [
       {
-        label: 'Weapons',
-        icon: 'pi pi-fw pi-shield',
+        label: 'nav.items.weapon.label',
+        icon: 'pi pi-shield',
         items: this.weaponservice.getWeapons().map(weapon => ({
           label: weapon.name,
           id: weapon.id,
@@ -59,49 +38,72 @@ export class NavComponent implements OnInit {
         }))
       },
     ];
-    this.items.find(m=> m.label == 'Weapons')?.items?.push(({
+    this.items.find(m=> m.label == 'nav.items.weapon.label')?.items?.push(({
       label: 'Create new +',
       routerLink: '/weapons'
     }))
+
+
+    this.config_Items = [{
+      label: 'nav.config.language.label',
+      icon: 'pi pi-globe',
+      items: [{
+        label: 'English',
+        command: () => { this.change_language('en_US')}
+        }, {
+        label: 'Español',
+        command: () => { this.change_language('es_MX')}
+        }]
+      }, {
+        label: 'nav.config.theme.label',
+        icon: 'pi pi-globe',
+        items: [{
+            label: 'nav.config.theme.light',
+            command: () => { this.change_theme('light')}
+          }, {
+            label: 'nav.config.theme.dark',
+            command: () => { this.change_theme('dark')}
+          }, {
+            label: 'nav.config.theme.os',
+            command: () => { this.change_theme('os')}
+          }]
+        }, {
+        label: 'nav.config.data.label',
+        icon: 'pi pi-globe',
+        items: [{
+            label: 'nav.config.data.export',
+            
+          }, {
+            label: 'nav.config.data.import',
+            
+          }]
+        }, {
+          label: 'nav.config.session.label',
+          icon: 'pi pi-globe',
+          items: [{
+              label: 'nav.config.session.connect'
+            }]
+          }
+      ];
   }
 
   ngOnInit(): void {
-    this.detectLanguage();
-    let current_theme = localStorage.getItem('theme') || '';
-    this.change_theme(current_theme);
-  }
-
-  changeLanguage() {
-    this.changeLanguageV2(this.selectedLanguage.value);
-  }
-
-  changeTheme() {
-    this.change_theme(this.selectedTheme.value);
+    this.detect_language();
+    this.change_theme(this.current_theme);
   }
 
   change_theme(theme: string) {
-    let current_theme = localStorage.getItem('theme');
-    if (!current_theme) {
-        current_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "";
-        localStorage.setItem('theme', current_theme);
+    localStorage.setItem('theme', theme);
+    if (theme == 'os') {
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
-
     const currentDataTheme = document.documentElement.getAttribute('data-theme');
-    if (current_theme !== currentDataTheme) {
-        document.documentElement.setAttribute('data-theme', current_theme);
-    }
-
-    if (current_theme !== theme) {
-        localStorage.setItem('theme', theme);
-        if (theme === 'light') {
-            document.documentElement.removeAttribute('data-theme');
-        } else {
-            document.documentElement.setAttribute('data-theme', theme);
-        }
+    if (theme !== currentDataTheme) {
+        document.documentElement.setAttribute('data-theme', theme);
     }
   }
 
-  changeLanguageV2(lang: string) {
+  change_language(lang: string) {
     let languages = ['es_MX', 'en_US'];
     if (!languages.some(m => m == lang)) {
       localStorage.setItem('language', (this.translate.currentLang || this.translate.defaultLang));
@@ -113,13 +115,25 @@ export class NavComponent implements OnInit {
     localStorage.setItem('language', lang);
   }
 
-  detectLanguage() {
+  detect_theme():string {
+    let current_theme = localStorage.getItem('theme');
+    if (!current_theme) {
+      current_theme = 'os'
+      localStorage.setItem('theme', current_theme);
+    }
+    return current_theme;
+  }
+
+  detect_language():string {
+    console.log(navigator);
+    const current_lang = document.documentElement.getAttribute('lang');
     let lang = localStorage.getItem('language');
     if (lang == null) {
       const browserLang = navigator.language.replace('-', '_');
       lang = (browserLang.match(/es_MX|en_US/) ? browserLang : 'es_MX');
     }
-    this.changeLanguageV2(lang);
+    this.change_language(lang);
+    return lang;
   }
 }
 
