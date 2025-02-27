@@ -7,7 +7,7 @@
   </ng-template>
   <ng-template  #item let-item>
     <ng-container *ngIf="item.routerLink; else urlRef">
-        <a [routerLink]="item.routerLink" class="p-menubar-item-link">
+        <a [routerLink]="[item.routerLink]" class="p-menubar-item-link">
             <span [class]="item.icon"></span>
             <span class="ml-2">{{ item.label }}</span>
         </a>
@@ -27,25 +27,10 @@
     </ng-template>
   </ng-template>
   <ng-template #end>
+    <p-button icon="pi pi-bell"/>
     <p-menu #menu [model]="lang_items" [popup]="true" />
     <p-button (click)="menu.toggle($event)" icon="pi pi-cog"/>
-
-
-    <p-selectButton
-      [options]="languages"
-      [(ngModel)]="selectedLanguage"
-      optionLabel="label"
-      (onChange)="changeLanguage()"
-      placeholder="Select Language"
-      class="mr-2"
-    ></p-selectButton>
-
-    <p-selectButton
-      [options]="themes"
-      [(ngModel)]="selectedTheme"
-      optionLabel="label"
-      (onChange)="changeTheme()"
-    ></p-selectButton>
+    <p-button icon="pi pi-sign-in" [routerLink]="'/auth'"/>
   </ng-template>
 </p-menubar>
 
