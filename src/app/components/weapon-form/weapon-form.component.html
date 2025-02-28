@@ -1,114 +1,512 @@
 <!-- weapon-form.component.html -->
-<form [formGroup]="weaponForm" (ngSubmit)="onSubmit()" class="p-4 space-y-6 max-w-6xl mx-auto">
-  <!-- Sección Información Básica -->
-  <p-card header="Información Básica" class="mb-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- Nombre e ID -->
-      <div class="field">
-        <label for="name" class="block mb-2 font-medium">Nombre del Arma</label>
-        <input pInputText id="name" formControlName="name" class="w-full">
-        <small *ngIf="weaponForm.get('name')?.errors" class="text-red-500 block mt-1">
-          <span *ngIf="weaponForm.get('name')?.hasError('required')">Campo requerido</span>
-          <span *ngIf="weaponForm.get('name')?.hasError('minlength')">Mínimo 2 caracteres</span>
-          <span *ngIf="weaponForm.get('name')?.hasError('maxlength')">Máximo 100 caracteres</span>
-        </small>
-      </div>
+<form
+  [formGroup]="weaponForm"
+  (ngSubmit)="onSubmit()"
+  class="mx-auto mt-2 grid max-w-6xl grid-cols-10 gap-4 space-y-4 p-4"
+>
+  <div class="col-span-10 text-center">
+    <h1 class="text-primary-700 text-4xl font-bold">Weapon creator</h1>
+    <img src="/assets/images/decor.png" style="cursor: pointer; height: 48px" />
+  </div>
 
-      <div class="field">
-        <label for="id" class="block mb-2 font-medium">ID Único</label>
-        <input pInputText id="id" formControlName="id" class="w-full">
-        <small class="text-gray-500 block mt-1">Autogenerado si se deja vacío</small>
-      </div>
+  <div class="col-span-10 md:col-span-4">
+    <!-- Sección Información Básica -->
+    <p-card header="Información Básica" styleClass="mb-4">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <!-- Nombre e ID -->
+        <div class="field md:col-span-4">
+          <p-floatlabel variant="in">
+            <input
+              pInputText
+              id="in_label"
+              formControlName="name"
+              autocomplete="off"
+              class="w-full"
+            />
+            <label for="in_label">Nombre del arma</label>
+          </p-floatlabel>
+        </div>
 
-      <!-- Descripciones -->
-      <div class="field md:col-span-2">
-        <label for="short_description" class="block mb-2 font-medium">Descripción Corta</label>
-        <textarea id="short_description" formControlName="short_description" 
-                  rows="2" class="w-full"></textarea>
-        <small class="text-gray-500 block mt-1">Máximo 144 caracteres</small>
-      </div>
+        @if (false) {
+          <div class="field md:col-span-4">
+            <p-floatlabel variant="in">
+              <input
+                pInputText
+                id="label_id"
+                formControlName="id"
+                autocomplete="off"
+                class="w-full"
+              />
+              <label for="label_id">ID Único</label>
+            </p-floatlabel>
+            <small class="mt-1 ml-2 block text-gray-500"
+              >Autogenerado si se deja vacío</small
+            >
+          </div>
+        }
+        <!-- Descripciones -->
+        <div class="field md:col-span-4">
+          <label for="short_description" class="mb-2 block font-medium"
+            >Descripción Corta</label
+          >
+          <textarea
+            pTextarea
+            id="short_description"
+            formControlName="short_description"
+            rows="2"
+            class="w-full"
+          ></textarea>
+          <small class="mt-1 ml-2 block text-gray-500"
+            >Máximo 144 caracteres</small
+          >
+        </div>
 
-      <div class="field md:col-span-2">
-        <label for="description" class="block mb-2 font-medium">Descripción Completa</label>
-        <textarea id="description" formControlName="description" 
-                  rows="4" class="w-full"></textarea>
+        <div class="field md:col-span-4">
+          <label for="description" class="mb-2 block font-medium"
+            >Descripción Completa</label
+          >
+          <textarea
+            pTextarea
+            id="description"
+            formControlName="description"
+            rows="4"
+            class="w-full"
+          ></textarea>
+        </div>
       </div>
+    </p-card>
+
+    <!-- Sección Imagen -->
+    <p-card header="Imagen del Arma" styleClass="mb-4">
+      <img
+        [src]="
+          weaponForm.get('image')!.value ||
+          '/assets/images/weapon_placeholder.png'
+        "
+        style="min-height: 120px; max-width: 100%"
+      />
+
+      <div class="field mt-2">
+        <label class="mb-2 block font-medium">URL de la Imagen</label>
+        <input type="text" pInputText formControlName="image" class="w-full" />
+      </div>
+    </p-card>
+  </div>
+
+  <div class="col-span-10 md:col-span-6">
+    <!-- Sección Propiedades de Combate -->
+    <p-card header="" styleClass="mb-6">
+      <p-fieldset styleClass="mb-5">
+        <ng-template #header>
+          <div class="flex gap-2 uppercase">
+            <span class="font-bold">
+              <i class="ra ra-axe ra-lg"></i> Combat</span
+            >
+          </div>
+        </ng-template>
+        <div class="mb-4 grid grid-cols-3 gap-2">
+          <!-- 3 columnas con espacio entre ellas -->
+          <div class="field mb-2">
+            <label class="mb-2 block">Daño Base</label>
+            <p-inputnumber
+              [showButtons]="true"
+              buttonLayout="horizontal"
+              formControlName="base_damage"
+              spinnerMode="horizontal"
+              styleClass="text-center"
+              inputId="vertical"
+              [inputStyle]="{ width: '4rem' }"
+            >
+              <ng-template #incrementbuttonicon>
+                <span class="pi pi-plus"></span>
+              </ng-template>
+              <ng-template #decrementbuttonicon>
+                <span class="pi pi-minus"></span>
+              </ng-template>
+            </p-inputnumber>
+          </div>
+        </div>
+        <div
+          class="mr-3 flex items-center"
+          pTooltip="This weapon can be throwed to Short distance."
+          tooltipPosition="top"
+        ></div>
+
+        <div class="field mb-2">
+          <label class="mb-2 block">
+            <span class="mr-4">Habilidad Principal</span>
+
+            <span
+              class="mr-3"
+              tooltipPosition="top"
+              pTooltip="Esta arma puede utilizar Might o Precision de igual manera."
+            >
+              <p-radiobutton [value]="0" inputId="finnese" formControlName="is_finnese" (ngModelChange)="disableToogles($event)" />
+              <label for="finnese" class="ml-1"
+                > Simple
+              </label></span
+            >
+            <span
+              class="mr-3"
+              tooltipPosition="top"
+              pTooltip="Esta arma puede utilizar Might o Precision de igual manera."
+            >
+              <p-radiobutton [value]="1" inputId="finnese" formControlName="is_finnese" (ngModelChange)="disableToogles($event)" />
+              <label for="finnese" class="ml-1"
+                ><i class="ra ra-kunai ra-lg"></i> Finnese
+              </label></span
+            >
+
+            <span
+              tooltipPosition="top"
+              pTooltip="Esta arma puede utilizar Focus o Evoke de igual manera."
+            >
+              <p-radiobutton [value]="2" inputId="arcana" formControlName="is_finnese" (ngModelChange)="disableToogles($event)" />
+              <label for="arcana" class="ml-1"
+                ><i class="ra ra-focused-lightning ra-lg"></i> Arcana
+              </label></span
+            ></label
+          >
+          <p-selectButton optionDisabled="restricted"
+          (onChange)="verifyFinesse()"
+            [options]="enums.Ability"
+            formControlName="ability"
+          ></p-selectButton>
+        </div>
+
+        <p-message severity="secondary" variant="outlined" styleClass="mb-3">
+          <small>
+            <strong style="text-transform: capitalize"
+              >{{ weaponForm.get("ability")?.value }}:</strong
+            >
+            {{ getDescription(weaponForm.get("ability")?.value) }}</small
+          >
+        </p-message>
+
+        <div class="grid grid-cols-5">
+          <div class="field col-span-2 mb-3">
+            <label class="mb-2 block"> Rango Melee</label>
+            <p-selectButton
+              [options]="enums.Attack_Range_M"
+              formControlName="attack_range"
+              (onChange)="onRangeChange($event, 'melee')"
+            >
+              <ng-template let-option pTemplate="item">
+                <span
+                  class="capitalize"
+                  pTooltip="{{ option.tooltip }}"
+                  tooltipPosition="top"
+                  tooltipStyleClass="custom-tooltip"
+                >
+                  {{ option.label }}
+                </span>
+              </ng-template>
+            </p-selectButton>
+          </div>
+
+          <div class="field col-span-2 mb-3">
+            <label class="mb-2 block"> Rango Distancia</label>
+            <p-selectButton
+              [options]="enums.Attack_Range_R"
+              formControlName="attack_range"
+              (onChange)="onRangeChange($event, 'ranged')"
+            >
+              <ng-template let-option pTemplate="item">
+                <span
+                  class="capitalize"
+                  pTooltip="{{ option.tooltip }}"
+                  tooltipPosition="top"
+                  tooltipStyleClass="custom-tooltip"
+                >
+                  {{ option.label }}
+                </span>
+              </ng-template>
+            </p-selectButton>
+          </div>
+        </div>
+
+        <!-- Rango y Alcance -->
+
+        <div class="grid grid-cols-5">
+          <div class="field col-span-2 mb-3">
+            <label class="mb-2 block font-medium">Modo de Agarre</label>
+            <p-selectButton
+              [options]="enums.Grip_Mode"
+              formControlName="grip_mode"
+            >
+              <ng-template let-option pTemplate="item">
+                <span
+                  class="capitalize"
+                  pTooltip="{{ option.tooltip }}"
+                  tooltipPosition="top"
+                  tooltipStyleClass="custom-tooltip"
+                >
+                  {{ option.label }}
+                </span>
+              </ng-template></p-selectButton
+            >
+          </div>
+
+          <div class="field col-span-3 mb-3">
+            <label class="mb-2 block font-medium">Efecto de Empuñadura</label>
+            <p-selectButton
+              [options]="enums.Wield_Effect"
+              formControlName="wield_effect"
+            >
+              <ng-template let-option pTemplate="item">
+                <span
+                  class="capitalize"
+                  pTooltip="{{ option.tooltip }}"
+                  tooltipPosition="top"
+                  tooltipStyleClass="custom-tooltip"
+                >
+                  {{ option.label }}
+                </span>
+              </ng-template></p-selectButton
+            >
+          </div>
+        </div>
+      </p-fieldset>
+
+      <p-fieldset styleClass="mb-5">
+        <ng-template #header>
+          <div class="flex gap-2 uppercase">
+            <span class="font-bold">
+              <i class="ra ra-anvil ra-lg"></i> Durability</span
+            >
+          </div>
+        </ng-template>
+        <div class="field mb-3">
+          <label class="mb-2 block">Categoria</label>
+          <p-selectButton
+            [options]="enums.Durability_Type"
+            formControlName="durability_type"
+          ></p-selectButton>
+        </div>
+
+        <div class="field mb-3">
+          <label class="mb-2 block"
+            >Durabilidad del arma:<b>
+              {{ weaponForm.controls["durability"].value }}</b
+            >
+          </label>
+
+          <p-rating formControlName="durability" [stars]="10">
+            <ng-template #onicon>
+              <img
+                src="/assets/images/icons/anvil-3.png"
+                height="32"
+                width="32"
+                style="cursor: pointer"
+              />
+            </ng-template>
+            <ng-template #officon>
+              <img
+                src="/assets/images/icons/anvil-3.png"
+                height="32"
+                width="32"
+                style="filter: grayscale(1) opacity(0.5); cursor: pointer"
+              />
+            </ng-template>
+          </p-rating>
+          <!--  <p-inputnumber 
+            type="number"
+            formControlName="durability"
+            min="0"
+            max="10"
+            class="w-full"
+          />-->
+        </div>
+      </p-fieldset>
+
+      <p-fieldset styleClass="mb-5">
+        <ng-template #header>
+          <div class="flex gap-2 uppercase">
+            <span class="font-bold">
+              <i class="ra ra-spinning-sword ra-lg"></i> Attributes
+            </span>
+          </div>
+        </ng-template>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Habilidad y Daño -->
+
+          <div
+            class="field"
+            *ngIf="weaponForm.get('attack_range')?.value === 'reach'"
+          >
+            <label class="mb-2 block font-medium"
+              >Alcance (múltiplos de 5)</label
+            >
+            <input
+              type="number"
+              formControlName="reach_range"
+              min="5"
+              step="5"
+              class="w-full"
+            />
+          </div>
+        </div>
+
+        <div class="flex justify-between gap-4 px-5 py-3">
+          <div
+            class="mr-3 flex items-center"
+            pTooltip="This weapon can be throwed to Short distance."
+            tooltipPosition="top"
+          >
+            <p-checkbox
+              inputId="ingredient1"
+              name="pizza"
+              value="Cheese"
+              formControlName="is_throwable"
+            />
+            <label for="ingredient1" class="ml-2"
+              ><i class="ra ra-axe-swing ra-lg"></i> Arrojadiza
+            </label>
+          </div>
+          <div
+            class="mr-3 flex items-center"
+            [pTooltip]="tooltipBlock"
+            tooltipPosition="top"
+            [tooltipStyleClass]="'custom-tooltip'"
+          >
+            <p-checkbox
+              inputId="ingredient2"
+              name="pizza"
+              value="Mushroom"
+              formControlName="is_block"
+            />
+            <label for="ingredient2" class="ml-2"
+              ><i class="ra ra-heavy-shield ra-lg"></i> Bloqueo
+            </label>
+          </div>
+          <div
+            class="flex items-center"
+            pTooltip="This weapon can use riposte defensive action"
+            tooltipPosition="top"
+          >
+            <p-checkbox
+              inputId="ingredient3"
+              name="pizza"
+              value="Pepper"
+              formControlName="is_agile"
+            />
+            <label for="ingredient3" class="ml-2"
+              ><i class="ra ra-crossed-swords ra-lg"></i> Agil
+            </label>
+          </div>
+
+          <div
+            class="flex items-center"
+            pTooltip="This weapon can use riposte defensive action"
+            tooltipPosition="top"
+          >
+            <p-checkbox
+              inputId="ingredient3"
+              name="pizza"
+              value="Pepper"
+              formControlName="is_agile"
+            />
+            <label for="ingredient3" class="ml-2"
+              ><i class="ra ra-dripping-blade ra-lg"></i> Algun otra
+            </label>
+          </div>
+        </div>
+      </p-fieldset>
+    </p-card>
+
+    <!-- Munnicion -->
+    <p-card styleClass="mb-6">
+      <p-fieldset styleClass="mb-5">
+        <ng-template #header>
+          <div class="flex gap-2 uppercase">
+            <span class="font-bold">
+              <i class="ra ra-musket ra-lg"></i> Proyectile Options</span
+            >
+          </div>
+        </ng-template>
+        <div class="grid grid-cols-3 gap-4 md:grid-cols-3">
+          <div class="col-span-3">
+            <p>Use projectile   <p-toggleswitch inputId="switch1" formControlName="use_ammo" /></p>
+          
+          </div>
+
+          @if (weaponForm.get("use_ammo")!.value == true) {
+            <div class="col-span-1">
+              <!-- 3 columnas con espacio entre ellas -->
+              <div class="field mb-2">
+                <label class="mb-2 block">Tamaño Cargador</label>
+                <p-inputnumber
+                  [showButtons]="true"
+                  buttonLayout="horizontal"
+                  formControlName="ammo_capacity"
+                  spinnerMode="horizontal"
+                  styleClass="text-center"
+                  inputId="vertical"
+                  [inputStyle]="{ width: '4rem' }"
+                >
+                  <ng-template #incrementbuttonicon>
+                    <span class="pi pi-plus"></span>
+                  </ng-template>
+                  <ng-template #decrementbuttonicon>
+                    <span class="pi pi-minus"></span>
+                  </ng-template>
+                </p-inputnumber>
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <!-- 3 columnas con espacio entre ellas -->
+              <div class="field mb-2">
+                <label class="mb-2 block">Velocidad Recarga</label>
+                <p-inputnumber
+                  [showButtons]="true"
+                  buttonLayout="horizontal"
+                  formControlName="reloadrate"
+                  spinnerMode="horizontal"
+                  styleClass="text-center"
+                  inputId="vertical"
+                  [inputStyle]="{ width: '4rem' }"
+                >
+                  <ng-template #incrementbuttonicon>
+                    <span class="pi pi-plus"></span>
+                  </ng-template>
+                  <ng-template #decrementbuttonicon>
+                    <span class="pi pi-minus"></span>
+                  </ng-template>
+                </p-inputnumber>
+              </div>
+            </div>
+
+            <div class="col-span-1">
+                <label class="mb-2 block">Tipo de municion</label>
+                <p-select [options]="enums.AmmoTypes" formControlName="ammoType" placeholder="Select Ammo Type" class="w-full " />
+
+       
+            </div>
+          }
+        </div>
+      </p-fieldset>
+    </p-card>
+
+    <!-- Botón de Envío -->
+    <div class="mt-4 text-right">
+      <button
+        pButton
+        type="submit"
+        label="Guardar Arma"
+        [disabled]="!weaponForm.valid"
+        class="p-button-primary px-6 py-3 text-lg"
+      ></button>
     </div>
-  </p-card>
-
-  <!-- Sección Propiedades de Combate -->
-  <p-card header="Propiedades de Combate" class="mb-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <!-- Habilidad y Daño -->
-      <div class="field">
-        <label class="block mb-2 font-medium">Habilidad Principal</label>
-        <p-selectButton [options]="enums.Ability" formControlName="ability"></p-selectButton>
-      </div>
-
-      <div class="field">
-        <label class="block mb-2 font-medium">Daño Base</label>
-        <input type="number" formControlName="base_damage" min="1" class="w-full">
-      </div>
-
-      <!-- Rango y Alcance -->
-      <div class="field">
-        <label class="block mb-2 font-medium">Rango de Ataque</label>
-        <p-selectButton [options]="enums.Attack_Range" formControlName="attack_range"></p-selectButton>
-      </div>
-
-      <div class="field" *ngIf="weaponForm.get('attack_range')?.value === 'reach'">
-        <label class="block mb-2 font-medium">Alcance (múltiplos de 5)</label>
-        <input type="number" formControlName="reach_range" min="5" step="5" class="w-full">
-      </div>
-    </div>
-  </p-card>
-
-  <!-- Sección Durabilidad -->
-  <p-card header="Durabilidad" class="mb-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="field">
-        <label class="block mb-2 font-medium">Tipo de Durabilidad</label>
-        <p-selectButton [options]="enums.Durability_Type" formControlName="durability_type"></p-selectButton>
-      </div>
-
-      <div class="field">
-        <label class="block mb-2 font-medium">Valor de Durabilidad</label>
-        <input type="number" formControlName="durability" min="0" max="10" class="w-full">
-      </div>
-
-      <div class="field flex items-center gap-2">
-        <input type="checkbox" formControlName="is_throwable">
-        <label>¿Es arrojadiza?</label>
-      </div>
-    </div>
-  </p-card>
-
-  <!-- Sección Munición/Agarre -->
-  <p-card header="Munición y Agarre" class="mb-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="field">
-        <label class="block mb-2 font-medium">Modo de Agarre</label>
-        <p-selectButton [options]="enums.Grip_Mode" formControlName="grip_mode"></p-selectButton>
-      </div>
-
-      <div class="field">
-        <label class="block mb-2 font-medium">Efecto de Empuñadura</label>
-        <p-selectButton [options]="enums.Wield_Effect" formControlName="wield_effect"></p-selectButton>
-      </div>
-    </div>
-  </p-card>
-
-  <!-- Sección Imagen -->
-  <p-card header="Imagen del Arma" class="mb-6">
-    <div class="field">
-      <label class="block mb-2 font-medium">URL de la Imagen</label>
-      <input type="text" formControlName="image" class="w-full">
-    </div>
-  </p-card>
-
-  <!-- Botón de Envío -->
-  <div class="text-right">
-    <button pButton type="submit" label="Guardar Arma" [disabled]="!weaponForm.valid"
-           class="p-button-primary text-lg px-6 py-3"></button>
   </div>
 </form>
+
+<!-- #region ToolTips-->
+
+<ng-template #tooltipBlock>
+  <div class="flex items-center">
+    <span
+      >This weapon can use <b>Block</b> defensive action without any penalties.
+    </span>
+  </div>
+</ng-template>

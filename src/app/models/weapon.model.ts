@@ -141,6 +141,8 @@ export enum Attack_Range {
    */
   REACH = 'reach',
 
+  REACH2 = 'reach2',
+
   /**
    * 
    */
@@ -189,7 +191,7 @@ export enum Wield_Effect {
   /**
    * 
    */
-  FINESSE = 'finesse',
+  LIGHT = 'light',
 
   /**
    * 
