@@ -3,6 +3,11 @@
 @config "../tailwind.config.ts";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+
+body{
+ background-color: 	var(--p-primary-100);
+}
+
 @theme {
 	/* --color-secondary: var(--theme-color-secondary);
 	--color-background: var(--theme-color-background);
@@ -126,4 +131,21 @@
 		/* Icons */
 		--icon-property-guard: url('/assets/images/icons/property-guard.dark.svg');
 	}
+}
+
+
+
+
+.p-togglebutton-label, .p-togglebutton-icon {
+    text-transform: capitalize;
+}
+
+label{
+	font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.p-inputnumber > input{
+	text-align: center;
+	font-weight: 700;
 }

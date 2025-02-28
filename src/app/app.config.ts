@@ -4,7 +4,8 @@ import { provideHttpClient, HttpClient } from '@angular/common/http';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
+import { providePrimeNG } from 'primeng/config';
+import { MyPreset } from '../mytheme';
 import { routes } from './app.routes';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -21,5 +22,18 @@ export const appConfig: ApplicationConfig = {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,
       deps: [HttpClient]
-    }, provideAnimationsAsync()]
+    }, provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+         preset: MyPreset,
+         
+      }
+  })]
 };
+
+
+
+
+
+
+
