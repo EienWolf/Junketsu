@@ -10,10 +10,12 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { FormsModule } from '@angular/forms';
 import { WeaponService } from '../../services/weapon.service';
 import { RouterLink } from '@angular/router';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'nav-bar',
-  imports: [SharedModule, MenubarModule, SelectButtonModule, FormsModule, MenuModule, ButtonModule],
+  imports: [SharedModule, MenubarModule, SelectButtonModule, FormsModule, MenuModule, ButtonModule, FloatLabelModule, InputTextModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
@@ -22,6 +24,7 @@ export class NavComponent implements OnInit {
   current_theme: string;
   current_language: string;
   config_Items: MenuItem[] = [];
+  login_Items: MenuItem[] = [];
   items: MenuItem[];
 
   constructor(@Inject(DOCUMENT) private document: Document, private translate: TranslateService, private weaponservice: WeaponService) {
@@ -42,7 +45,6 @@ export class NavComponent implements OnInit {
       label: 'Create new +',
       routerLink: '/weapons'
     }))
-
 
     this.config_Items = [{
       label: 'nav.config.language.label',

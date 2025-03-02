@@ -28,10 +28,18 @@
   </ng-template>
   <ng-template #end>
     <p-button icon="pi pi-bell"/>
-    <p-button (click)="menu.toggle($event)" icon="pi pi-cog"/>
-    <p-button icon="pi pi-sign-in" [routerLink]="'/auth'" iconPos="right" [label]="'nav.sign-in.label' | translate"/>
+    <p-button (click)="configOptions.toggle($event)" icon="pi pi-cog"/>
+    <p-button (click)="loginOptions.toggle($event)" icon="pi pi-sign-in" iconPos="right" [label]="'nav.sign-in.label' | translate"/>
 
-    <p-menu #menu [model]="config_Items" [popup]="true">
+    <p-menu #loginOptions [popup]="true" [appendTo]="navPopup2" styleClass="!top-0 !relative !left-0">
+      <ng-template #start>
+        <p-floatlabel variant="on">
+          <input pInputText id="Email" />
+          <label for="Email">Email</label>
+        </p-floatlabel>
+      </ng-template>
+    </p-menu>
+    <p-menu #configOptions [model]="config_Items" [popup]="true" [appendTo]="navPopup" styleClass="!top-0 !relative !left-0">
       <ng-template #submenuheader let-item>
         <span class="text-primary font-bold">{{ item.label | translate }}</span>
       </ng-template>
@@ -44,3 +52,7 @@
     </p-menu>
   </ng-template>
 </p-menubar>
+
+
+<div #navPopup class="top-12 right-4 absolute max-w-72 min-w-72"></div>
+<div #navPopup2 class="top-12 right-4 absolute max-w-72 min-w-72"></div>
