@@ -29,24 +29,82 @@
   <ng-template #end>
     <p-button icon="pi pi-bell"/>
     <p-button (click)="configOptions.toggle($event)" icon="pi pi-cog"/>
-    <p-button (click)="loginOptions.toggle($event)" icon="pi pi-sign-in" iconPos="right" [label]="'nav.sign-in.label' | translate"/>
+    @if (!is_login) {
+      <p-button (click)="loginOptions.toggle($event)" icon="pi pi-sign-in" iconPos="right" [label]="'nav.sign-in.label' | translate"/>
+    } @else {
+      <p-button (click)="accountOptions.toggle($event)" [label]="'nav.sign-in.account' | translate"/>
+    }
+    
 
-    <p-menu #loginOptions [popup]="true" [appendTo]="navPopup2" styleClass="!top-0 !relative !left-0">
+    <p-menu #loginOptions [popup]="true" [appendTo]="loginPopup" styleClass="!top-0 !relative !left-0">
       <ng-template #start>
-        <p-floatlabel variant="on">
-          <input pInputText id="Email" />
-          <label for="Email">Email</label>
-        </p-floatlabel>
+        <div class="justify-center p-[var(--p-menu-list-padding)] gap-[var(--p-menu-list-gap)]">
+          <div class="p-[var(--p-menu-submenu-label-padding)]">
+            <span class="text-primary font-bold">{{'nav.sign-in.login-by' | translate}}</span>
+          </div>
+          <form [formGroup]="email_form">
+            <div class="p-[var(--p-menu-submenu-label-padding)]">
+                <p-floatlabel variant="on">
+                  <input pInputText id="Email" formControlName="email" class="w-full" />
+                  <label for="Email">{{'nav.sign-in.email' | translate}}</label>
+                </p-floatlabel>
+            </div>
+            <div class="px-3">
+              <button pButton pRipple [label]="'nav.sign-in.magic-link' | translate " class="w-full" (click)="login_email()" [disabled]="!email_form.valid">
+              </button>
+            </div>
+          </form>
+          <div class="inline-flex items-center justify-center p-[var(--p-menu-submenu-label-padding)] w-full">
+            <hr class="h-px  w-full">
+            <span class="absolute bg-[var(--p-menu-background)] -translate-x-1/2 left-1/2 px-2">{{'nav.sign-in.or' | translate}}</span>
+          </div>
+          <div class="flex justify-center items-center p-[var(--p-menu-submenu-label-padding)] gap-[var(--p-menu-list-gap)]">
+            <button pButton pRipple icon="pi pi-github" (onClick)="login_github()"></button>
+            <button pButton pRipple icon="pi pi-google" (onClick)="login_google()"></button>
+            <button pButton pRipple icon="pi pi-discord" (onClick)="login_discord()"></button>
+          </div>
+        </div>
       </ng-template>
     </p-menu>
-    <p-menu #configOptions [model]="config_Items" [popup]="true" [appendTo]="navPopup" styleClass="!top-0 !relative !left-0">
+    <p-menu #accountOptions [popup]="true" [appendTo]="loginPopup" styleClass="!top-0 !relative !left-0">
+      <ng-template #start>
+        <div class="justify-center p-[var(--p-menu-list-padding)] gap-[var(--p-menu-list-gap)]">
+          <div class="p-[var(--p-menu-submenu-label-padding)]">
+            <span class="text-primary font-bold">Ya estas logeado</span>
+          </div>
+          <div class="p-[var(--p-menu-submenu-label-padding)]">
+            <p-floatlabel variant="on">
+              <input pInputText id="Email" class="w-full" />
+              <label for="Email">Email</label>
+            </p-floatlabel>
+          </div>
+          <div class="px-3">
+            <button pButton pRipple label="Logout" class="w-full" (click)="logout()">
+            </button>
+          </div>
+          <div class="inline-flex items-center justify-center p-[var(--p-menu-submenu-label-padding)] w-full">
+            <hr class="h-px w-full">
+            <span class="absolute bg-[var(--p-menu-background)] -translate-x-1/2 left-1/2 px-2">or</span>
+          </div>
+          <div class="flex justify-center items-center p-[var(--p-menu-submenu-label-padding)] gap-[var(--p-menu-list-gap)]">
+            <button pButton pRipple icon="pi pi-github" (onClick)="login_github()"></button>
+            <button pButton pRipple icon="pi pi-google" (onClick)="login_google()"></button>
+            <button pButton pRipple icon="pi pi-discord" (onClick)="login_discord()"></button>
+          </div>
+        </div>
+      </ng-template>
+    </p-menu>
+    <p-menu #configOptions [model]="config_Items" [popup]="true" [appendTo]="configPopup" styleClass="!top-0 !relative !left-0">
       <ng-template #submenuheader let-item>
         <span class="text-primary font-bold">{{ item.label | translate }}</span>
       </ng-template>
       <ng-template #item let-item>
         <a pRipple class="flex items-center p-menu-item-link">
+          <div class="flex items-center">
             <span [class]="item.icon"></span>
             <span class="ml-2">{{ item.label | translate }}</span>
+          </div>
+          <i *ngIf="isSelected(item)" class="pi pi-check ml-2 text-primary"></i>
         </a>
       </ng-template>
     </p-menu>
@@ -54,5 +112,5 @@
 </p-menubar>
 
 
-<div #navPopup class="top-12 right-4 absolute max-w-72 min-w-72"></div>
-<div #navPopup2 class="top-12 right-4 absolute max-w-72 min-w-72"></div>
+<div #configPopup class="top-12 right-4 absolute max-w-72 min-w-72"></div>
+<div #loginPopup class="top-12 right-4 absolute max-w-72 min-w-72"></div>

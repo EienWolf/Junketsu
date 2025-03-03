@@ -26,7 +26,11 @@
       }
     },
     "sign-in": {
-      "label": "Sign In"
+      "label": "Sign In",
+      "login-by": "Login by",
+      "email": "Email",
+      "magic-link": "Magic Link",
+      "or": "or"
     }
   },
   "weapon": {
