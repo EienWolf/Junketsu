@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { SharedModule } from '../../shared.module';
 import { TranslateService } from '@ngx-translate/core';
 import { MenubarModule } from 'primeng/menubar';
@@ -34,6 +34,8 @@ export class NavComponent implements OnInit {
     , private translate: TranslateService
     , private weapon_service: WeaponService
     , private supabase: SupabaseService
+    , private renderer: Renderer2
+    , private el: ElementRef
     , private fb: FormBuilder) {
       
     this.email_form = this.fb.group({
@@ -93,7 +95,7 @@ export class NavComponent implements OnInit {
             command: () => { this.export()}
           }, {
             label: 'nav.config.data.import',
-            command: () => { this.import()}
+            command: () => { this.initiateImport(); }
           }]
         }, {
           label: 'nav.config.session.label',
@@ -104,8 +106,26 @@ export class NavComponent implements OnInit {
           }
       ];
   }
-  import() {
-    //this.weapon_service.importWeapons()
+  initiateImport() {
+    // Crear input dinámicamente
+    const input = this.renderer.createElement('input');
+    this.renderer.setAttribute(input, 'type', 'file');
+    this.renderer.setAttribute(input, 'accept', '.json');
+    this.renderer.setStyle(input, 'display', 'none');
+
+    // Manejar el evento change
+    const listener = this.renderer.listen(input, 'change', (event) => {
+      this.import(event);
+      this.renderer.destroy();
+    });
+
+    // Agregar al DOM y simular click
+    this.renderer.appendChild(this.el.nativeElement, input);
+    input.click();
+  }
+
+  import(event: any) {
+    this.weapon_service.importWeapons(event, 'merge') 
   }
   export() {
     this.weapon_service.exportWeapons();
