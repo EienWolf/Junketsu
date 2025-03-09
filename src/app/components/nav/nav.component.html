@@ -28,7 +28,7 @@
   </ng-template>
   <ng-template #end>
     <p-button icon="pi pi-bell"/>
-    <p-button (click)="configOptions.toggle($event)" icon="pi pi-cog"/>
+    <p-button (click)="configOptions.toggle($event)" icon="pi pi-cog" styleClass="text-xl" />
     @if (!is_login) {
       <p-button (click)="loginOptions.toggle($event)" icon="pi pi-sign-in" iconPos="right" [label]="'nav.sign-in.label' | translate"/>
     } @else {

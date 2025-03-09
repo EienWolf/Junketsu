@@ -1,5 +1,5 @@
-<div class="p-4 m-0 grid grid-cols-2 text-color bg-[var(--p-content-background)] min-w-md">
-  <div class="relative col-span-2 xl:col-span-1 xl:pr-2 grid grid-cols-6">
+<div class="p-4 m-0 grid grid-cols-2 text-color bg-[var(--p-content-background)] min-w-xs ">
+  <div class="relative col-span-2 xl:col-span-1 xl:pr-2 grid grid-cols-6 gap-y-1 mb-4">
     <div class="col-start-2 col-span-4 text-2xl font-bold text-center">
       {{ weapon.name }}
     </div>
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="col-start-1 col-span-5 text-xl flex items-center gap-1">
+    <div class="col-start-1 col-span-5 text-xl flex items-center">
       <div class="w-8 h-8 icon-svg-container">
           <app-svg-icon class="w-6 h-6 icon-svg"
             [iconName]="'--icon-durability-type-' + weapon.durability_type"></app-svg-icon>
@@ -36,12 +36,12 @@
       }
     </div>
 
-    <div class="col-span-6 row-span-2 min-h-4">
+    <div class="col-span-6 row-span-2">
       <div [class.long]="weapon.is_long_description" class="text-sm leading-5 max-h-[3.75rem] overflow-hidden [&.long]:text-xs [&.long]:max-h-[5rem]">{{ weapon.description }}</div>
     </div>
 
     <div class="grid grid-cols-12 place-items-center col-span-6 text-center">
-      <div class="col-span-2">
+      <div class="col-span-4 xs:col-span-2">
         <div class="w-16 h-16 icon-svg-container">
           <app-svg-icon class="w-11 h-11 icon-svg"
             [iconName]="'--icon-ability-' + weapon.ability"></app-svg-icon>
@@ -49,7 +49,7 @@
         <span class="text-[10px]">{{ 'weapon.enum.ability.' + weapon.ability | translate }}</span>
       </div>
 
-      <div class="col-span-2">
+      <div class="col-span-4 xs:col-span-2">
         <div class="w-16 h-16 icon-svg-container">
           <app-svg-icon class="w-11 h-11 icon-svg"
             [iconName]="'--icon-grip-' + weapon.grip_mode"></app-svg-icon>
@@ -57,7 +57,7 @@
         <span class="text-[10px]">{{ 'weapon.enum.grip.' + weapon.grip_mode | translate }}</span>
       </div>
 
-      <div class="col-span-2">
+      <div class="col-span-4 xs:col-span-2">
         <div class="w-16 h-16 icon-svg-container">
           <app-svg-icon class="w-11 h-11 icon-svg"
             [iconName]="'--icon-range-' + weapon.range_type"></app-svg-icon>
@@ -70,14 +70,14 @@
         <span class="text-[10px]">{{ 'weapon.enum.range.' + weapon.range_type | translate }}</span>
       </div>
 
-      <div class="col-span-2">
+      <div class="col-span-4 xs:col-span-2">
         <div class="w-16 h-16 icon-svg-container">
           <span class="font-bold text-3xl font-serif">{{weapon.base_damage}}</span>
         </div>
         <span class="text-[10px]">{{ 'weapon.basic-damage' | translate }}</span>
       </div>
 
-      <div class="col-span-2">
+      <div class="col-span-4 xs:col-span-2">
         <div class="w-16 h-16 icon-svg-container">
           <app-svg-icon class="w-11 h-11 icon-svg"
           [iconName]="'--icon-' + weapon.ammo_or_wield_effect"></app-svg-icon>
@@ -94,7 +94,7 @@
         }
       </div>
 
-      <div class="col-span-2">
+      <div class="col-span-4 xs:col-span-2">
         @if (weapon.reloadrate) {
         <div class="w-16 h-16 icon-svg-container">
             <app-svg-icon class="w-11 h-11 icon-svg"
@@ -107,7 +107,7 @@
         }
       </div>
 
-      <div class="col-start-1 col-span-6 row-start-1 row-span-4">
+      <div class="col-start-1 col-span-12 xs:col-span-6 row-start-1 row-span-4">
         <img [src]="weapon.image" alt="{{ weapon.name }}" class="h-44" />
       </div>
     </div>
@@ -124,9 +124,8 @@
         }
       </div>
     </div>
-    <div class="col-span-6 py-2"></div>
   </div>
-  <div class="col-span-2 xl:col-span-1 xl:pl-2 grid grid-cols-6">
+  <div class="col-span-2 xl:col-span-1 xl:pl-2 grid grid-cols-6 gap-y-2">
     @for (attack of weapon.attacks; track $index) {
       <div class="col-span-6 grid grid-cols-6">
         <div class="col-span-5 text-xl flex items-center gap-1">
