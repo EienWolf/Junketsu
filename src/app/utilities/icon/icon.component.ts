@@ -1,7 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { debounceTime, distinctUntilChanged, fromEvent, interval, Subscription, Observable } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  fromEvent,
+  interval,
+  Subscription,
+  Observable,
+} from 'rxjs';
 
 const globalSvgCache = new Map<string, SafeHtml>();
 
@@ -9,13 +16,12 @@ const globalSvgCache = new Map<string, SafeHtml>();
   selector: 'app-svg-icon',
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class SvgIconComponent implements OnInit, OnDestroy {
-  private _icon_name: string ='';
-  @Input() 
-  set iconName(value: string)
-  {
+  private _icon_name: string = '';
+  @Input()
+  set iconName(value: string) {
     this._icon_name = value;
     this.currentIconValue = this.getCssVariableValue();
     this.loadSvg(this.currentIconValue);
@@ -25,8 +31,10 @@ export class SvgIconComponent implements OnInit, OnDestroy {
   }
   @Input() iconClass: string = '';
   @Input() forceTheme: boolean = true;
-  constructor(private el: ElementRef, private sanitizer: DomSanitizer){
-  }
+  constructor(
+    private el: ElementRef,
+    private sanitizer: DomSanitizer,
+  ) {}
   iconSvg: SafeHtml = '';
   private subscription!: Subscription;
   private mutationObserver!: MutationObserver;
@@ -36,36 +44,38 @@ export class SvgIconComponent implements OnInit, OnDestroy {
     if (this.forceTheme) {
       this.createThemeChangeObservable();
     } else {
-      this.subscription = interval(100).pipe(debounceTime(50), distinctUntilChanged()).subscribe(() => {
-        const newValue = this.getCssVariableValue();
-        if (newValue !== this.currentIconValue) {
-          this.currentIconValue = newValue;
-          this.loadSvg(newValue);
-        }
-      });
+      this.subscription = interval(100)
+        .pipe(debounceTime(50), distinctUntilChanged())
+        .subscribe(() => {
+          const newValue = this.getCssVariableValue();
+          if (newValue !== this.currentIconValue) {
+            this.currentIconValue = newValue;
+            this.loadSvg(newValue);
+          }
+        });
     }
   }
   private createThemeChangeObservable() {
     this.mutationObserver = new MutationObserver(() => {
-      console.log("res");
+      console.log('res');
       const newValue = this.getCssVariableValue();
       if (newValue !== this.currentIconValue) {
         this.currentIconValue = newValue;
         this.loadSvg(newValue);
       }
     });
-    
+
     this.mutationObserver.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-theme']
+      attributeFilter: ['data-theme'],
     });
   }
-  
+
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
     this.mutationObserver?.disconnect();
   }
-  
+
   private async loadSvg(iconUrl: string) {
     if (!iconUrl) return;
     try {
@@ -86,15 +96,15 @@ export class SvgIconComponent implements OnInit, OnDestroy {
   }
 
   private getCssVariableValue(): string {
-    // const targetElement = this.forceTheme 
-    //   ? document.documentElement 
+    // const targetElement = this.forceTheme
+    //   ? document.documentElement
     //   : this.el.nativeElement;
     const targetElement = this.el.nativeElement;
     return getComputedStyle(targetElement)
       .getPropertyValue(this.iconName)
       .trim()
-      .replace("url(", '')
-      .replace(")", '')
+      .replace('url(', '')
+      .replace(')', '')
       .replace(/^["']|["']$/g, '');
   }
 }

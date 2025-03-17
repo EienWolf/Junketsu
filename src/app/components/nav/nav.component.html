@@ -1,36 +1,216 @@
-
-<p-menubar [model]="items" [styleClass]="'bg-primary p-4'">
+<p-menubar [model]="items" [styleClass]="'bg-primary'">
   <ng-template #start>
-    <a [routerLink]="['/']" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <span class="self-center text-2xl font-semibold whitespace-nowrap">Junketsu</span>
+    <a
+      [routerLink]="['/']"
+      class="flex items-center space-x-3 rtl:space-x-reverse"
+    >
+      <span class="self-center text-2xl font-semibold whitespace-nowrap"
+        >Junketsu</span
+      >
     </a>
   </ng-template>
-  <ng-template  #item let-item>
+  <ng-template #item let-item>
     <ng-container *ngIf="item.routerLink; else urlRef">
-        <a [routerLink]="[item.routerLink]" class="p-menubar-item-link">
-            <span [class]="item.icon"></span>
-            <span class="ml-2">{{ item.label }}</span>
-        </a>
+      <a [routerLink]="[item.routerLink]" class="p-menubar-item-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label | translate }}</span>
+      </a>
     </ng-container>
     <ng-template #urlRef>
-        <a *ngIf="item.url; else noLink" [href]="item.url" class="p-menubar-item-link">
-            <span [class]="item.icon"></span>
-            <span class="ml-2">{{ item.label }}</span>
-        </a>
+      <a
+        *ngIf="item.url; else noLink"
+        [href]="item.url"
+        class="p-menubar-item-link"
+      >
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label | translate }}</span>
+      </a>
     </ng-template>
     <ng-template #noLink>
-        <div class="p-menubar-item-link">
-            <span [class]="item.icon"></span>
-            <span class="ml-2">{{ item.label }}</span>
-            <span class="pi pi-fw pi-angle-down ml-2"></span>
-        </div>
+      <div class="p-menubar-item-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label | translate }}</span>
+        <span class="pi pi-fw pi-angle-down ml-2"></span>
+      </div>
     </ng-template>
   </ng-template>
   <ng-template #end>
-    <p-button icon="pi pi-bell"/>
-    <p-menu #menu [model]="lang_items" [popup]="true" />
-    <p-button (click)="menu.toggle($event)" icon="pi pi-cog"/>
-    <p-button icon="pi pi-sign-in" [routerLink]="'/auth'"/>
+    <p-button icon="pi pi-bell" />
+    <p-button
+      (click)="configOptions.toggle($event)"
+      icon="pi pi-cog"
+      styleClass="text-xl"
+    />
+    @if (!is_login) {
+      <p-button
+        (click)="loginOptions.toggle($event)"
+        icon="pi pi-sign-in"
+        iconPos="right"
+        [label]="'nav.sign-in.label' | translate"
+      />
+    } @else {
+      <p-button
+        (click)="accountOptions.toggle($event)"
+        [label]="'nav.sign-in.account' | translate"
+      />
+    }
+
+    <p-menu
+      #loginOptions
+      [popup]="true"
+      [appendTo]="loginPopup"
+      styleClass="!top-0 !relative !left-0"
+    >
+      <ng-template #start>
+        <div
+          class="justify-center gap-[var(--p-menu-list-gap)] p-[var(--p-menu-list-padding)]"
+        >
+          <div class="p-[var(--p-menu-submenu-label-padding)]">
+            <span class="text-primary font-bold">{{
+              "nav.sign-in.login-by" | translate
+            }}</span>
+          </div>
+          <form [formGroup]="email_form">
+            <div class="p-[var(--p-menu-submenu-label-padding)]">
+              <p-floatlabel variant="on">
+                <input
+                  pInputText
+                  id="Email"
+                  formControlName="email"
+                  class="w-full"
+                />
+                <label for="Email">{{ "nav.sign-in.email" | translate }}</label>
+              </p-floatlabel>
+            </div>
+            <div class="px-3">
+              <button
+                pButton
+                pRipple
+                [label]="'nav.sign-in.magic-link' | translate"
+                class="w-full"
+                (click)="login_email()"
+                [disabled]="!email_form.valid"
+              ></button>
+            </div>
+          </form>
+          <div
+            class="inline-flex w-full items-center justify-center p-[var(--p-menu-submenu-label-padding)]"
+          >
+            <hr class="h-px w-full" />
+            <span
+              class="absolute left-1/2 -translate-x-1/2 bg-[var(--p-menu-background)] px-2"
+              >{{ "nav.sign-in.or" | translate }}</span
+            >
+          </div>
+          <div
+            class="flex items-center justify-center gap-[var(--p-menu-list-gap)] p-[var(--p-menu-submenu-label-padding)]"
+          >
+            <button
+              pButton
+              pRipple
+              icon="pi pi-github"
+              (onClick)="login_github()"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-google"
+              (onClick)="login_google()"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-discord"
+              (onClick)="login_discord()"
+            ></button>
+          </div>
+        </div>
+      </ng-template>
+    </p-menu>
+    <p-menu
+      #accountOptions
+      [popup]="true"
+      [appendTo]="loginPopup"
+      styleClass="!top-0 !relative !left-0"
+    >
+      <ng-template #start>
+        <div
+          class="justify-center gap-[var(--p-menu-list-gap)] p-[var(--p-menu-list-padding)]"
+        >
+          <div class="p-[var(--p-menu-submenu-label-padding)]">
+            <span class="text-primary font-bold">Ya estas logeado</span>
+          </div>
+          <div class="p-[var(--p-menu-submenu-label-padding)]">
+            <p-floatlabel variant="on">
+              <input pInputText id="Email" class="w-full" />
+              <label for="Email">Email</label>
+            </p-floatlabel>
+          </div>
+          <div class="px-3">
+            <button
+              pButton
+              pRipple
+              label="Logout"
+              class="w-full"
+              (click)="logout()"
+            ></button>
+          </div>
+          <div
+            class="inline-flex w-full items-center justify-center p-[var(--p-menu-submenu-label-padding)]"
+          >
+            <hr class="h-px w-full" />
+            <span
+              class="absolute left-1/2 -translate-x-1/2 bg-[var(--p-menu-background)] px-2"
+              >or</span
+            >
+          </div>
+          <div
+            class="flex items-center justify-center gap-[var(--p-menu-list-gap)] p-[var(--p-menu-submenu-label-padding)]"
+          >
+            <button
+              pButton
+              pRipple
+              icon="pi pi-github"
+              (onClick)="login_github()"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-google"
+              (onClick)="login_google()"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-discord"
+              (onClick)="login_discord()"
+            ></button>
+          </div>
+        </div>
+      </ng-template>
+    </p-menu>
+    <p-menu
+      #configOptions
+      [model]="config_Items"
+      [popup]="true"
+      [appendTo]="configPopup"
+      styleClass="!top-0 !relative !left-0"
+    >
+      <ng-template #submenuheader let-item>
+        <span class="text-primary font-bold">{{ item.label | translate }}</span>
+      </ng-template>
+      <ng-template #item let-item>
+        <a pRipple class="p-menu-item-link flex items-center">
+          <div class="flex items-center">
+            <span [class]="item.icon"></span>
+            <span class="ml-2">{{ item.label | translate }}</span>
+          </div>
+          <i *ngIf="isSelected(item)" class="pi pi-check text-primary ml-2"></i>
+        </a>
+      </ng-template>
+    </p-menu>
   </ng-template>
 </p-menubar>
 
+<div #configPopup class="absolute top-12 right-4 max-w-72 min-w-72"></div>
+<div #loginPopup class="absolute top-12 right-4 max-w-72 min-w-72"></div>

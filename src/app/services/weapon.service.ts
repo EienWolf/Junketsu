@@ -3,29 +3,33 @@ import { Weapon } from '../models/weapon.model';
 import { Profile, SupabaseService } from './supabase.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WeaponService {
   constructor(private readonly supabase: SupabaseService) {
     if (this.supabase.session) {
       const { user } = this.supabase.session;
       // let profile: Profile;
-      this.supabase.profile(user).then((data) =>{
+      this.supabase.profile(user).then((data) => {
         if (data?.data?.config_url) {
-          this.supabase.downLoadConfig(data?.data?.config_url).then((config) => {
-            console.log(config.data);
-          });
+          this.supabase
+            .downLoadConfig(data?.data?.config_url)
+            .then((config) => {
+              console.log(config.data);
+            });
         }
-      })
+      });
     }
     this.loadFromLocalStorage();
   }
   private loadFromLocalStorage() {
     const storedWeaponsJson = localStorage.getItem('weapons') || '';
-    this.weapons = storedWeaponsJson ? JSON.parse(storedWeaponsJson).map((data: any) => new Weapon(data)) : [];
+    this.weapons = storedWeaponsJson
+      ? JSON.parse(storedWeaponsJson).map((data: any) => new Weapon(data))
+      : [];
   }
   private saveToLocalStorage() {
-    const serializedWeapons = this.weapons.map(weapon => weapon.toJSON());
+    const serializedWeapons = this.weapons.map((weapon) => weapon.toJSON());
     const dataStr = JSON.stringify(serializedWeapons, null, 2);
     if (this.supabase.session) {
       const blob = new Blob([dataStr], { type: 'application/json' });
@@ -37,7 +41,11 @@ export class WeaponService {
 
   private weapons: Weapon[] = [];
   getWeapon(index: string | number): Weapon {
-    return this.weapons.find(weapon => weapon.id.toString() === index.toString()) || new Weapon();
+    return (
+      this.weapons.find(
+        (weapon) => weapon.id.toString() === index.toString(),
+      ) || new Weapon()
+    );
   }
   getWeapons(): Weapon[] {
     return this.weapons;
@@ -48,8 +56,8 @@ export class WeaponService {
     this.saveToLocalStorage();
   }
 
-  updateWeapon(weapon: Weapon){
-    const index = this.weapons.findIndex(w => w.id === weapon.id);
+  updateWeapon(weapon: Weapon) {
+    const index = this.weapons.findIndex((w) => w.id === weapon.id);
     if (index !== -1) {
       this.weapons[index] = weapon;
     } else {
@@ -59,12 +67,12 @@ export class WeaponService {
   }
 
   deleteWeapon(index: string | number) {
-    this.weapons = this.weapons.filter(weapon => weapon.id !== index);
+    this.weapons = this.weapons.filter((weapon) => weapon.id !== index);
     this.saveToLocalStorage();
-  }  
+  }
 
   exportWeapons() {
-    const serializedWeapons = this.weapons.map(weapon => weapon.toJSON());
+    const serializedWeapons = this.weapons.map((weapon) => weapon.toJSON());
     const dataStr = JSON.stringify(serializedWeapons, null, 2);
     const blob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -93,7 +101,9 @@ export class WeaponService {
 
           case 'add':
             importedWeapons.forEach((weaponData: any) => {
-              const exists = this.weapons.some(w => w.id.toString() === weaponData.id.toString());
+              const exists = this.weapons.some(
+                (w) => w.id.toString() === weaponData.id.toString(),
+              );
               if (!exists) {
                 this.weapons.push(new Weapon(weaponData));
               }
@@ -102,7 +112,9 @@ export class WeaponService {
 
           case 'update':
             importedWeapons.forEach((weaponData: any) => {
-              const index = this.weapons.findIndex(w => w.id.toString() === weaponData.id.toString());
+              const index = this.weapons.findIndex(
+                (w) => w.id.toString() === weaponData.id.toString(),
+              );
               if (index !== -1) {
                 this.weapons[index] = new Weapon(weaponData);
               }
@@ -110,7 +122,9 @@ export class WeaponService {
             break;
           case 'merge':
             importedWeapons.forEach((weaponData: any) => {
-              const index = this.weapons.findIndex(w => w.id.toString() === weaponData.id.toString());
+              const index = this.weapons.findIndex(
+                (w) => w.id.toString() === weaponData.id.toString(),
+              );
               if (index !== -1) {
                 this.weapons[index] = new Weapon(weaponData);
               } else {

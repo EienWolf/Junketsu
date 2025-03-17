@@ -1,0 +1,4 @@
+::ng-deep .custom-tooltip {
+  max-width: 450px !important; /* Ancho máximo del tooltip */
+  white-space: normal !important; /* Permite que el texto se ajuste en varias líneas */
+}

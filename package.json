@@ -8,7 +8,12 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "clean": "rimraf dist/ node_modules/ .angular/ coverage/",
-    "clean:cache": "npm cache clean --force && ng cache clean"
+    "clean:cache": "npm cache clean --force && ng cache clean",
+    "prepare": "husky",
+    "format": "prettier --write ."
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,json,css,scss,md,html}": "prettier --write --ignore-unknown"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +37,7 @@
     "ngx-print": "^2.0.0",
     "primeicons": "^7.0.0",
     "primeng": "^19.0.6",
+    "rpg-awesome": "^0.2.0",
     "rxjs": "~7.8.0",
     "tailwindcss-primeui": "^0.4.0",
     "tslib": "^2.3.0",
@@ -43,12 +49,14 @@
     "@angular/compiler-cli": "^19.1.0",
     "@types/jasmine": "~5.1.0",
     "autoprefixer": "^10.4.20",
+    "husky": "^9.1.7",
     "jasmine-core": "~5.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "lint-staged": "^15.5.0",
     "postcss": "^8.5.2",
     "prettier": "^3.5.1",
     "prettier-plugin-tailwindcss": "^0.6.11",

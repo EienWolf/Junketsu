@@ -4,7 +4,8 @@ import { provideHttpClient, HttpClient } from '@angular/common/http';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
+import { providePrimeNG } from 'primeng/config';
+import { MyPreset } from '../mytheme';
 import { routes } from './app.routes';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -12,14 +13,27 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes, withRouterConfig({
-    // paramsInheritanceStrategy: 'always',
-    onSameUrlNavigation: 'reload'
-  })), provideHttpClient()
-    , provideTranslateService(),
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(
+      routes,
+      withRouterConfig({
+        // paramsInheritanceStrategy: 'always',
+        onSameUrlNavigation: 'reload',
+      }),
+    ),
+    provideHttpClient(),
+    provideTranslateService(),
     {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,
-      deps: [HttpClient]
-    }, provideAnimationsAsync()]
+      deps: [HttpClient],
+    },
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: MyPreset,
+      },
+    }),
+  ],
 };

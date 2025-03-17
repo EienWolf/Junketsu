@@ -11,14 +11,13 @@ import html2canvas from 'html2canvas';
   selector: 'app-weapon',
   templateUrl: './weapon.component.html',
   styleUrls: ['./weapon.component.css'],
-  imports: [CommonModule, SharedModule, NgxPrintModule]
+  imports: [CommonModule, SharedModule, NgxPrintModule],
 })
 export class WeaponComponent implements OnInit {
   weapon: Weapon = new Weapon();
   @ViewChild('pdfContent') pdfContent!: ElementRef;
 
-  constructor( private route: ActivatedRoute) {
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     const index = this.route.snapshot.paramMap.get('index');
@@ -26,10 +25,11 @@ export class WeaponComponent implements OnInit {
       const storedWeaponsJson = localStorage.getItem('weapons');
       if (storedWeaponsJson) {
         const storedWeapons = JSON.parse(storedWeaponsJson);
-        const storedWeaponsMap: Weapon[] = storedWeapons.map((data: any) => new Weapon(data));
-        var weapon = storedWeaponsMap.find(weapon => weapon.id === index);
+        const storedWeaponsMap: Weapon[] = storedWeapons.map(
+          (data: any) => new Weapon(data),
+        );
+        var weapon = storedWeaponsMap.find((weapon) => weapon.id === index);
         if (!!weapon) {
-          
         }
         this.weapon = weapon || new Weapon();
       }
