@@ -1,8 +1,7 @@
 name: Prettier Check
 
 on:
-  pull_request:
-    branches: [main]
+  [pull_request]
 
 jobs:
   check-format:

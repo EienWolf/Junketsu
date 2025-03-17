@@ -10,7 +10,9 @@
     "clean": "rimraf dist/ node_modules/ .angular/ coverage/",
     "clean:cache": "npm cache clean --force && ng cache clean",
     "prepare": "husky",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "lint:js": "eslint . --ext .js,.ts",
+    "lint:css": "stylelint '**/*.css'"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,json,css,scss,md,html}": "prettier --write --ignore-unknown"
