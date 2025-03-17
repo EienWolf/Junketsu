@@ -61,7 +61,7 @@ import { SelectModule } from 'primeng/select';
     ToggleSwitchModule,
     TooltipModule,
     RadioButtonModule,
-    SelectModule
+    SelectModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -69,9 +69,9 @@ export class WeaponFormComponent implements OnInit {
   @Input() weaponId?: string;
   weaponForm: FormGroup;
   enums = {
-    AmmoTypes:["Standard","Shells","Rifle","Cannon","Special"],
+    AmmoTypes: ['Standard', 'Shells', 'Rifle', 'Cannon', 'Special'],
     Durability_Type: Object.values(Durability_Type).reverse(),
-    Ability: [   Ability.MIGHT,Ability.PRECISION, Ability.FOCUS, Ability.EVOKE],
+    Ability: [Ability.MIGHT, Ability.PRECISION, Ability.FOCUS, Ability.EVOKE],
     Attack_Range_M: [
       {
         label: Attack_Range.MELEE,
@@ -96,18 +96,21 @@ export class WeaponFormComponent implements OnInit {
         tooltip: 'Rango efectivo de 12 casillas en adelante.',
       },
     ],
-    Grip_Mode:[
+    Grip_Mode: [
       {
         label: Grip_Mode.ONE_HAND,
-        tooltip: 'Se necesita Mínimo una Mano para maniobrar el arma, a una mano  se puede agregar un penalizador al ataque.',
+        tooltip:
+          'Se necesita Mínimo una Mano para maniobrar el arma, a una mano  se puede agregar un penalizador al ataque.',
       },
       {
         label: Grip_Mode.TWO_HAND,
-        tooltip: 'Se necesita Ambas manos para poder maniobrar el arma como se pretende, a una mano se tiene -2 éxitos.',
+        tooltip:
+          'Se necesita Ambas manos para poder maniobrar el arma como se pretende, a una mano se tiene -2 éxitos.',
       },
       {
         label: Grip_Mode.TWO_HAND_REQUIRED,
-        tooltip: 'Se requiere 2 manos para manipular la herramienta, cada mano tiene una acción en concreto(Arco)(Ametralladora), Si las manos no son del mismo usuario se tiene penalizador.',
+        tooltip:
+          'Se requiere 2 manos para manipular la herramienta, cada mano tiene una acción en concreto(Arco)(Ametralladora), Si las manos no son del mismo usuario se tiene penalizador.',
       },
     ],
     Wield_Effect: [
@@ -117,12 +120,14 @@ export class WeaponFormComponent implements OnInit {
       },
       {
         label: Wield_Effect.VERSATILE,
-        tooltip: 'A dos manos se agrega modificador de Daño extra, a una mano no.',
+        tooltip:
+          'A dos manos se agrega modificador de Daño extra, a una mano no.',
       },
       {
         label: Wield_Effect.HEAVY,
         tooltip: 'Menos daño cuando se porta a una 1 mano.',
-      }],
+      },
+    ],
   };
 
   constructor(
@@ -150,27 +155,35 @@ export class WeaponFormComponent implements OnInit {
     });
   }
 
+  verifyFinesse() {
+    const finesse = this.weaponForm.get('is_finnese')!; // 0 1 2
+    const control = this.weaponForm.controls['ability']; //might precision evoke focus
 
-  verifyFinesse(){
-    const finesse = this.weaponForm.get('is_finnese')!;// 0 1 2
-    const control =  this.weaponForm.controls["ability"]; //might precision evoke focus
-    
-    if((control.value == Ability.EVOKE || control.value == Ability.FOCUS)&&  finesse.value== 1){
+    if (
+      (control.value == Ability.EVOKE || control.value == Ability.FOCUS) &&
+      finesse.value == 1
+    ) {
       finesse.setValue(0);
-    }else  if((control.value == Ability.MIGHT ||control.value == Ability.PRECISION)&&  finesse.value == 2){
+    } else if (
+      (control.value == Ability.MIGHT || control.value == Ability.PRECISION) &&
+      finesse.value == 2
+    ) {
       finesse.setValue(0);
     }
   }
 
   disableToogles($event: any) {
     // Reiniciar todas las opciones a no restringidas
-    const control =  this.weaponForm.controls["ability"];
-    const value =control.value.label;
-    console.log("control: ",value);
+    const control = this.weaponForm.controls['ability'];
+    const value = control.value.label;
+    console.log('control: ', value);
     // Deshabilitar opciones basadas en el valor de $event
-    if ($event === 1  && (value  == Ability.FOCUS || value  ==  Ability.EVOKE )) {
+    if ($event === 1 && (value == Ability.FOCUS || value == Ability.EVOKE)) {
       control.setValue(undefined);
-    } else if ($event === 2  && (value  == Ability.MIGHT || value  ==  Ability.PRECISION )) {
+    } else if (
+      $event === 2 &&
+      (value == Ability.MIGHT || value == Ability.PRECISION)
+    ) {
       control.setValue(undefined);
     }
   }
@@ -219,11 +232,9 @@ export class WeaponFormComponent implements OnInit {
       attacks: this.fb.array([]),
       is_finnese: [0],
       is_arcana: [false],
-      ammoType:[0]
+      ammoType: [0],
     });
   }
-
-  
 
   get attacks(): FormArray {
     return this.weaponForm.get('attacks') as FormArray;
@@ -291,6 +302,4 @@ export class WeaponFormComponent implements OnInit {
 
     return '';
   }
-
-  
 }

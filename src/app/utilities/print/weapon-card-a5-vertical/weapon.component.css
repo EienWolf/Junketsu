@@ -1,13 +1,9 @@
-.icon-svg{
-    @apply stroke-[var(--p-highlight-color)] stroke-2 hover:stroke-[var(--p-highlight-focus-color)] fill-[var(--p-text-color)] hover:fill-[var(--p-text-hover-color)];
+.icon-svg {
+  @apply fill-[var(--p-text-color)] stroke-[var(--p-highlight-color)] stroke-2 hover:fill-[var(--p-text-hover-color)] hover:stroke-[var(--p-highlight-focus-color)];
 }
 .icon-svg-container {
-    @apply relative flex items-center justify-center rounded-full border-2
-    bg-[var(--p-content-border-color)] hover:bg-[var(--p-content-hover-background)]
-    border-[var(--p-content-border-color)] hover:border-[var(--p-highlight-color)];
+  @apply relative flex items-center justify-center rounded-full border-2 border-[var(--p-content-border-color)] bg-[var(--p-content-border-color)] hover:border-[var(--p-highlight-color)] hover:bg-[var(--p-content-hover-background)];
 }
 .icon-svg-info {
-    @apply absolute transform translate-x-2/4 translate-y-3/4 
-    border-[var(--p-content-border-color)] bg-[var(--p-content-background)] 
-    border-1 rounded-full flex items-center justify-center;
+  @apply absolute flex translate-x-2/4 translate-y-3/4 transform items-center justify-center rounded-full border-1 border-[var(--p-content-border-color)] bg-[var(--p-content-background)];
 }

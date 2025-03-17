@@ -1,16 +1,16 @@
 export class Attack {
   /**
-   * Nombre del ataque 
+   * Nombre del ataque
    */
   attack_name: string;
 
   /**
-   * Stamina que gasta el ataque 
+   * Stamina que gasta el ataque
    */
   stamina: number;
 
   /**
-   * Ignorar de momento... 
+   * Ignorar de momento...
    */
   damage_type: string;
 
@@ -22,7 +22,7 @@ export class Attack {
   damage_formula: string;
 
   /**
-   * Habilidad que se usa para realizar el ataque 
+   * Habilidad que se usa para realizar el ataque
    */
   ability: Ability;
 
@@ -47,7 +47,10 @@ export class Attack {
   is_secondary: boolean;
   private readonly _weapon?: Weapon;
 
-  constructor(data: Partial<Attack> = {}, weapon: Weapon | undefined = undefined) {
+  constructor(
+    data: Partial<Attack> = {},
+    weapon: Weapon | undefined = undefined,
+  ) {
     this.attack_name = data.attack_name || '';
     this.stamina = data.stamina || 1;
     this.damage_type = data.damage_type || '';
@@ -69,161 +72,163 @@ export class Attack {
   get has_description(): boolean {
     return !!this.description?.trim();
   }
-  
+
   get has_own_ability(): boolean {
     return this._weapon ? this.ability !== this._weapon.ability : false;
   }
 
   toJSON() {
     const publicProps = Object.fromEntries(
-      Object.entries(this).filter(([key]) => !key.startsWith('#') && !key.startsWith('_'))
+      Object.entries(this).filter(
+        ([key]) => !key.startsWith('#') && !key.startsWith('_'),
+      ),
     );
     return publicProps;
   }
 }
 
 /**
- * 
+ *
  */
 export enum Durability_Type {
   /**
-   * 
+   *
    */
   Legacy = 'legacy',
 
   /**
-   * 
+   *
    */
   Regular = 'regular',
 
   /**
-   * 
+   *
    */
-  Scrap = 'scrap'
+  Scrap = 'scrap',
 }
 
 /**
- * 
+ *
  */
 export enum Ability {
   /**
-   * 
+   *
    */
   MIGHT = 'might',
 
   /**
-   * 
+   *
    */
   PRECISION = 'precision',
 
   /**
-   * 
+   *
    */
   FOCUS = 'focus',
 
   /**
-   * 
+   *
    */
-  EVOKE = 'evoke'
+  EVOKE = 'evoke',
 }
 
 /**
- * 
+ *
  */
 export enum Attack_Range {
   /**
-   * 
+   *
    */
   MELEE = 'melee',
 
   /**
-   * 
+   *
    */
   REACH = 'reach',
 
   REACH2 = 'reach2',
 
   /**
-   * 
+   *
    */
   SHORT = 'short',
 
   /**
-   * 
+   *
    */
   MEDIUM = 'medium',
 
   /**
-   * 
+   *
    */
   LARGE = 'large',
 }
 
 /**
- * 
+ *
  */
 export enum Grip_Mode {
   /**
-   * 
+   *
    */
   FREE_HAND = '0h',
 
   /**
-   * 
+   *
    */
   ONE_HAND = '1h',
 
   /**
-   * 
+   *
    */
   TWO_HAND = '2h',
 
   /**
-   * 
+   *
    */
-  TWO_HAND_REQUIRED = '2hr'
+  TWO_HAND_REQUIRED = '2hr',
 }
 
 /**
- * 
+ *
  */
 export enum Wield_Effect {
   /**
-   * 
+   *
    */
   LIGHT = 'light',
 
   /**
-   * 
+   *
    */
   VERSATILE = 'versatile',
 
   /**
-   * 
+   *
    */
-  HEAVY = 'heavy'
+  HEAVY = 'heavy',
 }
 
 /**
- * 
+ *
  */
 export enum Guard_Type {
   /**
-   * 
+   *
    */
   AGILE = 'agile',
 
   /**
-   * 
+   *
    */
   BLOCK = 'block',
 
   /**
-   * 
+   *
    */
-  GUARD = 'guard'
+  GUARD = 'guard',
 }
-  
+
 export class Weapon {
   private static REACH_REGEX = /^reach_(\d+)$/;
   /**
@@ -263,7 +268,7 @@ export class Weapon {
 
   /**
    * Durabilidad numerica del arma
-   * @remarks Su valor por defecto depende del tipo de durabilidad: 
+   * @remarks Su valor por defecto depende del tipo de durabilidad:
    * Durability_Type.SCRAP = 2
    * Durability_Type.REGULAR = 5
    * Durability_Type.LEGACY = 7
@@ -341,7 +346,7 @@ export class Weapon {
   attacks: Attack[];
 
   /**
-   * Validar que la url se pueda obtener y que sea una imagen, 
+   * Validar que la url se pueda obtener y que sea una imagen,
    * tamañó recomendado h=176 w=208 aunque posiblemente esto cambie mas a futuro.
    */
   image?: string;
@@ -373,7 +378,7 @@ export class Weapon {
     this.ammo_capacity = data.ammo_capacity;
     this.reloadrate = data.reloadrate;
 
-    this.attacks = (data.attacks || []).map(a => {
+    this.attacks = (data.attacks || []).map((a) => {
       const attack = new Attack(a, this);
       return attack;
     });
@@ -404,7 +409,7 @@ export class Weapon {
   }
 
   get ammo_or_wield_effect(): string {
-    return this.ammo_capacity ? 'ammo-capacity': 'wield-' + this.wield_effect;
+    return this.ammo_capacity ? 'ammo-capacity' : 'wield-' + this.wield_effect;
   }
 
   get range_type(): string {
@@ -424,39 +429,45 @@ export class Weapon {
         value = match?.[1] ?? '';
         break;
       case 'short':
-        value = 'S'
+        value = 'S';
         break;
       case 'medium':
-        value = 'M'
+        value = 'M';
         break;
       case 'large':
-        value = 'L'
+        value = 'L';
         break;
     }
     return value;
   }
 
-  get is_Guard(): boolean{
-    return this.is_agile || this.is_block
+  get is_Guard(): boolean {
+    return this.is_agile || this.is_block;
   }
 
-  get guard_type(): string{
-    return this.is_agile && this.is_block ? 'guard' 
-      : this.is_agile ? 'agile'
-        : this.is_block ? 'block': 'block';
+  get guard_type(): string {
+    return this.is_agile && this.is_block
+      ? 'guard'
+      : this.is_agile
+        ? 'agile'
+        : this.is_block
+          ? 'block'
+          : 'block';
   }
 
   get is_long_description(): boolean {
     return (this.short_description?.length ?? 0) > 144;
   }
-  
+
   toJSON() {
     const publicProps = Object.fromEntries(
-      Object.entries(this).filter(([key]) => !key.startsWith('#') && !key.startsWith('_'))
+      Object.entries(this).filter(
+        ([key]) => !key.startsWith('#') && !key.startsWith('_'),
+      ),
     );
     return {
       ...publicProps,
-      attacks: this.attacks.map(attack => attack.toJSON()),
+      attacks: this.attacks.map((attack) => attack.toJSON()),
     };
   }
 }

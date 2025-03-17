@@ -39,7 +39,8 @@
               />
               <label for="label_id">ID Único</label>
             </p-floatlabel>
-            <small class="mt-1 ml-2 block text-gray-500">Autogenerado si se deja vacío</small
+            <small class="mt-1 ml-2 block text-gray-500"
+              >Autogenerado si se deja vacío</small
             >
           </div>
         }
@@ -140,17 +141,25 @@
               tooltipPosition="top"
               pTooltip="Esta arma puede utilizar Might o Precision de igual manera."
             >
-              <p-radiobutton [value]="0" inputId="finnese" formControlName="is_finnese" (ngModelChange)="disableToogles($event)" />
-              <label for="finnese" class="ml-1"
-                > Simple
-              </label></span
+              <p-radiobutton
+                [value]="0"
+                inputId="finnese"
+                formControlName="is_finnese"
+                (ngModelChange)="disableToogles($event)"
+              />
+              <label for="finnese" class="ml-1"> Simple </label></span
             >
             <span
               class="mr-3"
               tooltipPosition="top"
               pTooltip="Esta arma puede utilizar Might o Precision de igual manera."
             >
-              <p-radiobutton [value]="1" inputId="finnese" formControlName="is_finnese" (ngModelChange)="disableToogles($event)" />
+              <p-radiobutton
+                [value]="1"
+                inputId="finnese"
+                formControlName="is_finnese"
+                (ngModelChange)="disableToogles($event)"
+              />
               <label for="finnese" class="ml-1"
                 ><i class="ra ra-kunai ra-lg"></i> Finnese
               </label></span
@@ -160,14 +169,20 @@
               tooltipPosition="top"
               pTooltip="Esta arma puede utilizar Focus o Evoke de igual manera."
             >
-              <p-radiobutton [value]="2" inputId="arcana" formControlName="is_finnese" (ngModelChange)="disableToogles($event)" />
+              <p-radiobutton
+                [value]="2"
+                inputId="arcana"
+                formControlName="is_finnese"
+                (ngModelChange)="disableToogles($event)"
+              />
               <label for="arcana" class="ml-1"
                 ><i class="ra ra-focused-lightning ra-lg"></i> Arcana
               </label></span
             ></label
           >
-          <p-selectButton optionDisabled="restricted"
-          (onChange)="verifyFinesse()"
+          <p-selectButton
+            optionDisabled="restricted"
+            (onChange)="verifyFinesse()"
             [options]="enums.Ability"
             formControlName="ability"
           ></p-selectButton>
@@ -425,8 +440,10 @@
         </ng-template>
         <div class="grid grid-cols-3 gap-4 md:grid-cols-3">
           <div class="col-span-3">
-            <p>Use projectile   <p-toggleswitch inputId="switch1" formControlName="use_ammo" /></p>
-          
+            <p>
+              Use projectile
+              <p-toggleswitch inputId="switch1" formControlName="use_ammo" />
+            </p>
           </div>
 
           @if (weaponForm.get("use_ammo")!.value == true) {
@@ -477,10 +494,13 @@
             </div>
 
             <div class="col-span-1">
-                <label class="mb-2 block">Tipo de municion</label>
-                <p-select [options]="enums.AmmoTypes" formControlName="ammoType" placeholder="Select Ammo Type" class="w-full " />
-
-       
+              <label class="mb-2 block">Tipo de municion</label>
+              <p-select
+                [options]="enums.AmmoTypes"
+                formControlName="ammoType"
+                placeholder="Select Ammo Type"
+                class="w-full"
+              />
             </div>
           }
         </div>

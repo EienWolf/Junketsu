@@ -4,7 +4,7 @@ import { WeaponComponent } from './components/weapon/weapon.component';
 import { AuthComponent } from './components/auth/auth.component';
 
 export const routes: Routes = [
-    { path: 'weapons', component: WeaponFormComponent },
-    { path: 'auth', component: AuthComponent },
-    { path: 'weapons/:index', component: WeaponComponent }
+  { path: 'weapons', component: WeaponFormComponent },
+  { path: 'auth', component: AuthComponent },
+  { path: 'weapons/:index', component: WeaponComponent },
 ];
