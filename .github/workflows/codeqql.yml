@@ -1,11 +1,13 @@
-name: Prettier Check
-
+name: CodeQL
 on: [pull_request]
-
 jobs:
-  check-format:
+  analyze:
+    permissions:
+      packages: read
+      actions: read
+      contents: read
+      security-events: write
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,6 +19,5 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Check formatting with Prettier
-        run: npx prettier --check .
+      - uses: github/codeql-action/init@v3
+      - uses: github/codeql-action/analyze@v3
