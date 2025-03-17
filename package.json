@@ -15,7 +15,7 @@
     "lint:css": "stylelint '**/*.css'"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,json,css,scss,md,html}": "prettier --write --ignore-unknown"
+    "**/*.{js,jsx,ts,tsx,json,css,scss,md,html,yml}": "prettier --write --ignore-unknown"
   },
   "private": true,
   "dependencies": {
