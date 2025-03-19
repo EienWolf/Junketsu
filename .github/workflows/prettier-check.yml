@@ -3,20 +3,12 @@ name: Prettier Check
 on: [pull_request]
 
 jobs:
+  setup:
+    uses: ./.github/workflows/prepare.yml
   check-format:
+    needs: setup
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.14
-
-      - name: Install dependencies
-        run: npm install
-
       - name: Check formatting with Prettier
         run: npx prettier --check .

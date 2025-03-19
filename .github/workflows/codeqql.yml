@@ -1,7 +1,17 @@
 name: CodeQL
-on: [pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - develop
 jobs:
+  setup:
+    uses: ./.github/workflows/prepare.yml
   analyze:
+    needs: setup
     permissions:
       packages: read
       actions: read
@@ -9,15 +19,5 @@ jobs:
       security-events: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.14
-
-      - name: Install dependencies
-        run: npm install
       - uses: github/codeql-action/init@v3
       - uses: github/codeql-action/analyze@v3
