@@ -22,5 +22,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - name: Change to workspace
+        run: cd ${{ github.workspace }}
       - uses: github/codeql-action/init@v3
       - uses: github/codeql-action/analyze@v3

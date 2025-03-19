@@ -1,0 +1,8 @@
+name: Tests
+on: [pull_request]
+jobs:
+  setup:
+    uses: ./.github/workflows/prepare.yml
+  test:
+    needs: setup
+    runs-on: ubuntu-latest

@@ -1,10 +1,10 @@
-name: Node.js Setup
+name: Prepare Enviroment
 
 on:
   workflow_call:
 
 jobs:
-  setup:
+  inatll-dependencies:
     runs-on: ubuntu-latest
 
     steps:

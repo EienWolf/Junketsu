@@ -15,5 +15,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Change to workspace
+        run: cd ${{ github.workspace }}
+
       - name: Check formatting with Prettier
         run: npx prettier --check .
