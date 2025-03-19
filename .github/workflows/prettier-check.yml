@@ -1,6 +1,11 @@
 name: Prettier Check
 
 on: [pull_request]
+permissions:
+  packages: read
+  actions: read
+  contents: read
+  security-events: write
 
 jobs:
   setup:

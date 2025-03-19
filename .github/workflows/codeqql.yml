@@ -7,16 +7,19 @@ on:
     branches:
       - main
       - develop
+
+permissions:
+  packages: read
+  actions: read
+  contents: read
+  security-events: write
+
 jobs:
   setup:
     uses: ./.github/workflows/prepare.yml
   analyze:
     needs: setup
-    permissions:
-      packages: read
-      actions: read
-      contents: read
-      security-events: write
+
     runs-on: ubuntu-latest
     steps:
       - uses: github/codeql-action/init@v3
