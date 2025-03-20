@@ -51,15 +51,15 @@ export class Attack {
     data: Partial<Attack> = {},
     weapon: Weapon | undefined = undefined,
   ) {
-    this.attack_name = data.attack_name || '';
-    this.stamina = data.stamina || 1;
-    this.damage_type = data.damage_type || '';
-    this.damage_formula = data.damage_formula || '';
-    this.ability = data.ability || Ability.MIGHT;
-    this.description = data.description || '';
-    this.critical_success = data.critical_success || '';
-    this.is_basic = data.is_basic || false;
-    this.is_secondary = data.is_secondary || false;
+    this.attack_name = data.attack_name ?? '';
+    this.stamina = data.stamina ?? 1;
+    this.damage_type = data.damage_type ?? '';
+    this.damage_formula = data.damage_formula ?? '';
+    this.ability = data.ability ?? Ability.MIGHT;
+    this.description = data.description ?? '';
+    this.critical_success = data.critical_success ?? '';
+    this.is_basic = data.is_basic ?? false;
+    this.is_secondary = data.is_secondary ?? false;
     if (weapon !== undefined) {
       this._weapon = weapon;
     }
@@ -391,7 +391,7 @@ export class Weapon {
   get dynamic_notes(): string[] {
     const text: string[] = [];
     if (this.has_notes) {
-      text.push(this.notes || '');
+      text.push(this.notes ?? '');
     }
     if (this.grip_mode == '2h' || this.grip_mode == '2hr') {
       text.push('weapon.enum.notes.grip.' + this.grip_mode);
