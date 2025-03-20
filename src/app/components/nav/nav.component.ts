@@ -296,7 +296,7 @@ export class NavComponent implements OnInit {
     return current_theme;
   }
 
-  detect_language(): string {;
+  detect_language(): string {
     let lang = localStorage.getItem('language');
     if (lang == null) {
       const browserLang = navigator.language.replace('-', '_');

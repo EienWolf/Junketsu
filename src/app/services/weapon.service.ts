@@ -134,8 +134,7 @@ export class WeaponService {
             break;
         }
         this.saveToLocalStorage();
-      } catch  {
-      }
+      } catch {}
     };
     reader.readAsText(file);
   }

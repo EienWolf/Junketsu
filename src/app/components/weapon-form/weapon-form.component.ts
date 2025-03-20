@@ -19,7 +19,7 @@ import {
   Ability,
   Attack_Range,
   Grip_Mode,
-  Wield_Effect
+  Wield_Effect,
 } from '../../models/weapon.model';
 import { WeaponService } from '../../services/weapon.service';
 import { CardModule } from 'primeng/card';
