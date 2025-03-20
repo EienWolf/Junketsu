@@ -100,7 +100,6 @@ export class SvgIconComponent implements OnInit, OnDestroy {
       .getPropertyValue(this.iconName)
       .trim()
       .replace('url(', '')
-      .replace(')', '')
-      .replace(/^(?:["'])|(?:["'])$/g, '');
+      .replace(')', '');
   }
 }

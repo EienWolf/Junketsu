@@ -37,7 +37,6 @@
   <ng-template #end>
     <p-button icon="pi pi-bell" />
     <p-button
-      role="button"
       tabindex="0"
       aria-label="Configuration"
       aria-haspopup="true"
@@ -48,8 +47,7 @@
     />
     @if (!is_login) {
       <p-button
-        role="button"
-        tabindex="1"
+        tabindex="-1"
         aria-label="Login"
         aria-haspopup="true"
         (keydown.enter)="loginOptions.toggle($event)"
@@ -60,8 +58,7 @@
       />
     } @else {
       <p-button
-        role="button"
-        tabindex="1"
+        tabindex="-1"
         aria-label="Account"
         aria-haspopup="true"
         (keydown.enter)="accountOptions.toggle($event)"
