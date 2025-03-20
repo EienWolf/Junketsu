@@ -53,13 +53,13 @@ export class NavComponent implements OnInit {
   is_login: boolean = false;
 
   constructor(
-    private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
-    private weapon_service: WeaponService,
-    private supabase: SupabaseService,
-    private renderer: Renderer2,
-    private el: ElementRef,
-    private fb: FormBuilder,
+    private readonly cdr: ChangeDetectorRef,
+    private readonly translate: TranslateService,
+    private readonly weapon_service: WeaponService,
+    private readonly supabase: SupabaseService,
+    private readonly renderer: Renderer2,
+    private readonly el: ElementRef,
+    private readonly fb: FormBuilder,
   ) {
     this.email_form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -301,7 +301,7 @@ export class NavComponent implements OnInit {
     let lang = localStorage.getItem('language');
     if (lang == null) {
       const browserLang = navigator.language.replace('-', '_');
-      lang = browserLang.match(/es_MX|en_US/) ? browserLang : 'es_MX';
+      lang = /es_MX|en_US/.exec(browserLang) ? browserLang : 'es_MX';
     }
     this.change_language(lang);
     return lang;
