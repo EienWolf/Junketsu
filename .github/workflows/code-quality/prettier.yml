@@ -1,0 +1,27 @@
+name: Prettier Check
+
+on: workflow_call
+
+permissions:
+  contents: read
+
+jobs:
+  prettier-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: repo-artifact
+          path: .
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Check formatting
+        run: npx prettier --check .
