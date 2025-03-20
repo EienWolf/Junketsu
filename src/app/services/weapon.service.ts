@@ -23,7 +23,7 @@ export class WeaponService {
     this.loadFromLocalStorage();
   }
   private loadFromLocalStorage() {
-    const storedWeaponsJson = localStorage.getItem('weapons') || '';
+    const storedWeaponsJson = localStorage.getItem('weapons') ?? '';
     this.weapons = storedWeaponsJson
       ? JSON.parse(storedWeaponsJson).map((data: Weapon) => new Weapon(data))
       : [];
