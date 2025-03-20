@@ -19,9 +19,8 @@ export class AppComponent implements OnInit {
   session: Session | null = null;
 
   constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private translate: TranslateService,
-    private primeng: PrimeNG,
+    private readonly translate: TranslateService,
+    private readonly primeng: PrimeNG,
     private readonly supabase: SupabaseService,
   ) {
     this.session = this.supabase.session;
