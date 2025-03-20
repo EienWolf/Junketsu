@@ -9,39 +9,8 @@ body {
   background-color: var(--p-primary-100);
 }
 
-@theme {
-  /* --color-secondary: var(--theme-color-secondary);
-	--color-background: var(--theme-color-background);
-	--color-fill: var(--theme-color-fill);
-	--color-border: var(--theme-color-border);
-	--color-surface: var(--theme-color-surface);
-	--color-text: var(--theme-color-text);
-	--color-textSecondary: var(--theme-color-textSecondary);
-	--color-error: var(--theme-color-error);
-	--color-success: var(--theme-color-success);
-	--color-info: var(--theme-color-info);
-	--color-warning: var(--theme-color-warning); */
-}
-
 @layer base {
   :root {
-    /* Colors */
-
-    /* --theme-color-primary: #fff; */
-
-    /* --theme-color-secondary: #fff;
-		--theme-color-background: #d1d5dc;
-		--theme-color-fill: #d1d5dc;
-		--theme-color-border: #6a7282;
-		--theme-color-surface: #fff;
-		--theme-color-text: #fff;
-		--theme-color-textSecondary: #fff;
-		--theme-color-error: #fff;
-		--theme-color-success: #fff;
-		--theme-color-info: #fff;
-		--theme-color-warning: #fff;
-		 */
-
     /* Icons */
     --icon-ability-evoke: url('/assets/images/icons/ability-evoke.svg');
     --icon-ability-focus: url('/assets/images/icons/ability-focus.svg');
@@ -180,30 +149,10 @@ body {
   }
 }
 
-/* @layer primeng, tailwind_utilities; */
-
 @layer tailwind_utilities {
   @tailwind utilities;
 
   [data-theme='dark'] {
-    /* Colors */
-
-    /* color-scheme:light; */
-
-    /* --theme-color-primary: #fff;
-		--theme-color-secondary: #fff;
-		--theme-color-background: #fff;
-		--theme-color-fill: #fff;
-		--theme-color-surface: #fff;
-		--theme-color-text: #fff;
-		--theme-color-textSecondary: #fff;
-		--theme-color-border: #ff0000;
-		--theme-color-error: #fff;
-		--theme-color-success: #fff;
-		--theme-color-info: #fff;
-		--theme-color-warning: #fff; */
-
-    /* Icons */
     --icon-property-guard: url('/assets/images/icons/property-guard.dark.svg');
   }
 }
