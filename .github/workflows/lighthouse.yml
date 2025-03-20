@@ -1,0 +1,61 @@
+name: Lighthouse Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - develop
+
+permissions:
+  packages: read
+  actions: read
+  contents: read
+  security-events: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.14
+          cache: "npm"
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build the project
+        run: npm run build -- --configuration=production
+
+      - name: Start server
+        run: npx http-server ./dist/junketsu/browser -p 8080
+
+      - name: Run Lighthouse CI
+        run: |
+          npx @lhci/cli@0.13.x autorun \
+            --collect.url=http://localhost:8080 \
+            --collect.staticDistDir=./dist/junketsu/browser \
+            --upload.target=temporary-public-storage
