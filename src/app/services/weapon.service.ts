@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Weapon } from '../models/weapon.model';
-import { Profile, SupabaseService } from './supabase.service';
+import { SupabaseService } from './supabase.service';
 
 @Injectable({
   providedIn: 'root',
@@ -134,8 +134,7 @@ export class WeaponService {
             break;
         }
         this.saveToLocalStorage();
-      } catch (error) {
-        alert('');
+      } catch  {
       }
     };
     reader.readAsText(file);

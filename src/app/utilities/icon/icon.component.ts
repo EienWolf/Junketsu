@@ -4,10 +4,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {
   debounceTime,
   distinctUntilChanged,
-  fromEvent,
   interval,
-  Subscription,
-  Observable,
+  Subscription
 } from 'rxjs';
 
 const globalSvgCache = new Map<string, SafeHtml>();

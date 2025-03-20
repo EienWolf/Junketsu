@@ -4,7 +4,6 @@ import {
   Input,
   ViewChild,
   OnInit,
-  Output,
   AfterViewInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -58,7 +57,7 @@ export class WeaponCardA5VerticalComponent implements OnInit, AfterViewInit {
         pdf.addImage(imgData, 'PNG', 149, 0, imgWidth, imgHeight, '', 'FAST');
         pdf.save('weapon.pdf');
       } else {
-        var aDownloadLink = document.createElement('a');
+        const aDownloadLink = document.createElement('a');
         aDownloadLink.download = 'canvas_image.png';
         aDownloadLink.href = imgData;
         aDownloadLink.click();

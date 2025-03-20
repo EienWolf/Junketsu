@@ -173,7 +173,7 @@ export class NavComponent implements OnInit {
     this.renderer.setStyle(input, 'display', 'none');
 
     // Manejar el evento change
-    const listener = this.renderer.listen(input, 'change', (event) => {
+    this.renderer.listen(input, 'change', (event) => {
       this.import(event);
       this.renderer.destroy();
     });
@@ -241,7 +241,7 @@ export class NavComponent implements OnInit {
 
   async logout() {
     console.log('slkusklujsljk');
-    const { error } = await this.supabase.signOut();
+    await this.supabase.signOut();
     this.cdr.markForCheck();
   }
   login_github(): void {
@@ -272,7 +272,7 @@ export class NavComponent implements OnInit {
 
   change_language(lang: string) {
     this.current_language = lang;
-    let languages = ['es_MX', 'en_US'];
+    const languages = ['es_MX', 'en_US'];
     if (!languages.some((m) => m == lang)) {
       localStorage.setItem(
         'language',
@@ -296,8 +296,7 @@ export class NavComponent implements OnInit {
     return current_theme;
   }
 
-  detect_language(): string {
-    const current_lang = document.documentElement.getAttribute('lang');
+  detect_language(): string {;
     let lang = localStorage.getItem('language');
     if (lang == null) {
       const browserLang = navigator.language.replace('-', '_');

@@ -28,9 +28,7 @@ export class WeaponComponent implements OnInit {
         const storedWeaponsMap: Weapon[] = storedWeapons.map(
           (data: any) => new Weapon(data),
         );
-        var weapon = storedWeaponsMap.find((weapon) => weapon.id === index);
-        if (!!weapon) {
-        }
+        const weapon = storedWeaponsMap.find((weapon) => weapon.id === index);
         this.weapon = weapon || new Weapon();
       }
     }

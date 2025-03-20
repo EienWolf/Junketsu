@@ -19,8 +19,7 @@ import {
   Ability,
   Attack_Range,
   Grip_Mode,
-  Wield_Effect,
-  Guard_Type,
+  Wield_Effect
 } from '../../models/weapon.model';
 import { WeaponService } from '../../services/weapon.service';
 import { CardModule } from 'primeng/card';
@@ -194,7 +193,7 @@ export class WeaponFormComponent implements OnInit {
     }
   }
 
-  onRangeChange(event: any, type: 'melee' | 'ranged') {
+  onRangeChange(event: any) {
     const selectedValue = event.value;
     this.weaponForm.get('attack_range')!.setValue(selectedValue); // Actualizar el valor del control
   }
@@ -263,7 +262,7 @@ export class WeaponFormComponent implements OnInit {
   }
 
   loadWeapon(id: string) {
-    let weapon = this.weaponService.getWeapon(id);
+    const weapon = this.weaponService.getWeapon(id);
     this.weaponForm.patchValue(weapon);
     weapon.attacks.forEach((attack) =>
       this.attacks.push(this.createAttack(attack)),

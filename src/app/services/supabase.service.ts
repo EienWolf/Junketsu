@@ -94,9 +94,9 @@ export class SupabaseService {
       //const filePath = `${Math.random()}.json`;
       const { user } = this.session;
       this.profile(user).then((result) => {
-        let random = `${Math.random()}`;
-        let filePath = result.data?.config_url || random.toString() + '.json';
-        let username = result.data?.username || random.toString();
+        const random = `${Math.random()}`;
+        const filePath = result.data?.config_url || random.toString() + '.json';
+        const username = result.data?.username || random.toString();
         this.supabase.storage.from('configs').update(filePath, file);
         this.updateProfile({
           id: user.id,
