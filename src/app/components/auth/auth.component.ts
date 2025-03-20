@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import {
-  Form,
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
-  FormRecord,
   ReactiveFormsModule,
   FormsModule,
 } from '@angular/forms';

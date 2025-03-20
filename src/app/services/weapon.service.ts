@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Weapon } from '../models/weapon.model';
-import { Profile, SupabaseService } from './supabase.service';
+import { SupabaseService } from './supabase.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,7 @@ export class WeaponService {
   private loadFromLocalStorage() {
     const storedWeaponsJson = localStorage.getItem('weapons') || '';
     this.weapons = storedWeaponsJson
-      ? JSON.parse(storedWeaponsJson).map((data: any) => new Weapon(data))
+      ? JSON.parse(storedWeaponsJson).map((data: Weapon) => new Weapon(data))
       : [];
   }
   private saveToLocalStorage() {
@@ -83,8 +83,11 @@ export class WeaponService {
     URL.revokeObjectURL(url);
   }
 
-  importWeapons(event: any, mode: 'replace' | 'add' | 'update' | 'merge') {
-    const file = event.target.files[0];
+  importWeapons(
+    event: HTMLInputElement,
+    mode: 'replace' | 'add' | 'update' | 'merge',
+  ) {
+    const file = event.files?.[0];
     if (!file) return;
     const reader = new FileReader();
     reader.onload = () => {
@@ -96,11 +99,13 @@ export class WeaponService {
         }
         switch (mode) {
           case 'replace':
-            this.weapons = importedWeapons.map((data: any) => new Weapon(data));
+            this.weapons = importedWeapons.map(
+              (data: Weapon) => new Weapon(data),
+            );
             break;
 
           case 'add':
-            importedWeapons.forEach((weaponData: any) => {
+            importedWeapons.forEach((weaponData: Weapon) => {
               const exists = this.weapons.some(
                 (w) => w.id.toString() === weaponData.id.toString(),
               );
@@ -111,7 +116,7 @@ export class WeaponService {
             break;
 
           case 'update':
-            importedWeapons.forEach((weaponData: any) => {
+            importedWeapons.forEach((weaponData: Weapon) => {
               const index = this.weapons.findIndex(
                 (w) => w.id.toString() === weaponData.id.toString(),
               );
@@ -121,7 +126,7 @@ export class WeaponService {
             });
             break;
           case 'merge':
-            importedWeapons.forEach((weaponData: any) => {
+            importedWeapons.forEach((weaponData: Weapon) => {
               const index = this.weapons.findIndex(
                 (w) => w.id.toString() === weaponData.id.toString(),
               );
@@ -135,7 +140,7 @@ export class WeaponService {
         }
         this.saveToLocalStorage();
       } catch (error) {
-        alert('');
+        alert('No se puedo leer el archivo. ' + error);
       }
     };
     reader.readAsText(file);

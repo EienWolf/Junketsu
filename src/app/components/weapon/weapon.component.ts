@@ -4,11 +4,10 @@ import {
   OnInit,
   ViewChild,
   ChangeDetectorRef,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { WeaponService } from '../../services/weapon.service';
 import { Weapon } from '../../models/weapon.model';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SharedModule } from '../../shared.module';
 import { WeaponCardA5VerticalComponent } from '../../utilities/print/weapon-card-a5-vertical/weapon.component';
 import { SvgIconComponent } from '../../utilities/icon/icon.component';

@@ -20,12 +20,14 @@ import {
   Attack_Range,
   Grip_Mode,
   Wield_Effect,
-  Guard_Type,
 } from '../../models/weapon.model';
 import { WeaponService } from '../../services/weapon.service';
 import { CardModule } from 'primeng/card';
 import { TextareaModule } from 'primeng/textarea';
-import { SelectButtonModule } from 'primeng/selectbutton';
+import {
+  SelectButtonChangeEvent,
+  SelectButtonModule,
+} from 'primeng/selectbutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
@@ -172,7 +174,7 @@ export class WeaponFormComponent implements OnInit {
     }
   }
 
-  disableToogles($event: any) {
+  disableToogles($event: number) {
     // Reiniciar todas las opciones a no restringidas
     const control = this.weaponForm.controls['ability'];
     const value = control.value.label;
@@ -194,7 +196,7 @@ export class WeaponFormComponent implements OnInit {
     }
   }
 
-  onRangeChange(event: any, type: 'melee' | 'ranged') {
+  onRangeChange(event: SelectButtonChangeEvent) {
     const selectedValue = event.value;
     this.weaponForm.get('attack_range')!.setValue(selectedValue); // Actualizar el valor del control
   }
@@ -263,7 +265,7 @@ export class WeaponFormComponent implements OnInit {
   }
 
   loadWeapon(id: string) {
-    let weapon = this.weaponService.getWeapon(id);
+    const weapon = this.weaponService.getWeapon(id);
     this.weaponForm.patchValue(weapon);
     weapon.attacks.forEach((attack) =>
       this.attacks.push(this.createAttack(attack)),

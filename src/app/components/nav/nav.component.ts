@@ -173,7 +173,7 @@ export class NavComponent implements OnInit {
     this.renderer.setStyle(input, 'display', 'none');
 
     // Manejar el evento change
-    const listener = this.renderer.listen(input, 'change', (event) => {
+    this.renderer.listen(input, 'change', (event) => {
       this.import(event);
       this.renderer.destroy();
     });
@@ -183,14 +183,15 @@ export class NavComponent implements OnInit {
     input.click();
   }
 
-  import(event: any) {
-    this.weapon_service.importWeapons(event, 'merge');
+  import(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.weapon_service.importWeapons(target, 'merge');
   }
   export() {
     this.weapon_service.exportWeapons();
   }
 
-  isSelected(item: any): boolean {
+  isSelected(item: MenuItem): boolean {
     if (item.id) {
       if (this.themeItems.some((i) => i.id === item.id)) {
         return item.id === this.current_theme;
@@ -241,7 +242,7 @@ export class NavComponent implements OnInit {
 
   async logout() {
     console.log('slkusklujsljk');
-    const { error } = await this.supabase.signOut();
+    await this.supabase.signOut();
     this.cdr.markForCheck();
   }
   login_github(): void {
@@ -272,7 +273,7 @@ export class NavComponent implements OnInit {
 
   change_language(lang: string) {
     this.current_language = lang;
-    let languages = ['es_MX', 'en_US'];
+    const languages = ['es_MX', 'en_US'];
     if (!languages.some((m) => m == lang)) {
       localStorage.setItem(
         'language',
@@ -297,7 +298,6 @@ export class NavComponent implements OnInit {
   }
 
   detect_language(): string {
-    const current_lang = document.documentElement.getAttribute('lang');
     let lang = localStorage.getItem('language');
     if (lang == null) {
       const browserLang = navigator.language.replace('-', '_');

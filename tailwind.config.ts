@@ -1,11 +1,11 @@
 import type { Config } from 'tailwindcss';
-module.exports = {
+import tailwindcssPrimeUI from 'tailwindcss-primeui';
+
+export default {
   theme: {
     screens: {
       xs: '448px',
     },
   },
-};
-export default {
-  plugins: [require('tailwindcss-primeui')],
+  plugins: [tailwindcssPrimeUI],
 } satisfies Config;

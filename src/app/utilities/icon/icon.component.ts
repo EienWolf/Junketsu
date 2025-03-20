@@ -4,10 +4,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {
   debounceTime,
   distinctUntilChanged,
-  fromEvent,
   interval,
   Subscription,
-  Observable,
 } from 'rxjs';
 
 const globalSvgCache = new Map<string, SafeHtml>();
@@ -36,6 +34,7 @@ export class SvgIconComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer,
   ) {}
   iconSvg: SafeHtml = '';
+
   private subscription!: Subscription;
   private mutationObserver!: MutationObserver;
   currentIconValue: string | undefined;

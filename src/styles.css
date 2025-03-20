@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import "tailwindcss";
+@import url("tailwindcss");
+
 @config "../tailwind.config.ts";
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 body {
@@ -20,10 +22,13 @@ body {
 	--color-info: var(--theme-color-info);
 	--color-warning: var(--theme-color-warning); */
 }
+
 @layer base {
   :root {
     /* Colors */
+
     /* --theme-color-primary: #fff; */
+
     /* --theme-color-secondary: #fff;
 		--theme-color-background: #d1d5dc;
 		--theme-color-fill: #d1d5dc;
@@ -75,72 +80,95 @@ body {
   .icon-ability-evoke {
     background-image: var(--icon-ability-evoke);
   }
+
   .icon-ability-focus {
     background-image: var(--icon-ability-focus);
   }
+
   .icon-ability-might {
     background-image: var(--icon-ability-might);
   }
+
   .icon-ability-precision {
     background-image: var(--icon-ability-precision);
   }
+
   .icon-ammon-capacity {
     background-image: var(--icon-ammon-capacity);
   }
+
   .icon-basic-attack {
     background-image: var(--icon-basic-attack);
   }
+
   .icon-durability-type-scrap {
     background-image: var(--icon-durability-type-scrap);
   }
+
   .icon-durability-type-regular {
     background-image: var(--icon-durability-type-regular);
   }
+
   .icon-durability-type-legacy {
     background-image: var(--icon-durability-type-legacy);
   }
+
   .icon-property-agile {
     background-image: var(--icon-property-agile);
   }
+
   .icon-property-block {
     background-image: var(--icon-property-block);
   }
+
   .icon-property-guard {
     background-image: var(--icon-property-guard);
   }
+
   .icon-property-thrown {
     background-image: var(--icon-property-thrown);
   }
+
   .icon-range-large {
     background-image: var(--icon-range-large);
   }
+
   .icon-range-medium {
     background-image: var(--icon-range-medium);
   }
+
   .icon-range-short {
     background-image: var(--icon-range-short);
   }
+
   .icon-range-melee {
     background-image: var(--icon-range-melee);
   }
+
   .icon-range-reach {
     background-image: var(--icon-range-reach);
   }
+
   .icon-reload-rate {
     background-image: var(--icon-reload-rate);
   }
+
   .icon-secondary-attack {
     background-image: var(--icon-secondary-attack);
   }
+
   .icon-wield-finesse {
     background-image: var(--icon-wield-finesse);
   }
+
   .icon-wield-versatile {
     background-image: var(--icon-wield-versatile);
   }
+
   .icon-wield-heavy {
     background-image: var(--icon-wield-heavy);
   }
+
   .icon-stamina {
     background-image: var(--icon-stamina);
   }
@@ -156,11 +184,12 @@ body {
 
 @layer tailwind_utilities {
   @tailwind utilities;
-  :root {
-  }
+
   [data-theme="dark"] {
     /* Colors */
+
     /* color-scheme:light; */
+
     /* --theme-color-primary: #fff;
 		--theme-color-secondary: #fff;
 		--theme-color-background: #fff;
@@ -173,6 +202,7 @@ body {
 		--theme-color-success: #fff;
 		--theme-color-info: #fff;
 		--theme-color-warning: #fff; */
+
     /* Icons */
     --icon-property-guard: url("/assets/images/icons/property-guard.dark.svg");
   }

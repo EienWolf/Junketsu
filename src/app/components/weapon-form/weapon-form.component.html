@@ -203,7 +203,7 @@
             <p-selectButton
               [options]="enums.Attack_Range_M"
               formControlName="attack_range"
-              (onChange)="onRangeChange($event, 'melee')"
+              (onChange)="onRangeChange($event)"
             >
               <ng-template let-option pTemplate="item">
                 <span
@@ -223,7 +223,7 @@
             <p-selectButton
               [options]="enums.Attack_Range_R"
               formControlName="attack_range"
-              (onChange)="onRangeChange($event, 'ranged')"
+              (onChange)="onRangeChange($event)"
             >
               <ng-template let-option pTemplate="item">
                 <span

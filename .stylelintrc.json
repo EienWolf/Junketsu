@@ -1,0 +1,31 @@
+{
+  "ignoreFiles": [
+    "node_modules/**/*",
+    "dist/**/*",
+    "**/*.md",
+    ".angular/**/*",
+    ".vscode/**/*"
+  ],
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "no-empty-source": null,
+    "at-rule-no-deprecated": [
+      true,
+      {
+        "ignoreAtRules": ["apply"]
+      }
+    ],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["config", "theme", "custom-variant", "tailwind"]
+      }
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["ng-deep"]
+      }
+    ]
+  }
+}

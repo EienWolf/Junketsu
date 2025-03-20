@@ -389,7 +389,7 @@ export class Weapon {
   }
 
   get dynamic_notes(): string[] {
-    let text: string[] = [];
+    const text: string[] = [];
     if (this.has_notes) {
       text.push(this.notes || '');
     }
@@ -422,12 +422,13 @@ export class Weapon {
   }
 
   get range_value(): string {
-    var value = '';
+    let value = '';
     switch (this.range_type) {
-      case 'reach':
+      case 'reach': {
         const match = this.attack_range.match(Weapon.REACH_REGEX);
         value = match?.[1] ?? '';
         break;
+      }
       case 'short':
         value = 'S';
         break;
