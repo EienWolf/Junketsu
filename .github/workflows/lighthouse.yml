@@ -51,11 +51,18 @@ jobs:
         run: npm run build -- --configuration=production
 
       - name: Start server
-        run: npx http-server ./dist/junketsu/browser -p 8080
+        run: |
+          npx http-server ./dist/junketsu/browser -p 8080 &
+          echo "PID=$!" >> $GITHUB_ENV
+          sleep 5  # Esperar que el servidor inicie
+
+      - name: Wait for server
+        run: |
+          timeout 60 bash -c 'while ! curl -s http://localhost:8080 >/dev/null; do sleep 2; done'
 
       - name: Run Lighthouse CI
         run: |
-          npx @lhci/cli@0.13.x autorun \
-            --collect.url=http://localhost:8080 \
-            --collect.staticDistDir=./dist/junketsu/browser \
-            --upload.target=temporary-public-storage
+          npx @lhci/cli@0.13.x autorun
+      - name: Stop server
+        if: always()
+        run: kill ${{ env.PID }}
