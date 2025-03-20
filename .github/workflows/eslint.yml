@@ -1,4 +1,4 @@
-name: Prettier Check
+name: ESLint Check
 
 on:
   push:
@@ -47,5 +47,5 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Check formatting
-        run: npx prettier --check .
+      - name: Run ESLint
+        run: npx eslint .

@@ -1,16 +1,33 @@
-name: Setup Environment
+name: StyleLint Check
 
-on: workflow_call
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - develop
+
+permissions:
+  packages: read
+  actions: read
+  contents: read
+  security-events: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  setup:
+  check:
     runs-on: ubuntu-latest
-    outputs:
-      cache-hit: ${{ steps.cache-node-modules.outputs.cache-hit }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
         with:
           node-version: 22.14
           cache: "npm"
@@ -30,8 +47,5 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Upload workspace
-        uses: actions/upload-artifact@v4
-        with:
-          name: repo-artifact
-          path: .
+      - name: Run ESLint
+        run: npx stylelint "**./*.css"

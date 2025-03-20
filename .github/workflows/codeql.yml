@@ -22,9 +22,11 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
         with:
           node-version: 22.14
           cache: "npm"
@@ -44,5 +46,8 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
 
-      - uses: github/codeql-action/init@v3
-      - uses: github/codeql-action/analyze@v3
+      - name: Initialize CodeQl
+        uses: github/codeql-action/init@v3
+
+      - name: Analize
+        uses: github/codeql-action/analyze@v3
