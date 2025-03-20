@@ -30,9 +30,9 @@ export class WeaponComponent implements OnInit, AfterViewInit {
   printOption: string = 'none';
   @ViewChild('pdf_vertical') pdfComponent!: WeaponCardA5VerticalComponent;
   constructor(
-    private weaponService: WeaponService,
-    private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef,
+    private readonly weaponService: WeaponService,
+    private readonly route: ActivatedRoute,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
