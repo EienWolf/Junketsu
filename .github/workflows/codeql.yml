@@ -16,7 +16,8 @@ permissions:
 
 jobs:
   setup:
-    uses: ./.github/workflows/prepare.yml
+    uses: ./.github/workflows/setup.yml
+
   analyze:
     needs: setup
 

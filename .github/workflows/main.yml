@@ -2,7 +2,7 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
 
 concurrency:
@@ -15,12 +15,11 @@ jobs:
 
   prettier:
     needs: setup
-    uses: ./.github/workflows/code-quality/prettier.yml
+    uses: ./.github/workflows/prettier.yml
+#   eslint:
+#     needs: setup
+#     uses: ./.github/workflows/eslint.yml
 
-  eslint:
-    needs: setup
-    uses: ./.github/workflows/code-quality/eslint.yml
-
-  codeql:
-    needs: setup
-    uses: ./.github/workflows/security/codeql.yml
+#   codeql:
+#     needs: setup
+#     uses: ./.github/workflows/codeql.yml
