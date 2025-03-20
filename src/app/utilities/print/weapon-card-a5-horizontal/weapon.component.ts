@@ -17,7 +17,7 @@ export class WeaponComponent implements OnInit {
   weapon: Weapon = new Weapon();
   @ViewChild('pdfContent') pdfContent!: ElementRef;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private readonly route: ActivatedRoute) {}
 
   ngOnInit() {
     const index = this.route.snapshot.paramMap.get('index');

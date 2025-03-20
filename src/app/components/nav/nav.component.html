@@ -37,12 +37,20 @@
   <ng-template #end>
     <p-button icon="pi pi-bell" />
     <p-button
+      tabindex="0"
+      aria-label="Configuration"
+      aria-haspopup="true"
+      (keydown.enter)="configOptions.toggle($event)"
       (click)="configOptions.toggle($event)"
       icon="pi pi-cog"
       styleClass="text-xl"
     />
     @if (!is_login) {
       <p-button
+        tabindex="-1"
+        aria-label="Login"
+        aria-haspopup="true"
+        (keydown.enter)="loginOptions.toggle($event)"
         (click)="loginOptions.toggle($event)"
         icon="pi pi-sign-in"
         iconPos="right"
@@ -50,6 +58,10 @@
       />
     } @else {
       <p-button
+        tabindex="-1"
+        aria-label="Account"
+        aria-haspopup="true"
+        (keydown.enter)="accountOptions.toggle($event)"
         (click)="accountOptions.toggle($event)"
         [label]="'nav.sign-in.account' | translate"
       />
@@ -67,7 +79,7 @@
         >
           <div class="p-[var(--p-menu-submenu-label-padding)]">
             <span class="text-primary font-bold">{{
-              "nav.sign-in.login-by" | translate
+              'nav.sign-in.login-by' | translate
             }}</span>
           </div>
           <form [formGroup]="email_form">
@@ -79,7 +91,7 @@
                   formControlName="email"
                   class="w-full"
                 />
-                <label for="Email">{{ "nav.sign-in.email" | translate }}</label>
+                <label for="Email">{{ 'nav.sign-in.email' | translate }}</label>
               </p-floatlabel>
             </div>
             <div class="px-3">
@@ -99,7 +111,7 @@
             <hr class="h-px w-full" />
             <span
               class="absolute left-1/2 -translate-x-1/2 bg-[var(--p-menu-background)] px-2"
-              >{{ "nav.sign-in.or" | translate }}</span
+              >{{ 'nav.sign-in.or' | translate }}</span
             >
           </div>
           <div

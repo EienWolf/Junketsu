@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("tailwindcss");
+@import url('tailwindcss');
 
 @config "../tailwind.config.ts";
 
@@ -9,69 +9,38 @@ body {
   background-color: var(--p-primary-100);
 }
 
-@theme {
-  /* --color-secondary: var(--theme-color-secondary);
-	--color-background: var(--theme-color-background);
-	--color-fill: var(--theme-color-fill);
-	--color-border: var(--theme-color-border);
-	--color-surface: var(--theme-color-surface);
-	--color-text: var(--theme-color-text);
-	--color-textSecondary: var(--theme-color-textSecondary);
-	--color-error: var(--theme-color-error);
-	--color-success: var(--theme-color-success);
-	--color-info: var(--theme-color-info);
-	--color-warning: var(--theme-color-warning); */
-}
-
 @layer base {
   :root {
-    /* Colors */
-
-    /* --theme-color-primary: #fff; */
-
-    /* --theme-color-secondary: #fff;
-		--theme-color-background: #d1d5dc;
-		--theme-color-fill: #d1d5dc;
-		--theme-color-border: #6a7282;
-		--theme-color-surface: #fff;
-		--theme-color-text: #fff;
-		--theme-color-textSecondary: #fff;
-		--theme-color-error: #fff;
-		--theme-color-success: #fff;
-		--theme-color-info: #fff;
-		--theme-color-warning: #fff;
-		 */
-
     /* Icons */
-    --icon-ability-evoke: url("/assets/images/icons/ability-evoke.svg");
-    --icon-ability-focus: url("/assets/images/icons/ability-focus.svg");
-    --icon-ability-might: url("/assets/images/icons/ability-might.svg");
-    --icon-ability-precision: url("/assets/images/icons/ability-precision.svg");
-    --icon-ammon-capacity: url("/assets/images/icons/ammon-capacity.svg");
-    --icon-basic-attack: url("/assets/images/icons/basic-attack.svg");
-    --icon-durability-type-scrap: url("/assets/images/icons/durability-type-scrap.svg");
-    --icon-durability-type-regular: url("/assets/images/icons/durability-type-regular.svg");
-    --icon-durability-type-legacy: url("/assets/images/icons/durability-type-legacy.svg");
-    --icon-property-agile: url("/assets/images/icons/property-agile.svg");
-    --icon-property-block: url("/assets/images/icons/property-block.svg");
-    --icon-property-guard: url("/assets/images/icons/property-guard.svg");
-    --icon-property-thrown: url("/assets/images/icons/property-thrown.svg");
-    --icon-range-large: url("/assets/images/icons/range-large.svg");
-    --icon-range-medium: url("/assets/images/icons/range-medium.svg");
-    --icon-range-short: url("/assets/images/icons/range-short.svg");
-    --icon-range-melee: url("/assets/images/icons/range-melee.svg");
-    --icon-range-reach: url("/assets/images/icons/range-reach.svg");
-    --icon-reload-rate: url("/assets/images/icons/reload-rate.svg");
-    --icon-secondary-attack: url("/assets/images/icons/secondary-attack.svg");
-    --icon-wield-finesse: url("/assets/images/icons/wield-finesse.svg");
-    --icon-wield-versatile: url("/assets/images/icons/wield-versatile.svg");
-    --icon-wield-heavy: url("/assets/images/icons/wield-heavy.svg");
-    --icon-stamina: url("/assets/images/icons/stamina.svg");
-    --icon-tracker: url("/assets/images/icons/tracker.svg");
-    --icon-grip-0h: url("/assets/images/icons/grip-0h.svg");
-    --icon-grip-1h: url("/assets/images/icons/grip-1h.svg");
-    --icon-grip-2h: url("/assets/images/icons/grip-2h.svg");
-    --icon-grip-2hr: url("/assets/images/icons/grip-2hr.svg");
+    --icon-ability-evoke: url('/assets/images/icons/ability-evoke.svg');
+    --icon-ability-focus: url('/assets/images/icons/ability-focus.svg');
+    --icon-ability-might: url('/assets/images/icons/ability-might.svg');
+    --icon-ability-precision: url('/assets/images/icons/ability-precision.svg');
+    --icon-ammon-capacity: url('/assets/images/icons/ammon-capacity.svg');
+    --icon-basic-attack: url('/assets/images/icons/basic-attack.svg');
+    --icon-durability-type-scrap: url('/assets/images/icons/durability-type-scrap.svg');
+    --icon-durability-type-regular: url('/assets/images/icons/durability-type-regular.svg');
+    --icon-durability-type-legacy: url('/assets/images/icons/durability-type-legacy.svg');
+    --icon-property-agile: url('/assets/images/icons/property-agile.svg');
+    --icon-property-block: url('/assets/images/icons/property-block.svg');
+    --icon-property-guard: url('/assets/images/icons/property-guard.svg');
+    --icon-property-thrown: url('/assets/images/icons/property-thrown.svg');
+    --icon-range-large: url('/assets/images/icons/range-large.svg');
+    --icon-range-medium: url('/assets/images/icons/range-medium.svg');
+    --icon-range-short: url('/assets/images/icons/range-short.svg');
+    --icon-range-melee: url('/assets/images/icons/range-melee.svg');
+    --icon-range-reach: url('/assets/images/icons/range-reach.svg');
+    --icon-reload-rate: url('/assets/images/icons/reload-rate.svg');
+    --icon-secondary-attack: url('/assets/images/icons/secondary-attack.svg');
+    --icon-wield-finesse: url('/assets/images/icons/wield-finesse.svg');
+    --icon-wield-versatile: url('/assets/images/icons/wield-versatile.svg');
+    --icon-wield-heavy: url('/assets/images/icons/wield-heavy.svg');
+    --icon-stamina: url('/assets/images/icons/stamina.svg');
+    --icon-tracker: url('/assets/images/icons/tracker.svg');
+    --icon-grip-0h: url('/assets/images/icons/grip-0h.svg');
+    --icon-grip-1h: url('/assets/images/icons/grip-1h.svg');
+    --icon-grip-2h: url('/assets/images/icons/grip-2h.svg');
+    --icon-grip-2hr: url('/assets/images/icons/grip-2hr.svg');
   }
 }
 
@@ -180,31 +149,11 @@ body {
   }
 }
 
-/* @layer primeng, tailwind_utilities; */
-
 @layer tailwind_utilities {
   @tailwind utilities;
 
-  [data-theme="dark"] {
-    /* Colors */
-
-    /* color-scheme:light; */
-
-    /* --theme-color-primary: #fff;
-		--theme-color-secondary: #fff;
-		--theme-color-background: #fff;
-		--theme-color-fill: #fff;
-		--theme-color-surface: #fff;
-		--theme-color-text: #fff;
-		--theme-color-textSecondary: #fff;
-		--theme-color-border: #ff0000;
-		--theme-color-error: #fff;
-		--theme-color-success: #fff;
-		--theme-color-info: #fff;
-		--theme-color-warning: #fff; */
-
-    /* Icons */
-    --icon-property-guard: url("/assets/images/icons/property-guard.dark.svg");
+  [data-theme='dark'] {
+    --icon-property-guard: url('/assets/images/icons/property-guard.dark.svg');
   }
 }
 

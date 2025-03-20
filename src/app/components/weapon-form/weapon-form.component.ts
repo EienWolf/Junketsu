@@ -159,35 +159,14 @@ export class WeaponFormComponent implements OnInit {
 
   verifyFinesse() {
     const finesse = this.weaponForm.get('is_finnese')!; // 0 1 2
-    const control = this.weaponForm.controls['ability']; //might precision evoke focus
-
-    if (
-      (control.value == Ability.EVOKE || control.value == Ability.FOCUS) &&
-      finesse.value == 1
-    ) {
-      finesse.setValue(0);
-    } else if (
-      (control.value == Ability.MIGHT || control.value == Ability.PRECISION) &&
-      finesse.value == 2
-    ) {
-      finesse.setValue(0);
-    }
+    finesse.setValue(0);
   }
 
   disableToogles($event: number) {
     // Reiniciar todas las opciones a no restringidas
     const control = this.weaponForm.controls['ability'];
-    const value = control.value.label;
-    console.log('control: ', value);
-    // Deshabilitar opciones basadas en el valor de $event
-    if ($event === 1 && (value == Ability.FOCUS || value == Ability.EVOKE)) {
-      control.setValue(undefined);
-    } else if (
-      $event === 2 &&
-      (value == Ability.MIGHT || value == Ability.PRECISION)
-    ) {
-      control.setValue(undefined);
-    }
+    console.log('control: ', $event);
+    control.setValue(undefined);
   }
 
   ngOnInit() {
@@ -222,7 +201,7 @@ export class WeaponFormComponent implements OnInit {
       base_damage: [1, [Validators.required, Validators.min(1)]],
       ability: [Ability.MIGHT, Validators.required],
       attack_range: [Attack_Range.MELEE, Validators.required],
-      reach_range: [null, [Validators.min(5), Validators.pattern(/^[0-9]*$/)]],
+      reach_range: [null, [Validators.min(5), Validators.pattern(/^\d*$/)]],
       grip_mode: [Grip_Mode.ONE_HAND, Validators.required],
       wield_effect: [Wield_Effect.VERSATILE],
       //Ammounition
@@ -244,15 +223,15 @@ export class WeaponFormComponent implements OnInit {
 
   createAttack(attack?: Attack): FormGroup {
     return this.fb.group({
-      attack_name: [attack?.attack_name || '', Validators.required],
-      stamina: [attack?.stamina || 1, [Validators.required, Validators.min(1)]],
-      damage_type: [attack?.damage_type || ''],
-      damage_formula: [attack?.damage_formula || '', Validators.required],
-      ability: [attack?.ability || Ability.MIGHT],
-      description: [attack?.description || ''],
-      critical_success: [attack?.critical_success || ''],
-      is_basic: [attack?.is_basic || false],
-      is_secondary: [attack?.is_secondary || false],
+      attack_name: [attack?.attack_name ?? '', Validators.required],
+      stamina: [attack?.stamina ?? 1, [Validators.required, Validators.min(1)]],
+      damage_type: [attack?.damage_type ?? ''],
+      damage_formula: [attack?.damage_formula ?? '', Validators.required],
+      ability: [attack?.ability ?? Ability.MIGHT],
+      description: [attack?.description ?? ''],
+      critical_success: [attack?.critical_success ?? ''],
+      is_basic: [attack?.is_basic ?? false],
+      is_secondary: [attack?.is_secondary ?? false],
     });
   }
 

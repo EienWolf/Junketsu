@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NavComponent } from './components/nav/nav.component';
-import { DOCUMENT } from '@angular/common';
 import { PrimeNG } from 'primeng/config';
 import { SupabaseService } from './services/supabase.service';
 import { MyPreset } from '../mytheme';
@@ -19,9 +18,8 @@ export class AppComponent implements OnInit {
   session: Session | null = null;
 
   constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private translate: TranslateService,
-    private primeng: PrimeNG,
+    private readonly translate: TranslateService,
+    private readonly primeng: PrimeNG,
     private readonly supabase: SupabaseService,
   ) {
     this.session = this.supabase.session;

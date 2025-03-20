@@ -30,8 +30,8 @@ export class SvgIconComponent implements OnInit, OnDestroy {
   @Input() iconClass: string = '';
   @Input() forceTheme: boolean = true;
   constructor(
-    private el: ElementRef,
-    private sanitizer: DomSanitizer,
+    private readonly el: ElementRef,
+    private readonly sanitizer: DomSanitizer,
   ) {}
   iconSvg: SafeHtml = '';
 
@@ -95,15 +95,11 @@ export class SvgIconComponent implements OnInit, OnDestroy {
   }
 
   private getCssVariableValue(): string {
-    // const targetElement = this.forceTheme
-    //   ? document.documentElement
-    //   : this.el.nativeElement;
     const targetElement = this.el.nativeElement;
     return getComputedStyle(targetElement)
       .getPropertyValue(this.iconName)
       .trim()
       .replace('url(', '')
-      .replace(')', '')
-      .replace(/^["']|["']$/g, '');
+      .replace(')', '');
   }
 }

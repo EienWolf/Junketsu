@@ -230,7 +230,7 @@ export enum Guard_Type {
 }
 
 export class Weapon {
-  private static REACH_REGEX = /^reach_(\d+)$/;
+  private static readonly REACH_REGEX = /^reach_(\d+)$/;
   /**
    * Id unico del arma.
    * @remarks Hay que validar que no se repita con otro ya existente.
@@ -357,28 +357,28 @@ export class Weapon {
   shapes?: string[];
 
   constructor(data: Partial<Weapon> = {}) {
-    this.name = data.name || '';
-    this.durability = data.durability || 0; //respetar las reglas del valor por defecto si el valor inicial es null
+    this.name = data.name ?? '';
+    this.durability = data.durability ?? 0; //respetar las reglas del valor por defecto si el valor inicial es null
     this.weapon_type = data.weapon_type;
-    this.durability_type = data.durability_type || Durability_Type.Regular;
-    this.is_throwable = data.is_throwable || false;
-    this.is_block = data.is_block || false;
-    this.is_agile = data.is_agile || false;
+    this.durability_type = data.durability_type ?? Durability_Type.Regular;
+    this.is_throwable = data.is_throwable ?? false;
+    this.is_block = data.is_block ?? false;
+    this.is_agile = data.is_agile ?? false;
     this.short_description = data.short_description;
     this.description = data.description;
     this.notes = data.notes;
-    this.base_damage = data.base_damage || 1;
-    this.ability = data.ability || Ability.MIGHT;
-    this.attack_range = data.attack_range || Attack_Range.MELEE;
+    this.base_damage = data.base_damage ?? 1;
+    this.ability = data.ability ?? Ability.MIGHT;
+    this.attack_range = data.attack_range ?? Attack_Range.MELEE;
     this.reach_range = data.reach_range;
-    this.grip_mode = data.grip_mode || Grip_Mode.ONE_HAND;
-    this.wield_effect = data.wield_effect || Wield_Effect.VERSATILE;
+    this.grip_mode = data.grip_mode ?? Grip_Mode.ONE_HAND;
+    this.wield_effect = data.wield_effect ?? Wield_Effect.VERSATILE;
     this.image = data.image;
-    this.id = data.id || ''; //respetar las reglas del valor por defecto si el valor inicial es null
+    this.id = data.id ?? ''; //respetar las reglas del valor por defecto si el valor inicial es null
     this.ammo_capacity = data.ammo_capacity;
     this.reloadrate = data.reloadrate;
 
-    this.attacks = (data.attacks || []).map((a) => {
+    this.attacks = (data.attacks ?? []).map((a) => {
       const attack = new Attack(a, this);
       return attack;
     });
@@ -447,13 +447,13 @@ export class Weapon {
   }
 
   get guard_type(): string {
-    return this.is_agile && this.is_block
-      ? 'guard'
-      : this.is_agile
-        ? 'agile'
-        : this.is_block
-          ? 'block'
-          : 'block';
+    if (this.is_agile && this.is_block) {
+      return 'guard';
+    }
+    if (this.is_agile) {
+      return 'agile';
+    }
+    return 'block';
   }
 
   get is_long_description(): boolean {

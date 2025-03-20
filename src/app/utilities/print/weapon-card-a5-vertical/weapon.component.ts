@@ -26,9 +26,9 @@ export class WeaponCardA5VerticalComponent implements OnInit, AfterViewInit {
   m_less: boolean = false;
   render: boolean = false;
   @ViewChild('a5v_pdf') pdfContent!: ElementRef;
-  @Input() public index: string | string = '';
+  @Input() public index: string = '';
 
-  constructor(private weaponService: WeaponService) {}
+  constructor(private readonly weaponService: WeaponService) {}
   ngOnInit(): void {
     this.weapon = this.weaponService.getWeapon(this.index);
   }

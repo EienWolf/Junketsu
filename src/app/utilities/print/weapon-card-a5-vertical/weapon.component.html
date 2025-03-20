@@ -78,7 +78,7 @@
           ></app-svg-icon>
         </div>
         <span class="text-[10px]">{{
-          "weapon.enum.ability." + weapon.ability | translate
+          'weapon.enum.ability.' + weapon.ability | translate
         }}</span>
       </div>
 
@@ -90,7 +90,7 @@
           ></app-svg-icon>
         </div>
         <span class="text-[10px]">{{
-          "weapon.enum.grip." + weapon.grip_mode | translate
+          'weapon.enum.grip.' + weapon.grip_mode | translate
         }}</span>
       </div>
 
@@ -109,7 +109,7 @@
           }
         </div>
         <span class="text-[10px]">{{
-          "weapon.enum.range." + weapon.range_type | translate
+          'weapon.enum.range.' + weapon.range_type | translate
         }}</span>
       </div>
 
@@ -119,7 +119,7 @@
             weapon.base_damage
           }}</span>
         </div>
-        <span class="text-[10px]">{{ "weapon.basic-damage" | translate }}</span>
+        <span class="text-[10px]">{{ 'weapon.basic-damage' | translate }}</span>
       </div>
 
       <div class="col-span-2">
@@ -138,11 +138,11 @@
         </div>
         @if (weapon.ammo_capacity) {
           <span class="text-[10px]">{{
-            "weapon.ammo-capacity" | translate
+            'weapon.ammo-capacity' | translate
           }}</span>
         } @else {
           <span class="text-[10px]">{{
-            "weapon.enum.wield." + weapon.wield_effect | translate
+            'weapon.enum.wield.' + weapon.wield_effect | translate
           }}</span>
         }
       </div>
@@ -161,7 +161,7 @@
             </div>
           </div>
           <span class="text-[10px]">{{
-            "weapon.reload-rate" | translate
+            'weapon.reload-rate' | translate
           }}</span>
         }
       </div>
@@ -173,7 +173,7 @@
 
     <div class="col-span-6">
       <div class="text-[10px]">
-        <strong>{{ "weapon.notes" | translate }}</strong>
+        <strong>{{ 'weapon.notes' | translate }}</strong>
         @if (weapon.has_notes) {
           <span class="pl-1">{{ weapon.notes }}</span>
         } @else {
@@ -232,7 +232,7 @@
 
         @if (attack.has_critical_success) {
           <div class="col-span-6 text-sm" *ngIf="attack.has_critical_success">
-            <strong>{{ "attack.critical-success" | translate }}</strong>
+            <strong>{{ 'attack.critical-success' | translate }}</strong>
             {{ attack.critical_success }}
           </div>
         }

@@ -27,7 +27,7 @@ export interface Profile {
   providedIn: 'root',
 })
 export class SupabaseService {
-  private supabase: SupabaseClient;
+  private readonly supabase: SupabaseClient;
   _session: AuthSession | null = null;
 
   constructor() {
