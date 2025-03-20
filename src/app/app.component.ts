@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NavComponent } from './components/nav/nav.component';
-import { DOCUMENT } from '@angular/common';
 import { PrimeNG } from 'primeng/config';
 import { SupabaseService } from './services/supabase.service';
 import { MyPreset } from '../mytheme';

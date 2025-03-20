@@ -159,15 +159,13 @@ export class WeaponFormComponent implements OnInit {
 
   verifyFinesse() {
     const finesse = this.weaponForm.get('is_finnese')!; // 0 1 2
-    const control = this.weaponForm.controls['ability']; //might precision evoke focus
     finesse.setValue(0);
   }
 
   disableToogles($event: number) {
     // Reiniciar todas las opciones a no restringidas
     const control = this.weaponForm.controls['ability'];
-    const value = control.value.label;
-    console.log('control: ', value);
+    console.log('control: ', $event);
     control.setValue(undefined);
   }
 
