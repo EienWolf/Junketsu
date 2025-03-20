@@ -80,7 +80,7 @@ body {
   .icon-ability-evoke {
     background-image: var(--icon-ability-evoke);
   }
-  
+
   .icon-ability-focus {
     background-image: var(--icon-ability-focus);
   }
@@ -108,7 +108,7 @@ body {
   .icon-durability-type-regular {
     background-image: var(--icon-durability-type-regular);
   }
-  
+
   .icon-durability-type-legacy {
     background-image: var(--icon-durability-type-legacy);
   }

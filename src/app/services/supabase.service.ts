@@ -8,6 +8,12 @@ import {
   User,
 } from '@supabase/supabase-js';
 import { environment } from '../../enviroments/eviroment';
+interface SupabaseError {
+  message: string;
+  code?: string;
+  details?: string;
+  hint?: string;
+}
 
 export interface Profile {
   id?: string;
@@ -85,7 +91,9 @@ export class SupabaseService {
 
   downLoadConfig(
     path: string,
-  ): Promise<{ data: Blob; error: null } | { data: null; error: any }> {
+  ): Promise<
+    { data: Blob; error: null } | { data: null; error: SupabaseError }
+  > {
     return this.supabase.storage.from('configs').download(path);
   }
 
@@ -94,7 +102,9 @@ export class SupabaseService {
       //const filePath = `${Math.random()}.json`;
       const { user } = this.session;
       this.profile(user).then((result) => {
-        const random = `${Math.random()}`;
+        const random =
+          window.crypto.getRandomValues(new Uint32Array(1))[0] *
+          Math.pow(2, -32);
         const filePath = result.data?.config_url || random.toString() + '.json';
         const username = result.data?.username || random.toString();
         this.supabase.storage.from('configs').update(filePath, file);

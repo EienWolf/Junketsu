@@ -183,14 +183,15 @@ export class NavComponent implements OnInit {
     input.click();
   }
 
-  import(event: any) {
-    this.weapon_service.importWeapons(event, 'merge');
+  import(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.weapon_service.importWeapons(target, 'merge');
   }
   export() {
     this.weapon_service.exportWeapons();
   }
 
-  isSelected(item: any): boolean {
+  isSelected(item: MenuItem): boolean {
     if (item.id) {
       if (this.themeItems.some((i) => i.id === item.id)) {
         return item.id === this.current_theme;
@@ -296,7 +297,7 @@ export class NavComponent implements OnInit {
     return current_theme;
   }
 
-  detect_language(): string {;
+  detect_language(): string {
     let lang = localStorage.getItem('language');
     if (lang == null) {
       const browserLang = navigator.language.replace('-', '_');
