@@ -26,7 +26,7 @@ export class WeaponComponent implements OnInit {
       if (storedWeaponsJson) {
         const storedWeapons = JSON.parse(storedWeaponsJson);
         const storedWeaponsMap: Weapon[] = storedWeapons.map(
-          (data: any) => new Weapon(data),
+          (data: Weapon) => new Weapon(data),
         );
         const weapon = storedWeaponsMap.find((weapon) => weapon.id === index);
         this.weapon = weapon || new Weapon();

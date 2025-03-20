@@ -8,6 +8,12 @@ import {
   User,
 } from '@supabase/supabase-js';
 import { environment } from '../../enviroments/eviroment';
+interface SupabaseError {
+  message: string;
+  code?: string;
+  details?: string;
+  hint?: string;
+}
 
 export interface Profile {
   id?: string;
@@ -85,7 +91,9 @@ export class SupabaseService {
 
   downLoadConfig(
     path: string,
-  ): Promise<{ data: Blob; error: null } | { data: null; error: any }> {
+  ): Promise<
+    { data: Blob; error: null } | { data: null; error: SupabaseError }
+  > {
     return this.supabase.storage.from('configs').download(path);
   }
 
