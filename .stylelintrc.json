@@ -8,7 +8,6 @@
   ],
   "extends": ["stylelint-config-standard"],
   "rules": {
-    "no-empty-source": null,
     "at-rule-no-deprecated": [
       true,
       {
