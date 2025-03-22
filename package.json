@@ -36,6 +36,7 @@
     "flatted": "^3.3.3",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1",
+    "ngx-markdown": "^19.1.1",
     "ngx-print": "^2.0.0",
     "primeicons": "^7.0.0",
     "primeng": "^19.0.6",
