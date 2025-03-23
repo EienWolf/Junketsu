@@ -8,5 +8,5 @@ export const routes: Routes = [
   { path: 'weapons', component: WeaponFormComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'weapons/:index', component: WeaponComponent },
-  { path: 'wiki/:route', component: WikiComponent },
+  { path: 'wiki/:slug', component: WikiComponent },
 ];

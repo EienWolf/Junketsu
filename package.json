@@ -12,7 +12,8 @@
     "prepare": "husky",
     "format": "prettier --write .",
     "lint:js": "eslint . --ext .js,.ts",
-    "lint:css": "stylelint '**/*.css'"
+    "lint:css": "stylelint '**/*.css'",
+    "generate:wiki": "node scripts/generate-wiki-manifest.js"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,json,css,scss,md,html,yml}": "prettier --write --ignore-unknown"

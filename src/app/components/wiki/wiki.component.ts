@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MarkdownComponent } from 'ngx-markdown';
+import { map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 class SlugInterface {
   id: string = '';
@@ -23,22 +26,37 @@ class SlugInterface {
   imports: [MarkdownComponent],
 })
 export class WikiComponent implements OnInit {
-  route_string: String = '';
-  constructor(private readonly route: ActivatedRoute) {}
-
-  item: SlugInterface = new SlugInterface({
-    id: 'caminar',
-    route: 'es/actions/movement/',
-  });
-
-  slugs: Array<SlugInterface> = [this.item];
+  markdownPath = '';
+  notFound = false;
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly http: HttpClient,
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((param) => {
-      let slug = param['route'];
+    this.loadManifest().subscribe({
+      next: (slugs) => {
+        this.route.paramMap.subscribe((params) => {
+          const slug = params.get('slug') || '';
+          console.log(slugs);
+          const entry = slugs.find((s) => s.id === slug);
 
-      this.route_string =
-        this.slugs.find((item) => item.id == slug)?.fullRoute ?? '404';
+          if (entry) {
+            this.markdownPath = `assets/wiki/${entry.route}${entry.id}.md`;
+            this.notFound = false;
+          } else {
+            this.markdownPath = '';
+            this.notFound = true;
+          }
+        });
+      },
+      error: () => (this.notFound = true),
     });
+  }
+
+  private loadManifest() {
+    return this.http
+      .get<SlugInterface[]>('assets/wiki/manifest.json')
+      .pipe(catchError(() => of([])));
   }
 }

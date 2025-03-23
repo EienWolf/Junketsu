@@ -1,3 +1,11 @@
 <div class="markdown-content">
-  <markdown [src]="'assets/wiki/' + route_string + '.md'"></markdown>
+  @if (!notFound && markdownPath) {
+    <markdown [src]="markdownPath"></markdown>
+  }
+  @if (notFound) {
+    <div class="not-found">
+      <h2>Artículo no encontrado</h2>
+      <p>La página solicitada no existe en la wiki.</p>
+    </div>
+  }
 </div>

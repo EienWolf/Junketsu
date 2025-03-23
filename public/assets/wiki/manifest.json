@@ -1,0 +1,234 @@
+[
+  {
+    "id": "404",
+    "route": ""
+  },
+  {
+    "id": "cambiar-arma",
+    "route": "es/actions/aditional/"
+  },
+  {
+    "id": "cambiar-forma-de-arma",
+    "route": "es/actions/aditional/"
+  },
+  {
+    "id": "equipar-escudo",
+    "route": "es/actions/aditional/"
+  },
+  {
+    "id": "interactuar-con-entorno",
+    "route": "es/actions/aditional/"
+  },
+  {
+    "id": "recargar",
+    "route": "es/actions/aditional/"
+  },
+  {
+    "id": "usar-habilidad",
+    "route": "es/actions/aditional/"
+  },
+  {
+    "id": "usar-objeto",
+    "route": "es/actions/aditional/"
+  },
+  {
+    "id": "aturdir",
+    "route": "es/actions/defensive/"
+  },
+  {
+    "id": "bloquear",
+    "route": "es/actions/defensive/"
+  },
+  {
+    "id": "contragolpe",
+    "route": "es/actions/defensive/"
+  },
+  {
+    "id": "esquivar",
+    "route": "es/actions/defensive/"
+  },
+  {
+    "id": "resistir",
+    "route": "es/actions/defensive/"
+  },
+  {
+    "id": "riposte",
+    "route": "es/actions/defensive/"
+  },
+  {
+    "id": "correr",
+    "route": "es/actions/movement/"
+  },
+  {
+    "id": "desenganchar",
+    "route": "es/actions/movement/"
+  },
+  {
+    "id": "levantarse",
+    "route": "es/actions/movement/"
+  },
+  {
+    "id": "movimeinto-extra",
+    "route": "es/actions/movement/"
+  },
+  {
+    "id": "movimiento-regular",
+    "route": "es/actions/movement/"
+  },
+  {
+    "id": "prueba-de-habilidad",
+    "route": "es/actions/movement/"
+  },
+  {
+    "id": "atacar",
+    "route": "es/actions/primary/"
+  },
+  {
+    "id": "defensa-mejorada",
+    "route": "es/actions/primary/"
+  },
+  {
+    "id": "descanso",
+    "route": "es/actions/primary/"
+  },
+  {
+    "id": "maniobras",
+    "route": "es/actions/primary/"
+  },
+  {
+    "id": "preparar-accion",
+    "route": "es/actions/primary/"
+  },
+  {
+    "id": "ataque-de-oportunidad",
+    "route": "es/actions/reactions/"
+  },
+  {
+    "id": "ataque-de-precausaion",
+    "route": "es/actions/reactions/"
+  },
+  {
+    "id": "interponerse",
+    "route": "es/actions/reactions/"
+  },
+  {
+    "id": "proteger",
+    "route": "es/actions/reactions/"
+  },
+  {
+    "id": "tiro-de-precausion",
+    "route": "es/actions/reactions/"
+  },
+  {
+    "id": "accion-rapida",
+    "route": "es/actions/secondary/"
+  },
+  {
+    "id": "ataque-rapido",
+    "route": "es/actions/secondary/"
+  },
+  {
+    "id": "ayudar",
+    "route": "es/actions/secondary/"
+  },
+  {
+    "id": "maniobra-rapida",
+    "route": "es/actions/secondary/"
+  },
+  {
+    "id": "preparar-accion-secundaria",
+    "route": "es/actions/secondary/"
+  },
+  {
+    "id": "agonizando",
+    "route": "es/ailments/"
+  },
+  {
+    "id": "aturdido",
+    "route": "es/ailments/"
+  },
+  {
+    "id": "defensivo",
+    "route": "es/ailments/"
+  },
+  {
+    "id": "desestabilizado",
+    "route": "es/ailments/"
+  },
+  {
+    "id": "envenenado",
+    "route": "es/ailments/"
+  },
+  {
+    "id": "quemado",
+    "route": "es/ailments/"
+  },
+  {
+    "id": "restringido",
+    "route": "es/ailments/"
+  },
+  {
+    "id": "sangrando",
+    "route": "es/ailments/"
+  },
+  {
+    "id": "tumbado",
+    "route": "es/ailments/"
+  },
+  {
+    "id": "ataque-basico",
+    "route": "es/attack/"
+  },
+  {
+    "id": "ataque-de-lanzamiento",
+    "route": "es/attack/"
+  },
+  {
+    "id": "ataque-no-letal",
+    "route": "es/attack/"
+  },
+  {
+    "id": "ataque-secundario",
+    "route": "es/attack/"
+  },
+  {
+    "id": "agarre",
+    "route": "es/attack/maneuvers/"
+  },
+  {
+    "id": "ataque-apoyado",
+    "route": "es/attack/maneuvers/"
+  },
+  {
+    "id": "ataque-en-altura",
+    "route": "es/attack/maneuvers/"
+  },
+  {
+    "id": "ataque-en-carrera",
+    "route": "es/attack/maneuvers/"
+  },
+  {
+    "id": "desarmar",
+    "route": "es/attack/maneuvers/"
+  },
+  {
+    "id": "desestabilizar",
+    "route": "es/attack/maneuvers/"
+  },
+  {
+    "id": "empuje",
+    "route": "es/attack/maneuvers/"
+  },
+  {
+    "id": "reducir-armadura",
+    "route": "es/attack/maneuvers/"
+  },
+  {
+    "id": "tajo-circular",
+    "route": "es/attack/maneuvers/"
+  },
+  {
+    "id": "super-exito",
+    "route": "es/attack/"
+  }
+]
