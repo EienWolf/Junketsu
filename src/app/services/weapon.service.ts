@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Weapon } from '../models/weapon.model';
 import { SupabaseService } from './supabase.service';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeaponService {
-  constructor(private readonly supabase: SupabaseService) {
+  constructor(
+    private readonly supabase: SupabaseService,
+    private readonly http: HttpClient,
+  ) {
     if (this.supabase.session) {
       const { user } = this.supabase.session;
       // let profile: Profile;
@@ -22,12 +28,26 @@ export class WeaponService {
     }
     this.loadFromLocalStorage();
   }
+
+  loadDummyData() {
+    return this.http
+      .get('assets/data/weapons.json', { responseType: 'text' })
+      .pipe(catchError(() => of([])))
+      .subscribe({
+        next: (dataStr) => {
+          console.log(dataStr);
+          localStorage.setItem('weapons', dataStr.toString());
+        },
+      });
+  }
+
   private loadFromLocalStorage() {
     const storedWeaponsJson = localStorage.getItem('weapons') ?? '';
     this.weapons = storedWeaponsJson
       ? JSON.parse(storedWeaponsJson).map((data: Weapon) => new Weapon(data))
       : [];
   }
+
   private saveToLocalStorage() {
     const serializedWeapons = this.weapons.map((weapon) => weapon.toJSON());
     const dataStr = JSON.stringify(serializedWeapons, null, 2);

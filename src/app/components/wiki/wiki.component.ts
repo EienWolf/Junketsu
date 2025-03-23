@@ -38,9 +38,7 @@ export class WikiComponent implements OnInit {
       next: (slugs) => {
         this.route.paramMap.subscribe((params) => {
           const slug = params.get('slug') || '';
-          console.log(slugs);
           const entry = slugs.find((s) => s.id === slug);
-
           if (entry) {
             this.markdownPath = `assets/wiki/${entry.route}${entry.id}.md`;
             this.notFound = false;

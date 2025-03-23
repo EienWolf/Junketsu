@@ -152,6 +152,13 @@ export class NavComponent implements OnInit {
               this.initiateImport();
             },
           },
+
+          {
+            label: 'nav.config.data.dummy',
+            command: () => {
+              this.dummy();
+            },
+          },
         ],
       },
       {
@@ -189,6 +196,10 @@ export class NavComponent implements OnInit {
   }
   export() {
     this.weapon_service.exportWeapons();
+  }
+
+  dummy() {
+    this.weapon_service.loadDummyData();
   }
 
   isSelected(item: MenuItem): boolean {
