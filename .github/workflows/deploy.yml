@@ -22,9 +22,9 @@ jobs:
     runs-on: ubuntu-latest
 
     environment:
-      name: ${{ 
-        github.ref == 'refs/heads/main' && 'production' || 
-        github.ref == 'refs/heads/develop' && 'develop' || 
+      name: ${{
+        github.ref == 'refs/heads/main' && 'production' ||
+        github.ref == 'refs/heads/develop' && 'develop' ||
         startsWith(github.ref, 'refs/heads/release/') && 'stagging'}}
 
     steps:

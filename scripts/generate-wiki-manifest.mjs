@@ -1,5 +1,10 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Obtener equivalente de __dirname en ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const WIKI_DIR = path.join(__dirname, '../public/assets/wiki');
 const MANIFEST_PATH = path.join(WIKI_DIR, 'manifest.json');
@@ -31,8 +36,9 @@ function extractMetadata(filePath) {
           case 'aliases':
             metadata.aliases = value
               .split(',')
-              .map((a) => a.trim())
-              .filter(Boolean);
+              .map((alias) => generateAliases(alias.trim()))
+              .flat()
+              .filter((v, i, a) => a.indexOf(v) === i);
             break;
           default:
             metadata.custom[key.trim()] = value;
@@ -69,7 +75,7 @@ function extractMetadata(filePath) {
 }
 
 function generateAliases(alias) {
-  const baseName = filename.replace('.md', '');
+  const baseName = alias.replace('.md', '');
   return [
     baseName,
     baseName.replace(/-/g, ' '),
