@@ -13,10 +13,10 @@
     "format": "prettier --write .",
     "lint:js": "eslint . --ext .js,.ts",
     "lint:css": "stylelint '**/*.css'",
-    "generate:wiki": "node scripts/generate-wiki-manifest.js"
+    "generate:wiki": "node scripts/generate-wiki-manifest.mjs && npx prettier --write public/assets/wiki/manifest.json"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,json,css,scss,md,html,yml}": "prettier --write --ignore-unknown"
+    "**/*.{js,jsx,ts,tsx,json,css,scss,md,html,yml,mjs}": "prettier --write --ignore-unknown"
   },
   "private": true,
   "dependencies": {
