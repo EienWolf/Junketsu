@@ -4,3 +4,8 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+    target-branch: 'develop'
+    groups:
+      all-dependencies:
+        patterns:
+          - '*'
