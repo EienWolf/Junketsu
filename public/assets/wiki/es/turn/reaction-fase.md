@@ -1,0 +1,1 @@
+<!-- Las reacciones te permiten responder de manera rápida y efectiva a las acciones de tus enemigos o compañeros, ofreciendo diversas formas de defensa, contraataque o protección. Todas las reacciones consumen estamina y requieren que cumplas con ciertas condiciones para activarse.  -->

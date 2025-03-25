@@ -1,0 +1,1 @@
+<!-- Durante el turno principal, el jugador tiene la oportunidad de realizar diversas acciones que impactarán directamente en el desarrollo del combate o la situación en curso. Este turno se divide en cuatro bloques principales: Movimiento, Acción Principal, Acción Secundaria y Acciones Adicionales. -->

@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const WIKI_DIR = path.join(__dirname, '../public/assets/wiki');
 const MANIFEST_PATH = path.join(WIKI_DIR, 'manifest.json');
+const GLOSSARY_PATH = path.join(WIKI_DIR, 'glossary.md');
 
 function extractMetadata(filePath) {
   try {
@@ -113,6 +114,62 @@ function generateManifest(dir = WIKI_DIR, baseRoute = '') {
   return result;
 }
 
+function generateGlossary(manifest) {
+  // Agrupar entradas por ruta
+  const grouped = manifest.reduce((acc, entry) => {
+    const category = entry.route.replace('es/', '').replace(/\//g, ' > ');
+    if (!acc[category]) acc[category] = [];
+    acc[category].push(entry);
+    return acc;
+  }, {});
+
+  let glossary = '# Glosario de Acciones y Estados\n\n';
+
+  for (const [category, entries] of Object.entries(grouped)) {
+    glossary += `## ${category.toUpperCase()}\n\n`;
+
+    for (const entry of entries) {
+      glossary += `### ${entry.id}\n`;
+
+      if (entry.description) {
+        const cleanDescription = entry.description
+          .replace(/\n/g, ' ')
+          .replace(/\s{2,}/g, ' ')
+          .trim();
+        glossary += `- Descripción: ${cleanDescription}\n`;
+      }
+
+      // if (Object.keys(entry.custom).length > 0) {
+      //   glossary += `- Custom:\n${Object.entries(entry.custom)
+      //     .map(([k, v]) => `  - ${k}: ${v}`)
+      //     .join('\n')}\n`;
+      // }
+    }
+  }
+
+  return glossary;
+}
+
+function generateLLMGlossary(manifest) {
+  return manifest
+    .map((entry) => {
+      const cleanDescription = entry.description
+        .replace(/\n/g, ' ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+
+      return `[ENTRY]
+ID: ${entry.id}
+DESCRIPTION: ${cleanDescription}
+[/ENTRY]`;
+    })
+    .join('\n\n');
+}
+
 const manifest = generateManifest();
 fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2));
 console.log('Manifest generated successfully!');
+
+const glossaryContent = generateGlossary(manifest);
+fs.writeFileSync(GLOSSARY_PATH, glossaryContent);
+console.log('Glossary generated successfully!');

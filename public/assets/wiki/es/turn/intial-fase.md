@@ -1,0 +1,3 @@
+<!-- Al comienzo del turno, el jugador debe resolver una serie de situaciones antes de avanzar a las demás fases del turno. Este momento es crucial para verificar el estado actual del personaje y aplicar cualquier efecto activo. Entre las principales acciones se encuentra la recuperación de estamina y la tirada de salvación, en caso de que sea necesaria.
+Durante esta fase, el jugador también debe tener en cuenta cualquier condición que afecte el movimiento o las acciones disponibles, tales como penalizaciones por fatiga, heridas, efectos de estados negativos o bonificaciones provenientes de posturas o equipamiento. Este proceso garantiza que el personaje esté listo para continuar su turno con todas las restricciones y bonificaciones ya aplicadas.
+ -->

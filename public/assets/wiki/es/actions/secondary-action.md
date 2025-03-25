@@ -1,0 +1,1 @@
+<!-- Las acciones secundarias son maniobras rápidas o de soporte que puedes realizar durante tu turno. Solo puedes llevar a cabo una acción secundaria por turno, y estas acciones suelen tener un impacto inmediato o de soporte en el combate. -->

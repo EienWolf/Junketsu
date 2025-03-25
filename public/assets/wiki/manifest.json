@@ -53,8 +53,20 @@
       "weapontransformation"
     ],
     "route": "es/actions/aditional/",
-    "description": "",
-    "hasContent": true
+    "description": "Cuesta 1 de estamina. Si el arma permite intercambiar entre diferentes formas, esta acción permite cambiar la forma actual de esta. Generalmente este tipo de armas están catalogadas como Trick-Weapon.",
+    "hasContent": false
+  },
+  {
+    "id": "aditional-action",
+    "aliases": [
+      "aditional-action",
+      "aditional action",
+      "aditional_action",
+      "aditionalaction"
+    ],
+    "route": "es/actions/",
+    "description": "Las acciones adicionales son movimientos o actividades que puedes realizar durante tu turno para complementar tus acciones principales o para realizar tareas específicas.",
+    "hasContent": false
   },
   {
     "id": "aturdir",
@@ -156,6 +168,18 @@
     "hasContent": false
   },
   {
+    "id": "movement-action",
+    "aliases": [
+      "movement-action",
+      "movement action",
+      "movement_action",
+      "movementaction"
+    ],
+    "route": "es/actions/",
+    "description": "Los personajes pueden moverse sin gastar estamina. Sin embargo, existen varias opciones para realizar maniobras más avanzadas que sí requieren estamina, ofreciendo a los jugadores una mayor flexibilidad estratégica.",
+    "hasContent": false
+  },
+  {
     "id": "atacar",
     "aliases": ["atacar"],
     "route": "es/actions/primary/",
@@ -198,6 +222,18 @@
     ],
     "route": "es/actions/primary/",
     "description": "",
+    "hasContent": false
+  },
+  {
+    "id": "primary-action",
+    "aliases": [
+      "primary-action",
+      "primary action",
+      "primary_action",
+      "primaryaction"
+    ],
+    "route": "es/actions/",
+    "description": "Las Acciones Primarias son el núcleo de tu turno, representando la acción más importante que realizarás. Solo puedes elegir una de ellas, y cada acción tiene un costo de stamina. Estas acciones reflejan la esencia de lo que puedes hacer en combate, desde ataques directos hasta maniobras estratégicas o defensivas.",
     "hasContent": false
   },
   {
@@ -248,6 +284,13 @@
     ],
     "route": "es/actions/reactions/",
     "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Este ataque se realiza con armas de alcance melee que permiten atacar a un enemigo mientras entra en tu zona de amenaza. Esta es la version para armas a distancia y sigue las siguiente reglas: - Un enemigo entra en rango de ataque corto(6 casilla o menos). - El ataque siempre sera consideracion como rango corto. - Aplica para objetos arrojadizos con el ataque throw",
+    "hasContent": false
+  },
+  {
+    "id": "reactions",
+    "aliases": ["reactions"],
+    "route": "es/actions/",
+    "description": "Las reacciones te permiten responder de manera rápida y efectiva a las acciones de tus enemigos o compañeros, ofreciendo diversas formas de defensa, contraataque o protección. Todas las reacciones consumen estamina y requieren que cumplas con ciertas condiciones para activarse.",
     "hasContent": false
   },
   {
@@ -303,6 +346,18 @@
     ],
     "route": "es/actions/secondary/",
     "description": "",
+    "hasContent": false
+  },
+  {
+    "id": "secondary-action",
+    "aliases": [
+      "secondary-action",
+      "secondary action",
+      "secondary_action",
+      "secondaryaction"
+    ],
+    "route": "es/actions/",
+    "description": "Las acciones secundarias son maniobras rápidas o de soporte que puedes realizar durante tu turno. Solo puedes llevar a cabo una acción secundaria por turno, y estas acciones suelen tener un impacto inmediato o de soporte en el combate.",
     "hasContent": false
   },
   {
@@ -739,5 +794,45 @@
     "route": "es/general/",
     "description": "",
     "hasContent": false
+  },
+  {
+    "id": "action-fase",
+    "aliases": ["action-fase", "action fase", "action_fase", "actionfase"],
+    "route": "es/turn/",
+    "description": "Durante el turno principal, el jugador tiene la oportunidad de realizar diversas acciones que impactarán directamente en el desarrollo del combate o la situación en curso. Este turno se divide en cuatro bloques principales: Movimiento, Acción Principal, Acción Secundaria y Acciones Adicionales.",
+    "hasContent": false
+  },
+  {
+    "id": "end-fase",
+    "aliases": ["end-fase", "end fase", "end_fase", "endfase"],
+    "route": "es/turn/",
+    "description": "Al finalizar el turno, se resuelven todos los efectos relacionados con la vida del personaje, tanto positivos como negativos. Esto incluye cualquier tipo de daño continuo que no haya sido neutralizado, así como curaciones continuas o regeneraciones que estén activas.",
+    "hasContent": false
+  },
+  {
+    "id": "intial-fase",
+    "aliases": ["intial-fase", "intial fase", "intial_fase", "intialfase"],
+    "route": "es/turn/",
+    "description": "Al comienzo del turno, el jugador debe resolver una serie de situaciones antes de avanzar a las demás fases del turno. Este momento es crucial para verificar el estado actual del personaje y aplicar cualquier efecto activo. Entre las principales acciones se encuentra la recuperación de estamina y la tirada de salvación, en caso de que sea necesaria. Durante esta fase, el jugador también debe tener en cuenta cualquier condición que afecte el movimiento o las acciones disponibles, tales como penalizaciones por fatiga, heridas, efectos de estados negativos o bonificaciones provenientes de posturas o equipamiento. Este proceso garantiza que el personaje esté listo para continuar su turno con todas las restricciones y bonificaciones ya aplicadas.",
+    "hasContent": false
+  },
+  {
+    "id": "reaction-fase",
+    "aliases": [
+      "reaction-fase",
+      "reaction fase",
+      "reaction_fase",
+      "reactionfase"
+    ],
+    "route": "es/turn/",
+    "description": "Las reacciones te permiten responder de manera rápida y efectiva a las acciones de tus enemigos o compañeros, ofreciendo diversas formas de defensa, contraataque o protección. Todas las reacciones consumen estamina y requieren que cumplas con ciertas condiciones para activarse.",
+    "hasContent": false
+  },
+  {
+    "id": "glossary",
+    "aliases": ["glossary"],
+    "route": "",
+    "description": "",
+    "hasContent": true
   }
 ]

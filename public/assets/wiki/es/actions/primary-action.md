@@ -1,0 +1,1 @@
+<!-- Las Acciones Primarias son el núcleo de tu turno, representando la acción más importante que realizarás. Solo puedes elegir una de ellas, y cada acción tiene un costo de stamina. Estas acciones reflejan la esencia de lo que puedes hacer en combate, desde ataques directos hasta maniobras estratégicas o defensivas. -->

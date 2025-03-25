@@ -1,0 +1,1 @@
+<!-- Los personajes pueden moverse sin gastar estamina. Sin embargo, existen varias opciones para realizar maniobras más avanzadas que sí requieren estamina, ofreciendo a los jugadores una mayor flexibilidad estratégica.  -->

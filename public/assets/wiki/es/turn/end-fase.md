@@ -1,0 +1,1 @@
+<!-- Al finalizar el turno, se resuelven todos los efectos relacionados con la vida del personaje, tanto positivos como negativos. Esto incluye cualquier tipo de daño continuo que no haya sido neutralizado, así como curaciones continuas o regeneraciones que estén activas. -->
