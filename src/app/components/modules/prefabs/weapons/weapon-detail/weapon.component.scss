@@ -1,0 +1,336 @@
+/* weapon-detail.component.scss */
+
+/* Importación de fuentes góticas para el estilo Bloodborne */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&family=EB+Garamond:wght@400;500;600;700&display=swap');
+
+/* Estilos generales */
+:host {
+  display: block;
+  font-family: 'EB Garamond', serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+.attribute {
+  padding: 4px;
+  text-align: center;
+  font-size: 1rem !important;
+  background-image: linear-gradient(#38475d, #232b44);
+  border: 3px solid #38475d;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+/* Tarjeta del arma con efecto de sangre */
+.weapon-card {
+  position: relative;
+  background-color: rgba(31, 41, 55, 0.95);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      rgba(153, 27, 27, 0.3),
+      rgba(220, 38, 38, 0.8),
+      rgba(153, 27, 27, 0.3)
+    );
+    z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: rgba(220, 38, 38, 0.3);
+  }
+}
+
+/* Efectos para los iconos */
+.icon-svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.4));
+  }
+}
+
+/* Estilización para los indicadores de durabilidad */
+.text-red-600.icon-svg {
+  filter: drop-shadow(0 0 5px rgba(220, 38, 38, 0.5));
+}
+
+/* Sección de ataques */
+.attacks-section {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(220, 38, 38, 0.6), transparent);
+    display: none;
+
+    @media (min-width: 1280px) {
+      display: block;
+    }
+  }
+}
+
+/* Estilización para los bordes de los tipos de ataque */
+.border-l-4.border-red-900 {
+  border-image: linear-gradient(to bottom, rgba(153, 27, 27, 0.9), transparent)
+    1 100%;
+  position: relative;
+
+  &::after {
+    content: 'Básico';
+    position: absolute;
+    top: -0.5rem;
+    right: 0.5rem;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    background-color: rgba(153, 27, 27, 0.7);
+    color: white;
+    border-radius: 3px;
+  }
+}
+
+.border-l-4.border-blue-900 {
+  border-image: linear-gradient(to bottom, rgba(30, 58, 138, 0.9), transparent)
+    1 100%;
+  position: relative;
+
+  &::after {
+    content: 'Secundario';
+    position: absolute;
+    top: -0.5rem;
+    right: 0.5rem;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    background-color: rgba(30, 58, 138, 0.7);
+    color: white;
+    border-radius: 3px;
+  }
+}
+
+/* Notas */
+.border-l-4.border-gray-600 {
+  border-image: linear-gradient(to bottom, rgba(75, 85, 99, 0.7), transparent) 1
+    100%;
+}
+
+/* Sombra para la imagen del arma */
+img[alt] {
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.05) rotate(-2deg);
+    filter: drop-shadow(0 0 15px rgba(220, 38, 38, 0.6));
+  }
+}
+
+/* Animación para botones */
+button {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Fondo */
+.bg-slate-900 {
+  background-color: #0b1120;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(30, 41, 59, 0.6), transparent 70%),
+    radial-gradient(circle at 80% 60%, rgba(76, 29, 49, 0.2), transparent 50%);
+}
+
+/* Efecto de niebla */
+.min-h-screen {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/fog-texture.png');
+    opacity: 0.03;
+    pointer-events: none;
+    animation: fogMovement 100s infinite linear;
+  }
+}
+
+@keyframes fogMovement {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1000px 1000px;
+  }
+}
+
+/* Personalización de los iconos de daño base */
+.text-3xl.text-red-600 {
+  text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+/* Estilización de las características en los cuadros */
+.bg-gray-700 {
+  background-color: rgba(55, 65, 81, 0.8);
+  backdrop-filter: blur(2px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(55, 65, 81, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Efecto de desvanecimiento para la descripción larga */
+.text-sm.text-gray-300 {
+  position: relative;
+  max-height: 100px;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to top, rgba(55, 65, 81, 1), transparent);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+}
+
+/* Personalización para PrimeNG Dialog */
+:host ::ng-deep {
+  .p-dialog {
+    .p-dialog-content {
+      background-color: #1f2937;
+      color: #e5e7eb;
+      border: 1px solid #4b5563;
+      padding: 0;
+    }
+
+    .p-dialog-header {
+      background-color: #1f2937;
+      color: #e5e7eb;
+      border-bottom: 1px solid #4b5563;
+    }
+
+    .p-dialog-header-icon {
+      color: #e5e7eb;
+
+      &:hover {
+        background-color: #374151;
+        color: #f87171;
+      }
+    }
+  }
+}
+
+/* Efectos específicos para los textos de título */
+.text-red-600 {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(220, 38, 38, 0.6),
+      transparent
+    );
+    transform: scaleX(0.3);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.attack-card {
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.attack-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto de sangre para los ataques */
+.attack-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 38, 38, 0.5),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.attack-card:hover::before {
+  opacity: 1;
+}
+
+/* Ícono de daño */
+.icon-svg.h-4 {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
