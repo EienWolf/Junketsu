@@ -1,43 +1,38 @@
-# Desarmar [⚔️🔄]
+# Desarmar
 
-_"Un giro preciso, un crujido metálico... y el arma enemiga cae a tus pies."_
+> _"Un giro preciso, un crujido metálico... y el arma enemiga cae a tus pies."_
 
 ---
 
-## 🔍 Tabla de Contenidos
+## Contenido
 
-- [📖 Descripción](#descripcion)
-- [⚙️ Mecánica Básica](#ecánica-básica)
-- [🎯 Condiciones Especiales](#condiciones-especiales)
-- [🎮 Ejemplos de Uso](#ejemplos-de-uso)
-- [❓ Preguntas Frecuentes](#preguntas-frecuentes)
-- [🛠️ Estrategias Avanzadas](#estrategias-avanzadas)
-- [🔗 Acciones Relacionadas](#acciones-relacionadas)
+- [Descripción](#descripcion)
+- [Condiciones Especiales](#condiciones-especiales)
+- [Ejemplos de Uso](#ejemplos-de-uso)
+- [Preguntas Frecuentes](#preguntas-frecuentes)
+- [Estrategias Avanzadas](#estrategias-avanzadas)
+- [Acciones Relacionadas](#acciones-relacionadas)
 
 ---
 
 ## Descripción
 
-**Desarmar** es una técnica avanzada que utiliza un [ataque básico](/basic-attack) para despojar al enemigo de su equipo. Combina daño estándar con la posibilidad de dejar al objetivo indefenso si logras un [Super Éxito](/great-sucess).
+**Desarmar** es una técnica avanzada que utiliza un [ataque básico](/basic-attack) para \
+despojar al enemigo de su equipo. Combina daño estándar con la posibilidad \
+de dejar al objetivo indefenso si logras un [Super Éxito](/great-sucess).
+
+|                 |                                                                   |
+| --------------- | ----------------------------------------------------------------- |
+| **Costo**       | Costo base del ataque + 1 Stamina                                 |
+| **Tipo**        | Acción Primaria (Maniobra)                                        |
+| **Exito**       | Daño normal del ataque                                            |
+| **Super Exito** | Ademas del daño el objetivo queda [**Desarmado**](/basic-attack). |
 
 ---
 
-## ⚙️ Mecánica Básica
+## Condiciones Especiales
 
-| Atributo          | Valor                                                                                |
-| ----------------- | ------------------------------------------------------------------------------------ |
-| **Costo**         | Costo base del ataque + 1 Stamina                                                    |
-| **Tipo**          | Acción Primaria (Maniobra)                                                           |
-| **Efecto**        | - **Daño normal** si impactas.<br>- **Desarme** si superas la defensa por 3+ éxitos. |
-| **Restricciones** | ❗ Solo ataques básicos. Máximo 1 intento por turno.                                 |
-
----
-
-## 🎯 Condiciones Especiales
-
-- ⚠️ **Penalización**: -2 dados en la tirada (por precisión).
-- 🎯 **Super Éxito**: 3+ éxitos sobre la defensa para desarmar.
-- 🏹 **Rango**: Funciona con armas cuerpo a cuerpo **y a distancia**.
+- **Penalizacion**: La tirada se realiza con [**Desventaja**](/disvantage).
 
 ---
 
@@ -98,8 +93,3 @@ _"Disparas con tu arco (ataque básico) + 1 Stamina. Tirás 2d6 → 0 dados. Sac
   3. [Contragolpe](#link) (para castigar intentos de contraataque).
 
 ---
-
-## 🏛️ Cita Final
-
-> _"Desarmar no es solo técnica: es psicología. Un enemigo sin arma es un enemigo que duda."_  
-> **— Manual del Guerrero Táctico, Fragmento 9**
