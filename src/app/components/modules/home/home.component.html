@@ -1,0 +1,379 @@
+<!-- home.component.html -->
+<div class="flex min-h-screen flex-col bg-slate-900 text-gray-100">
+  <!-- Header Principal -->
+
+  <!-- Segunda barra de navegación - Inspirada en D&D Beyond -->
+  <div class="border-b border-gray-700 bg-gray-800 py-2">
+    <div class="container mx-auto px-4">
+      <div
+        class="flex items-center justify-between overflow-x-auto pb-1 whitespace-nowrap"
+      >
+        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
+          >Manuales</a
+        >
+        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
+          >Clases</a
+        >
+        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
+          >Linajes</a
+        >
+        <a
+          [routerLink]="['prefabs/weapons']"
+          class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
+          >Armas</a
+        >
+        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
+          >Objetos</a
+        >
+        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
+          >Hechizos</a
+        >
+        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
+          >Bestiario</a
+        >
+        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
+          >Herramientas</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido Principal -->
+  <main class="flex-grow bg-slate-900">
+    <!-- Hero Section -->
+    <section class="relative">
+      <!-- Imagen de fondo con overlay -->
+      <div
+        class="absolute inset-0 bg-[url('/assets/images/bloodborne-bg.jpg')] bg-cover bg-center"
+      ></div>
+      <div class="bg-opacity-60 absolute inset-0 bg-black"></div>
+
+      <!-- Contenido del hero -->
+      <div
+        class="relative container mx-auto flex flex-col items-center px-4 py-16 md:flex-row"
+      >
+        <!-- Texto del hero -->
+        <div class="mb-10 text-center md:mb-0 md:w-1/2 md:text-left">
+          <h2
+            class="mb-4 font-serif text-4xl font-bold text-red-600 md:text-5xl"
+          >
+            LA CACERÍA TE ESPERA
+          </h2>
+          <p class="mb-6 text-xl">
+            Embárcate en una aventura oscura donde la sangre es la moneda y la
+            pesadilla nunca termina.
+          </p>
+          <div
+            class="flex flex-col justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4 md:justify-start"
+          >
+            <button
+              pButton
+              label="CREAR PERSONAJE"
+              icon="pi pi-user-plus"
+              class="p-button-lg border-none bg-red-700 hover:bg-red-800"
+            ></button>
+            <!-- <button pButton label="UNIRSE A PARTIDA" icon="pi pi-users" class="p-button-lg p-button-outlined border-red-600 text-red-600 hover:bg-red-900"></button>-->
+          </div>
+        </div>
+
+        <!-- Tarjeta de personaje destacado - Similar a D&D Beyond -->
+        <div class="flex justify-center md:w-1/2 md:justify-end">
+          <p-card
+            styleClass="bg-gray-800 border border-red-900 w-full max-w-sm"
+          >
+            <ng-template pTemplate="header">
+              <div class="relative">
+                <img
+                  src="https://images2.alphacoders.com/663/thumb-1920-663017.jpg"
+                  alt="Personaje destacado"
+                  class="h-48 w-full object-cover"
+                />
+                <div
+                  class="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black to-transparent p-4"
+                >
+                  <h3 class="text-xl font-bold text-white">
+                    Arthur, El codicioso
+                  </h3>
+                  <p class="text-gray-300">Nivel 5 • Cazador de Bestias</p>
+                </div>
+              </div>
+            </ng-template>
+            <div class="mb-4 flex items-center justify-between">
+              <div>
+                <span class="text-sm text-gray-400">Último juego</span>
+                <p class="font-medium">La capilla de Oedon</p>
+              </div>
+              <div class="flex space-x-2">
+                <span
+                  class="inline-flex items-center rounded-full bg-red-900 px-2 py-1 text-xs font-medium text-white"
+                >
+                  <i class="pi pi-heart-fill mr-1 text-xs"></i> 75
+                </span>
+                <span
+                  class="inline-flex items-center rounded-full bg-blue-900 px-2 py-1 text-xs font-medium text-white"
+                >
+                  <i class="pi pi-shield mr-1 text-xs"></i> 12
+                </span>
+              </div>
+            </div>
+            <div class="mb-4 grid grid-cols-3 gap-2 text-center">
+              <div class="rounded bg-gray-700 p-2">
+                <p class="text-xs text-gray-400">FUERZA</p>
+                <p class="font-bold">16</p>
+              </div>
+              <div class="rounded bg-gray-700 p-2">
+                <p class="text-xs text-gray-400">DESTREZA</p>
+                <p class="font-bold">18</p>
+              </div>
+              <div class="rounded bg-gray-700 p-2">
+                <p class="text-xs text-gray-400">SANGRE</p>
+                <p class="font-bold">14</p>
+              </div>
+            </div>
+            <ng-template pTemplate="footer">
+              <div class="flex justify-between">
+                <button
+                  pButton
+                  label="EDITAR"
+                  icon="pi pi-pencil"
+                  class="p-button-sm"
+                ></button>
+                <button
+                  pButton
+                  label="JUGAR"
+                  icon="pi pi-play"
+                  class="p-button-sm p-button-success"
+                ></button>
+              </div>
+            </ng-template>
+          </p-card>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Acceso Rápido (estilo D&D Beyond) -->
+    <section class="border-y border-gray-700 bg-gray-800 py-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <!-- Tarjeta de acceso rápido 1 -->
+          <div
+            class="rounded-lg border border-gray-700 bg-gray-900 p-4 transition-colors duration-300 hover:border-red-600"
+          >
+            <div class="flex items-center">
+              <div
+                class="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-900"
+              >
+                <i class="pi pi-book text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-medium">Manuales</h3>
+                <p class="text-sm text-gray-400">Reglas y guías</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta de acceso rápido 2 -->
+          <div
+            class="rounded-lg border border-gray-700 bg-gray-900 p-4 transition-colors duration-300 hover:border-red-600"
+          >
+            <div class="flex items-center">
+              <div
+                class="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-900"
+              >
+                <i class="pi pi-user-plus text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-medium">Personajes</h3>
+                <p class="text-sm text-gray-400">Crear y gestionar</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta de acceso rápido 3 -->
+          <div
+            class="rounded-lg border border-gray-700 bg-gray-900 p-4 transition-colors duration-300 hover:border-red-600"
+          >
+            <div class="flex items-center">
+              <div
+                class="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-900"
+              >
+                <i class="pi pi-bolt text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-medium">Armas</h3>
+                <p class="text-sm text-gray-400">Catálogo y forja</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta de acceso rápido 4 -->
+          <div
+            class="rounded-lg border border-gray-700 bg-gray-900 p-4 transition-colors duration-300 hover:border-red-600"
+          >
+            <div class="flex items-center">
+              <div
+                class="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-900"
+              >
+                <i class="pi pi-calendar text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-medium">Campañas</h3>
+                <p class="text-sm text-gray-400">Unirse o crear</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Contenido Principal - Layout de D&D Beyond -->
+    <section class="py-12">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col gap-8 lg:flex-row">
+          <!-- Columna principal (70%) -->
+          <div class="lg:w-8/12"></div>
+
+          <!-- Columna lateral (30%) -->
+          <div class="lg:w-4/12">
+            <!-- Tus Personajes -->
+            <div class="mb-6 rounded-lg bg-gray-800 p-5">
+              <h3 class="mb-4 flex items-center text-xl font-medium">
+                <i class="pi pi-users mr-2 text-red-600"></i> TUS PERSONAJES
+              </h3>
+
+              <!-- Lista de personajes -->
+              <div class="mb-4 space-y-3">
+                <!-- Personaje 1 -->
+                <div
+                  class="flex items-center rounded bg-gray-700 p-2 hover:bg-gray-600"
+                >
+                  <img
+                    src="/api/placeholder/50/50"
+                    alt="Personaje 1"
+                    class="mr-3 h-10 w-10 rounded-full"
+                  />
+                  <div class="flex-grow">
+                    <h4 class="font-medium">Eileen la Cuervo</h4>
+                    <p class="text-xs text-gray-400">
+                      Niv. 7 • Cazadora de Cazadores
+                    </p>
+                  </div>
+                  <button
+                    pButton
+                    icon="pi pi-chevron-right"
+                    class="p-button-text p-button-rounded p-button-sm"
+                  ></button>
+                </div>
+
+                <!-- Personaje 2 -->
+                <div
+                  class="flex items-center rounded bg-gray-700 p-2 hover:bg-gray-600"
+                >
+                  <img
+                    src="/api/placeholder/50/50"
+                    alt="Personaje 2"
+                    class="mr-3 h-10 w-10 rounded-full"
+                  />
+                  <div class="flex-grow">
+                    <h4 class="font-medium">Gehrman</h4>
+                    <p class="text-xs text-gray-400">
+                      Niv. 12 • Primer Cazador
+                    </p>
+                  </div>
+                  <button
+                    pButton
+                    icon="pi pi-chevron-right"
+                    class="p-button-text p-button-rounded p-button-sm"
+                  ></button>
+                </div>
+              </div>
+
+              <button
+                pButton
+                label="CREAR NUEVO PERSONAJE"
+                icon="pi pi-plus"
+                class="p-button-sm w-full"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 bg-black text-gray-400">
+    <div class="container mx-auto px-4 py-8">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+        <!-- Columna 1 -->
+        <div>
+          <h4 class="mb-4 text-lg font-medium text-white">BloodPathfinder</h4>
+          <p class="mb-4 text-sm">
+            Un RPG de mesa que combina la atmósfera gótica de Bloodborne con la
+            profundidad mecánica de Pathfinder.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-red-500"
+              ><i class="pi pi-discord"></i
+            ></a>
+            <a href="#" class="text-gray-400 hover:text-red-500"
+              ><i class="pi pi-twitter"></i
+            ></a>
+            <a href="#" class="text-gray-400 hover:text-red-500"
+              ><i class="pi pi-instagram"></i
+            ></a>
+            <a href="#" class="text-gray-400 hover:text-red-500"
+              ><i class="pi pi-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- Columna 2 -->
+        <div>
+          <h4 class="mb-4 text-lg font-medium text-white">Enlaces Rápidos</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-red-500">Inicio</a></li>
+            <li><a href="#" class="hover:text-red-500">Manuales</a></li>
+            <li><a href="#" class="hover:text-red-500">Personajes</a></li>
+            <li><a href="#" class="hover:text-red-500">Armas</a></li>
+            <li><a href="#" class="hover:text-red-500">Habilidades</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3 -->
+        <div>
+          <h4 class="mb-4 text-lg font-medium text-white">Recursos</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-red-500">Guía de Inicio</a></li>
+            <li><a href="#" class="hover:text-red-500">Actualizaciones</a></li>
+            <li><a href="#" class="hover:text-red-500">Descargas</a></li>
+            <li><a href="#" class="hover:text-red-500">Foros</a></li>
+            <li><a href="#" class="hover:text-red-500">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 4 -->
+        <div>
+          <h4 class="mb-4 text-lg font-medium text-white">Contacto</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-red-500">Soporte</a></li>
+            <li><a href="#" class="hover:text-red-500">Reportar Bug</a></li>
+            <li><a href="#" class="hover:text-red-500">Sugerencias</a></li>
+            <li>
+              <a href="#" class="hover:text-red-500">Trabaja con nosotros</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 border-t border-gray-800 pt-6 text-center text-sm">
+        <p>&copy; 2025 BloodPathfinder RPG. Todos los derechos reservados.</p>
+        <div class="mt-2 space-x-4">
+          <a href="#" class="hover:text-red-500">Política de Privacidad</a>
+          <a href="#" class="hover:text-red-500">Términos de Servicio</a>
+          <a href="#" class="hover:text-red-500">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

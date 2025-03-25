@@ -1,11 +1,17 @@
-<p-menubar [model]="items" [styleClass]="'bg-primary'">
+<p-menubar [model]="items" [styleClass]="' bg-black border-b border-red-900'">
   <ng-template #start>
     <a
       [routerLink]="['/']"
       class="flex items-center space-x-3 rtl:space-x-reverse"
     >
+      <img
+        src="https://cdn.inspireuplift.com/uploads/images/seller_products/30610/1702912688_DarksidersRuneWhite.png"
+        height="40"
+        alt="logo"
+        style="height: 40px"
+      />
       <span class="self-center text-2xl font-semibold whitespace-nowrap"
-        >Junketsu</span
+        >Nightfall: The Hunt</span
       >
     </a>
   </ng-template>

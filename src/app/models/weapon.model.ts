@@ -354,7 +354,7 @@ export class Weapon {
   /**
    * Ignorar de momento....
    */
-  shapes?: string[];
+  shape?: string;
 
   constructor(data: Partial<Weapon> = {}) {
     this.name = data.name ?? '';
@@ -377,6 +377,7 @@ export class Weapon {
     this.id = data.id ?? ''; //respetar las reglas del valor por defecto si el valor inicial es null
     this.ammo_capacity = data.ammo_capacity;
     this.reloadrate = data.reloadrate;
+    this.shape = data.shape;
 
     this.attacks = (data.attacks ?? []).map((a) => {
       const attack = new Attack(a, this);
