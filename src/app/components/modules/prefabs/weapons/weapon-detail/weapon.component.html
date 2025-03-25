@@ -194,6 +194,21 @@
                 'weapon.reload-rate' | translate
               }}</span>
             </div>
+
+            @if (weapon.shape) {
+              <div
+                [routerLink]="['/prefabs/weapons/', weapon.shape]"
+                class="xs:col-span-3 attribute col-span-4 cursor-pointer"
+              >
+                <div class="icon-svg-container h-16 w-16">
+                  <app-svg-icon
+                    class="icon-svg h-11 w-11"
+                    [iconName]="'--icon-switch-weapon'"
+                  ></app-svg-icon>
+                </div>
+                <span class="text-[12px]"> Change Form</span>
+              </div>
+            }
           </div>
 
           <!-- Notas -->
@@ -291,43 +306,33 @@
                   <!-- Fórmula de daño -->
                   <div class="rounded bg-gray-900 p-2">
                     <div class="mb-1 flex items-center">
-                      <app-svg-icon
-                        class="icon-svg mr-1 h-4 w-4"
-                        [iconName]="'--icon-damage'"
-                      ></app-svg-icon>
                       <span class="text-xs text-gray-400">{{
                         'attack.damage-formula' | translate
                       }}</span>
                     </div>
-                    <p class="text-sm">{{ attack.damage_formula }}</p>
+                    <p class="text-sm capitalize">
+                      {{ attack.damage_formula }}
+                    </p>
                   </div>
 
                   <!-- Tipo de daño -->
                   <div class="rounded bg-gray-900 p-2">
                     <div class="mb-1 flex items-center">
-                      <app-svg-icon
-                        class="icon-svg mr-1 h-4 w-4"
-                        [iconName]="'--icon-damage-type'"
-                      ></app-svg-icon>
                       <span class="text-xs text-gray-400">{{
                         'attack.damage-type' | translate
                       }}</span>
                     </div>
-                    <p class="text-sm">{{ attack.damage_type }}</p>
+                    <p class="text-sm capitalize">{{ attack.damage_type }}</p>
                   </div>
 
                   <!-- Habilidad si existe -->
                   <div class="rounded bg-gray-900 p-2" *ngIf="attack.ability">
                     <div class="mb-1 flex items-center">
-                      <app-svg-icon
-                        class="icon-svg mr-1 h-4 w-4"
-                        [iconName]="'--icon-ability-' + attack.ability"
-                      ></app-svg-icon>
                       <span class="text-xs text-gray-400">{{
                         'attack.ability' | translate
                       }}</span>
                     </div>
-                    <p class="text-sm">{{ attack.ability }}</p>
+                    <p class="text-sm capitalize">{{ attack.ability }}</p>
                   </div>
                 </div>
 
