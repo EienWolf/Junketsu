@@ -1,0 +1,505 @@
+/* home.component.scss */
+
+/* Importar fuentes góticas desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&family=EB+Garamond:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: 'fleshandblood';
+  src: url('/assets/fonts/fleshandblood.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Variables de color en tema Bloodborne */
+:root {
+  --blood-red: #8b0000;
+  --blood-red-light: #bb0000;
+  --pale-blood: #d9cbcb;
+  --night-black: #121212;
+  --moon-silver: #e0e0e0;
+  --beast-brown: #3a2e21;
+  --mist-gray: #a9a9a9;
+}
+
+/* Estilos generales */
+body {
+  font-family: 'EB Garamond', serif;
+  background-color: var(--night-black);
+  color: var(--pale-blood);
+}
+
+/* Estilos para encabezados */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  font-family: 'fleshandblood', sans-serif !important;
+}
+
+/* Personalización de la barra de navegación */
+header {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilización de enlaces de navegación con hover mejorado */
+nav a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--blood-red-light) !important;
+}
+
+nav a:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--blood-red);
+  transition: all 0.3s ease;
+}
+
+nav a:hover:after {
+  width: 80%;
+  left: 10%;
+}
+
+/* Efectos para los botones */
+:host ::ng-deep {
+  .p-button {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .p-button.bg-red-700 {
+    background: linear-gradient(
+      145deg,
+      var(--blood-red),
+      var(--blood-red-light)
+    );
+
+    &:hover {
+      background: linear-gradient(
+        145deg,
+        var(--blood-red-light),
+        var(--blood-red)
+      );
+    }
+  }
+
+  /* Personalización de PrimeNG Avatar */
+  .p-avatar {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Personalización de PrimeNG Card */
+  .p-card {
+    background-color: rgba(31, 31, 31, 0.9) !important;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    .p-card-title {
+      color: var(--pale-blood) !important;
+    }
+
+    .p-card-content {
+      color: var(--mist-gray) !important;
+    }
+  }
+}
+
+/* Estilización para la sección de hero */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(to top, rgba(18, 18, 18, 1), transparent);
+    pointer-events: none;
+  }
+}
+
+/* Efectos para las tarjetas de acceso rápido */
+.bg-gray-900 {
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+/* Efecto de sangre en bordes al hover */
+.border-gray-700:hover {
+  border-color: var(--blood-red) !important;
+  box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+}
+
+/* Estilización para las estadísticas del personaje */
+.bg-gray-700 {
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(75, 75, 75, 0.8);
+    transform: translateY(-2px);
+  }
+}
+
+/* Animación para botones de dados */
+.bg-gray-700:active {
+  transform: scale(0.95);
+}
+
+/* Personalización para la barra de navegación secundaria */
+.bg-gray-800 {
+  background-color: rgba(28, 28, 28, 0.95) !important;
+}
+
+/* Animación para aparecer elementos al scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Personalización para artículos de noticias */
+.rounded-lg {
+  overflow: hidden;
+
+  img {
+    transition: transform 0.5s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+/* Estilización para la barra de navegación móvil */
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 40;
+
+  &.visible {
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de viñeta para imágenes */
+.vignette {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+  }
+}
+
+/* Personalización para listas */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Personalización de scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(18, 18, 18, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 0, 0, 0.6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 0, 0, 0.8);
+}
+
+/* Efectos para el botón de búsqueda */
+.p-button.p-button-text:hover {
+  background-color: rgba(139, 0, 0, 0.1) !important;
+}
+
+/* Efecto de niebla en el fondo para el pie de página */
+footer {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(18, 18, 18, 0.2));
+    pointer-events: none;
+  }
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .hero-section {
+    text-align: center;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Animación para botones de llamada a la acción */
+.p-button-lg {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.7s ease;
+  }
+
+  &:hover::after {
+    left: 100%;
+  }
+}
+
+/* Efectos para estado de partidas */
+.border-green-600 {
+  position: relative;
+
+  &::before {
+    content: 'Confirmada';
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    background-color: rgba(22, 163, 74, 0.2);
+    color: rgb(22, 163, 74);
+    border-radius: 4px;
+  }
+}
+
+.border-yellow-600 {
+  position: relative;
+
+  &::before {
+    content: 'Pendiente';
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    background-color: rgba(217, 119, 6, 0.2);
+    color: rgb(217, 119, 6);
+    border-radius: 4px;
+  }
+}
+
+:host ::ng-deep {
+  /* Personalización del dropdown para móviles */
+  .p-dropdown {
+    background-color: #1f2937 !important;
+    border: none !important;
+
+    .p-dropdown-label {
+      color: #d1d5db !important;
+      padding: 0.75rem 1rem !important;
+    }
+
+    .p-dropdown-trigger {
+      color: #d1d5db !important;
+    }
+
+    &:not(.p-disabled).p-focus {
+      box-shadow: none !important;
+      border-color: transparent !important;
+    }
+
+    .p-dropdown-panel {
+      background-color: #1f2937 !important;
+      border: 1px solid #374151 !important;
+    }
+
+    .p-dropdown-items-wrapper {
+      .p-dropdown-item {
+        color: #d1d5db !important;
+
+        &:hover {
+          background-color: #374151 !important;
+          color: #ef4444 !important;
+        }
+      }
+    }
+  }
+
+  /* Estilos para los botones de scroll */
+  .pi-chevron-left,
+  .pi-chevron-right {
+    font-size: 1rem;
+    background-color: rgba(31, 41, 55, 0.9);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+
+    &:hover {
+      background-color: rgba(55, 65, 81, 0.9);
+    }
+  }
+}
+
+/* Efecto de degradado para indicar que hay más contenido */
+.overflow-x-auto {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(
+      to right,
+      rgba(31, 41, 55, 0),
+      rgba(31, 41, 55, 0.9)
+    );
+    pointer-events: none;
+    opacity: 0.8;
+    z-index: 5;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(
+      to left,
+      rgba(31, 41, 55, 0),
+      rgba(31, 41, 55, 0.9)
+    );
+    pointer-events: none;
+    opacity: 0.8;
+    z-index: 5;
+  }
+}
+
+/* Mejora la animación de los elementos del menú */
+.submenu-item {
+  position: relative;
+  transition: all 0.3s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #ef4444;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  &:hover::after,
+  &.active::after {
+    width: 70%;
+  }
+
+  &.active {
+    color: #ef4444;
+    font-weight: 500;
+  }
+}
+
+/* Añade un pequeño indicador de carga activa para la opción seleccionada */
+a.text-red-500::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background-color: #ef4444;
+  border-radius: 50%;
+}
+
+/* Mejora la visualización en dispositivos extra pequeños */
+@media (max-width: 390px) {
+  .p-dropdown-label {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

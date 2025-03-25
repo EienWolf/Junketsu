@@ -7,6 +7,7 @@
 
 body {
   background-color: var(--p-primary-100);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 @layer base {
@@ -41,6 +42,7 @@ body {
     --icon-grip-1h: url('/assets/images/icons/grip-1h.svg');
     --icon-grip-2h: url('/assets/images/icons/grip-2h.svg');
     --icon-grip-2hr: url('/assets/images/icons/grip-2hr.svg');
+    --icon-switch-weapon: url('/assets/images/icons/switch-weapon.svg');
   }
 }
 

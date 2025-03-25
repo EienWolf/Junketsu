@@ -1,0 +1,398 @@
+<!-- weapon-detail.component.html -->
+<div class="text-color min-h-screen bg-slate-900">
+  <!-- Cabecera -->
+  <div class="border-b border-red-900 bg-gray-800 py-4">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between">
+        <a
+          [routerLink]="['/prefabs/weapons/']"
+          class="flex items-center text-gray-400 hover:text-red-500"
+        >
+          <i class="pi pi-arrow-left mr-2"></i>
+          <span>Volver al arsenal</span>
+        </a>
+        <h1 class="text-center font-serif text-2xl text-red-600">
+          DETALLE DEL ARMA
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="container mx-auto px-4 py-8">
+    <div
+      class="weapon-card overflow-hidden rounded-lg border border-gray-700 bg-[var(--p-content-background)] shadow-lg"
+    >
+      <!-- Sección superior - Información principal y propiedades -->
+      <div class="grid grid-cols-1 gap-6 p-6 xl:grid-cols-2">
+        <!-- Columna izquierda - Información básica -->
+        <div class="relative">
+          <!-- Nombre del arma y propiedades de lanzamiento -->
+          <div class="mb-4 flex items-center justify-between">
+            <h2 class="font-serif text-3xl font-bold text-red-600">
+              {{ weapon.name }}
+            </h2>
+            <div class="flex items-center">
+              <div
+                class="icon-svg-container h-8 w-8"
+                [ngClass]="{ invisible: !weapon.is_throwable }"
+              >
+                <app-svg-icon
+                  class="icon-svg h-6 w-6"
+                  [iconName]="'--icon-property-thrown'"
+                ></app-svg-icon>
+              </div>
+            </div>
+          </div>
+
+          <!-- Durabilidad -->
+          <div class="mb-6 flex items-center">
+            <div class="icon-svg-container mr-2 h-8 w-8">
+              <app-svg-icon
+                class="icon-svg h-6 w-6"
+                [iconName]="'--icon-durability-type-' + weapon.durability_type"
+              ></app-svg-icon>
+            </div>
+            <div class="flex">
+              <ng-container
+                *ngFor="let item of [].constructor(10); let i = index"
+              >
+                <app-svg-icon
+                  [iconClass]="
+                    weapon.durability > i
+                      ? ''
+                      : 'fill-[var(--p-content-background)] hover:fill-[var(--p-content-hover-color)]'
+                  "
+                  class="icon-svg h-7 w-7"
+                  [iconName]="'--icon-tracker'"
+                ></app-svg-icon>
+              </ng-container>
+            </div>
+          </div>
+
+          <!-- Descripción -->
+          <div
+            class="mb-6 rounded-lg border-l-4 border-red-800 bg-gray-700 p-4"
+          >
+            <p class="text-sm" [class.long]="weapon.is_long_description">
+              {{ weapon.description }}
+            </p>
+          </div>
+
+          <!-- Imagen central -->
+          <div class="mb-6 flex justify-center">
+            <img
+              [src]="weapon.image"
+              [alt]="weapon.name"
+              class="h-44 drop-shadow-[0_0_10px_rgba(153,27,27,0.5)]"
+            />
+          </div>
+
+          <!-- Propiedades en iconos -->
+          <div class="mb-6 grid grid-cols-12 place-items-center">
+            <!-- Habilidad -->
+            <div class="xs:col-span-3 attribute col-span-4">
+              <div class="icon-svg-container h-16 w-16">
+                <app-svg-icon
+                  class="icon-svg h-11 w-11"
+                  [iconName]="'--icon-ability-' + weapon.ability"
+                ></app-svg-icon>
+              </div>
+              <span class="text-[12px]">{{
+                'weapon.enum.ability.' + weapon.ability | translate
+              }}</span>
+            </div>
+
+            <!-- Empuñadura -->
+            <div class="xs:col-span-3 attribute col-span-4">
+              <div class="icon-svg-container h-16 w-16">
+                <app-svg-icon
+                  class="icon-svg h-11 w-11"
+                  [iconName]="'--icon-grip-' + weapon.grip_mode"
+                ></app-svg-icon>
+              </div>
+              <span class="text-[12px]">{{
+                'weapon.enum.grip.' + weapon.grip_mode | translate
+              }}</span>
+            </div>
+
+            <!-- Alcance -->
+            <div class="xs:col-span-3 attribute col-span-4">
+              <div class="icon-svg-container h-16 w-16">
+                <app-svg-icon
+                  class="icon-svg h-11 w-11"
+                  [iconName]="
+                    '--icon-range-' + weapon.range_type || weapon.attack_range
+                  "
+                ></app-svg-icon>
+                <div class="icon-svg-info h-8 w-8" *ngIf="weapon.range_value">
+                  <span class="font-serif text-lg font-bold">{{
+                    weapon.range_value
+                  }}</span>
+                </div>
+              </div>
+              <span class="text-[12px]">{{
+                'weapon.enum.range.' +
+                  (weapon.range_type || weapon.attack_range) | translate
+              }}</span>
+            </div>
+
+            <!-- Daño Base -->
+            <div class="xs:col-span-3 attribute col-span-4">
+              <div class="icon-svg-container h-16 w-16 pt-4">
+                <span class="font-serif text-4xl font-bold">{{
+                  weapon.base_damage
+                }}</span>
+              </div>
+              <span class="text-[12px]">{{
+                'weapon.basic-damage' | translate
+              }}</span>
+            </div>
+
+            <!-- Munición/Efecto de empuñadura -->
+            <div class="xs:col-span-3 attribute col-span-4">
+              <div class="icon-svg-container h-16 w-16">
+                <app-svg-icon
+                  class="icon-svg h-11 w-11"
+                  [iconName]="
+                    weapon.ammo_capacity
+                      ? '--icon-ammo-capacity'
+                      : '--icon-wield-effect'
+                  "
+                ></app-svg-icon>
+                <div class="icon-svg-info h-8 w-8" *ngIf="weapon.ammo_capacity">
+                  <span class="font-serif text-lg font-bold">{{
+                    weapon.ammo_capacity
+                  }}</span>
+                </div>
+              </div>
+              <span class="text-[12px]" *ngIf="weapon.ammo_capacity">{{
+                'weapon.ammo-capacity' | translate
+              }}</span>
+              <span class="text-[12px]" *ngIf="!weapon.ammo_capacity">{{
+                'weapon.enum.wield.' + weapon.wield_effect | translate
+              }}</span>
+            </div>
+
+            <!-- Velocidad de recarga -->
+            <div
+              class="xs:col-span-3 attribute col-span-4"
+              *ngIf="weapon.reloadrate"
+            >
+              <div class="icon-svg-container h-16 w-16">
+                <app-svg-icon
+                  class="icon-svg h-11 w-11"
+                  [iconName]="'--icon-reload-rate'"
+                ></app-svg-icon>
+                <div class="icon-svg-info h-8 w-8">
+                  <span class="font-serif text-lg font-bold">{{
+                    weapon.reloadrate
+                  }}</span>
+                </div>
+              </div>
+              <span class="text-[12px]">{{
+                'weapon.reload-rate' | translate
+              }}</span>
+            </div>
+
+            @if (weapon.shape) {
+              <div
+                [routerLink]="['/prefabs/weapons/', weapon.shape]"
+                class="xs:col-span-3 attribute col-span-4 cursor-pointer"
+              >
+                <div class="icon-svg-container h-16 w-16">
+                  <app-svg-icon
+                    class="icon-svg h-11 w-11"
+                    [iconName]="'--icon-switch-weapon'"
+                  ></app-svg-icon>
+                </div>
+                <span class="text-[12px]"> Change Form</span>
+              </div>
+            }
+          </div>
+
+          <!-- Notas -->
+          <div class="col-span-6">
+            <div class="text-[12px]">
+              <strong>{{ 'weapon.notes' | translate }}</strong>
+              <span class="pl-1" *ngIf="weapon.notes">{{ weapon.notes }}</span>
+              <ng-container
+                *ngIf="weapon.dynamic_notes && weapon.dynamic_notes.length > 0"
+              >
+                <span class="pl-1" *ngFor="let item of weapon.dynamic_notes">{{
+                  item | translate
+                }}</span>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna derecha - Ataques -->
+        <!-- Sección de Ataques Mejorada -->
+        <div class="attacks-section">
+          <h3 class="mb-4 flex items-center font-serif text-xl text-red-600">
+            <i class="pi pi-bolt mr-2"></i>
+            {{ 'weapon.attacks' | translate }}
+          </h3>
+
+          <div class="space-y-6">
+            <!-- Iteración sobre cada ataque -->
+            <div
+              *ngFor="let attack of weapon.attacks; let i = index"
+              class="bg-opacity-70 attack-card overflow-hidden rounded-lg border border-gray-700 bg-gray-800 transition-all duration-300 hover:border-red-800"
+            >
+              <!-- Cabecera del ataque con nombre y tipo -->
+              <div
+                class="flex items-center justify-between border-b border-gray-700 p-3"
+                [ngClass]="{
+                  'bg-gradient-to-r from-red-900/40 to-transparent':
+                    attack.is_basic,
+                  'bg-gradient-to-r from-blue-900/40 to-transparent':
+                    attack.is_secondary,
+                  'bg-gradient-to-r from-gray-700/40 to-transparent':
+                    !attack.is_basic && !attack.is_secondary,
+                }"
+              >
+                <div class="flex items-center">
+                  <app-svg-icon
+                    *ngIf="attack.is_basic"
+                    class="icon-svg mr-2 h-6 w-6"
+                    [iconName]="'--icon-basic-attack'"
+                  ></app-svg-icon>
+                  <h4 class="text-lg font-medium">{{ attack.attack_name }}</h4>
+                </div>
+                <div class="flex items-center rounded-lg bg-gray-900 px-2 py-1">
+                  <div class="flex">
+                    <ng-container
+                      *ngFor="
+                        let item of [].constructor(attack.stamina);
+                        let s = index
+                      "
+                    >
+                      <app-svg-icon
+                        class="icon-svg h-5 w-5"
+                        [iconName]="'--icon-stamina'"
+                      ></app-svg-icon>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-3 flex items-center">
+                <app-svg-icon
+                  *ngIf="attack.is_secondary"
+                  class="icon-svg ml-2 h-6 w-6"
+                  [iconName]="'--icon-secondary-attack'"
+                ></app-svg-icon>
+
+                <!-- Etiqueta de tipo de ataque -->
+                <span
+                  *ngIf="attack.is_basic"
+                  class="ml-2 rounded-full bg-red-900/60 px-2 py-0.5 text-xs"
+                >
+                  {{ 'attack.basic' | translate }}
+                </span>
+                <span
+                  *ngIf="attack.is_secondary"
+                  class="ml-2 rounded-full bg-blue-900/60 px-2 py-0.5 text-xs"
+                >
+                  {{ 'attack.secondary' | translate }}
+                </span>
+              </div>
+              <!-- Cuerpo del ataque con detalles -->
+              <div class="p-4">
+                <!-- Especificaciones en grid -->
+                <div class="mb-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+                  <!-- Fórmula de daño -->
+                  <div class="rounded bg-gray-900 p-2">
+                    <div class="mb-1 flex items-center">
+                      <span class="text-xs text-gray-400">{{
+                        'attack.damage-formula' | translate
+                      }}</span>
+                    </div>
+                    <p class="text-sm capitalize">
+                      {{ attack.damage_formula }}
+                    </p>
+                  </div>
+
+                  <!-- Tipo de daño -->
+                  <div class="rounded bg-gray-900 p-2">
+                    <div class="mb-1 flex items-center">
+                      <span class="text-xs text-gray-400">{{
+                        'attack.damage-type' | translate
+                      }}</span>
+                    </div>
+                    <p class="text-sm capitalize">{{ attack.damage_type }}</p>
+                  </div>
+
+                  <!-- Habilidad si existe -->
+                  <div class="rounded bg-gray-900 p-2" *ngIf="attack.ability">
+                    <div class="mb-1 flex items-center">
+                      <span class="text-xs text-gray-400">{{
+                        'attack.ability' | translate
+                      }}</span>
+                    </div>
+                    <p class="text-sm capitalize">{{ attack.ability }}</p>
+                  </div>
+                </div>
+
+                <!-- Descripción si existe -->
+                <div
+                  *ngIf="attack.description"
+                  class="mb-3 text-sm text-gray-300 italic"
+                >
+                  "{{ attack.description }}"
+                </div>
+
+                <!-- Crítico si existe -->
+                <div
+                  *ngIf="attack.critical_success"
+                  class="mt-3 rounded border-l-2 border-red-600 bg-gradient-to-r from-red-900/30 to-transparent p-3"
+                >
+                  <div class="mb-1 flex items-center">
+                    <app-svg-icon
+                      class="icon-svg mr-1 h-4 w-4"
+                      [iconName]="'--icon-critical'"
+                    ></app-svg-icon>
+                    <span class="text-sm font-medium text-red-400"
+                      >{{ 'attack.critical-success' | translate }}:
+                    </span>
+                  </div>
+                  <p class="text-sm text-gray-300">
+                    {{ attack.critical_success }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de descarga para dispositivos pequeños (visible solo en móvil) -->
+      <div class="p-4 md:hidden">
+        <button
+          (click)="generatePDF()"
+          class="flex w-full items-center justify-center rounded bg-red-700 px-4 py-3 text-white hover:bg-red-800"
+        >
+          <i class="pi pi-download mr-2"></i>
+          <span>Descargar Ficha</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para PDF -->
+<p-dialog
+  [modal]="true"
+  [(visible)]="visible"
+  [closeOnEscape]="true"
+  *ngIf="printOption === 'a5Vertical'"
+>
+  <div class="min-h-[1000px] min-w-[700px]">
+    <print-WeaponCardA5Vertical
+      #pdf_vertical
+      [index]="weapon.id"
+    ></print-WeaponCardA5Vertical>
+  </div>
+</p-dialog>

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MarkdownComponent } from 'ngx-markdown';
 import { catchError } from 'rxjs/operators';
@@ -22,8 +22,9 @@ class SlugInterface {
 @Component({
   selector: 'wiki-component',
   templateUrl: './wiki.component.html',
-  styleUrls: ['./wiki.component.css'],
+  styleUrls: ['./wiki.component.scss'],
   imports: [MarkdownComponent],
+  encapsulation: ViewEncapsulation.None,
 })
 export class WikiComponent implements OnInit {
   markdownPath = '';

@@ -37,6 +37,7 @@
     "durability": 5,
     "weapon_type": "trick_weapon",
     "durability_type": "trick_weapon",
+    "shape": "Serated_Blade_2",
     "is_throwable": false,
     "is_block": false,
     "is_agile": false,
@@ -80,6 +81,7 @@
     "name": "Serated Blade (Cleaver)",
     "durability": 5,
     "weapon_type": "trick_weapon",
+    "shape": "Serated_Blade",
     "durability_type": "trick_weapon",
     "is_throwable": false,
     "is_block": false,
@@ -117,7 +119,7 @@
         "is_secondary": false
       }
     ],
-    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhmVK95QFxj-s8D_vsRUk4GUPyNtdPwr1V9lmjtwtnK0Mr0IcGp4e-NfMwvDr2__2eQK6m42Q0rW7eLudMvhZ3VM-jMSqd0SCZXKAmbl2oLegygOHG0_4oFNOM-8d_BQUmPSZMj66zxP8rX/s250/01.+Saw+Cleaver+Descr.png",
+    "image": "https://fbi.cults3d.com/uploaders/14854341/illustration-file/17495627-6a4c-49a5-b6ec-e4300d1fb080/Open2.jpg",
     "id": "Serated_Blade_2"
   },
   {
