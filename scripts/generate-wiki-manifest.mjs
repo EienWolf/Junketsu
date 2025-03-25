@@ -17,6 +17,7 @@ function extractMetadata(filePath) {
       description: '',
       aliases: [],
       custom: {},
+      hasContent: false, // Nueva propiedad
     };
 
     // Procesar todos los comentarios
@@ -24,7 +25,6 @@ function extractMetadata(filePath) {
     let lastGenericComment = '';
 
     for (const comment of allComments) {
-      // Detectar comentarios con formato clave:valor
       if (comment.match(/^\w+:/)) {
         const [key, ...values] = comment.split(':');
         const value = values.join(':').trim();
@@ -44,24 +44,24 @@ function extractMetadata(filePath) {
             metadata.custom[key.trim()] = value;
         }
       } else {
-        // Guardar el último comentario genérico sin formato clave:valor
         lastGenericComment = comment;
       }
     }
 
-    // Prioridad para la descripción:
-    // 1. Comentario con formato description:
-    // 2. Último comentario genérico
-    // 3. Cadena vacía si no hay ninguno
     if (!metadata.description && lastGenericComment) {
       metadata.description = lastGenericComment;
     }
 
-    // Limpieza final de la descripción
     metadata.description = metadata.description
       .replace(/\n+/g, ' ')
       .replace(/\s{2,}/g, ' ')
       .trim();
+
+    // Verificar si hay contenido real aparte de los comentarios
+    const contentWithoutComments = content
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .trim();
+    metadata.hasContent = contentWithoutComments.length > 10;
 
     return metadata;
   } catch (error) {
@@ -70,6 +70,7 @@ function extractMetadata(filePath) {
       description: '',
       aliases: [],
       custom: {},
+      hasContent: false,
     };
   }
 }
@@ -104,6 +105,7 @@ function generateManifest(dir = WIKI_DIR, baseRoute = '') {
         ),
         route: baseRoute,
         description: metadata.description,
+        hasContent: metadata.hasContent, // Se agrega la propiedad al manifiesto
         ...metadata.custom,
       });
     }

@@ -103,3 +103,11 @@ _"Disparas con tu arco (ataque básico) + 1 Stamina. Tirás 2d6 → 0 dados. Sac
 
 > _"Desarmar no es solo técnica: es psicología. Un enemigo sin arma es un enemigo que duda."_  
 > **— Manual del Guerrero Táctico, Fragmento 9**
+
+<!--
+Tienes que usar el ataque basico del arma.
+El costo de estamina depende de los indicado por el ataque mas 1
+Realizas un golpe cuerpo a cuerpo dirigido hacia el agarre del arma del enemigo, buscando que suelte esta misma.
+Se tira con desventaja
+Super éxito: Consigues desarmar al enemigo.
+ -->

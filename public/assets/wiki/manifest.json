@@ -3,7 +3,8 @@
     "id": "cambiar-arma",
     "aliases": ["cambiar-arma", "cambiar arma", "cambiar_arma", "cambiararma"],
     "route": "es/actions/aditional/",
-    "description": "Cuesta 1 de estamina. Puedes cambiar entre tu arma principal y secundaria, retirar un escudo para usar un arma de dos manos, o volver a equipar un escudo."
+    "description": "Cuesta 1 de estamina. Puedes cambiar entre tu arma principal y secundaria, retirar un escudo para usar un arma de dos manos, o volver a equipar un escudo.",
+    "hasContent": false
   },
   {
     "id": "interactuar-con-entorno",
@@ -14,13 +15,15 @@
       "interactuarconentorno"
     ],
     "route": "es/actions/aditional/",
-    "description": "Cuesta 1 de estamina. Puedes recoger tu arma si fuiste desarmado, tomar un objeto del suelo, jalar una palanca, o cualquier otra acción que implique interacción con el entorno"
+    "description": "Cuesta 1 de estamina. Puedes recoger tu arma si fuiste desarmado, tomar un objeto del suelo, jalar una palanca, o cualquier otra acción que implique interacción con el entorno",
+    "hasContent": false
   },
   {
     "id": "recargar",
     "aliases": ["recargar"],
     "route": "es/actions/aditional/",
-    "description": "Cuesta 1 de estamina. Usas esta acción para recargar un arma que requiera munición. La cantidad de municion recargada en cada accion viene marcada en los datos del arma."
+    "description": "Cuesta 1 de estamina. Usas esta acción para recargar un arma que requiera munición. La cantidad de municion recargada en cada accion viene marcada en los datos del arma.",
+    "hasContent": false
   },
   {
     "id": "usar-habilidad",
@@ -31,13 +34,15 @@
       "usarhabilidad"
     ],
     "route": "es/actions/aditional/",
-    "description": "Cuesta 1 de estamina. Realizas una acción que utiliza una habilidad específica, como investigar al enemigo, detectar peligros o realizar una acción que requiere una habilidad especial. Estas habilidades pueden proporcionar información adicional o ventajas tácticas."
+    "description": "Cuesta 1 de estamina. Realizas una acción que utiliza una habilidad específica, como investigar al enemigo, detectar peligros o realizar una acción que requiere una habilidad especial. Estas habilidades pueden proporcionar información adicional o ventajas tácticas.",
+    "hasContent": false
   },
   {
     "id": "usar-objeto",
     "aliases": ["usar-objeto", "usar objeto", "usar_objeto", "usarobjeto"],
     "route": "es/actions/aditional/",
-    "description": "Cuesta 1 de estamina. Realiza una acción como tomar una poción, usar un antídoto, lanzar una granada, impregnar tu arma con veneno, entre otros."
+    "description": "Cuesta 1 de estamina. Realiza una acción como tomar una poción, usar un antídoto, lanzar una granada, impregnar tu arma con veneno, entre otros.",
+    "hasContent": false
   },
   {
     "id": "weapon-transformation",
@@ -48,61 +53,71 @@
       "weapontransformation"
     ],
     "route": "es/actions/aditional/",
-    "description": ""
+    "description": "",
+    "hasContent": true
   },
   {
     "id": "aturdir",
     "aliases": ["aturdir"],
     "route": "es/actions/defensive/",
-    "description": "Cuesta 3 de estamina. Tirada: Fortitude or Reflexes Tienes desventaja en la tirada. No hace daño. Aprovechas el momento oportuno para realizar un contrataque devastador, si la accion tiene éxito, ignoras daño y el enemigo gana el estado aturdido. Super Éxito: El enemigo además gana el estado vulnerable, hasta recibir un ataque o hasta el inicio de su turno."
+    "description": "Cuesta 3 de estamina. Tirada: Fortitude or Reflexes Tienes desventaja en la tirada. No hace daño. Aprovechas el momento oportuno para realizar un contrataque devastador, si la accion tiene éxito, ignoras daño y el enemigo gana el estado aturdido. Super Éxito: El enemigo además gana el estado vulnerable, hasta recibir un ataque o hasta el inicio de su turno.",
+    "hasContent": false
   },
   {
     "id": "bloquear",
     "aliases": ["bloquear"],
     "route": "es/actions/defensive/",
-    "description": "Cuesta 1 de estamina. Tirada: Fortitude or Reflexes Puedes usar un escudo o un arma para desviar el daño recibido. Se requiere de un objeto con la propiedad de bloqueo. Si se tiene éxito en la tirada anula completamente el ataque. Super éxito: Recuperas el punto de estamina utilizado."
+    "description": "Cuesta 1 de estamina. Tirada: Fortitude or Reflexes Puedes usar un escudo o un arma para desviar el daño recibido. Se requiere de un objeto con la propiedad de bloqueo. Si se tiene éxito en la tirada anula completamente el ataque. Super éxito: Recuperas el punto de estamina utilizado.",
+    "hasContent": false
   },
   {
     "id": "contragolpe",
     "aliases": ["contragolpe"],
     "route": "es/actions/defensive/",
-    "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Sin miedo a nada decides recibir el ataque del enemigo aprovechando la oportunidad para tu tambien conectar un golpe contra el. Si se tiene éxito en la tirada tanto tu como tu enemigo reciben el daño indicado en el ataque. Super éxito: Logras evitar el daño del ataque enemigo."
+    "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Sin miedo a nada decides recibir el ataque del enemigo aprovechando la oportunidad para tu tambien conectar un golpe contra el. Si se tiene éxito en la tirada tanto tu como tu enemigo reciben el daño indicado en el ataque. Super éxito: Logras evitar el daño del ataque enemigo.",
+    "hasContent": false
   },
   {
     "id": "esquivar",
     "aliases": ["esquivar"],
     "route": "es/actions/defensive/",
-    "description": "Cuesta 1 de estamina. Tirada: Reflexes Intentas esquivar un ataque enemigo. Si tu tirada supera la del atacante, evitas por completo el daño y puedes moverte 1 casilla desde tu posición actual. Super Éxito: Puedes moverte una casilla adicional."
+    "description": "Cuesta 1 de estamina. Tirada: Reflexes Intentas esquivar un ataque enemigo. Si tu tirada supera la del atacante, evitas por completo el daño y puedes moverte 1 casilla desde tu posición actual. Super Éxito: Puedes moverte una casilla adicional.",
+    "hasContent": false
   },
   {
     "id": "resistir",
     "aliases": ["resistir"],
     "route": "es/actions/defensive/",
-    "description": "Cuesta 1 de estamina*. Tirada: Fortitude Te preparas para absorber el impacto del ataque enemigo, minimizando el daño recibido. Mitgas puntos de daño igual a tu endurance por cada punto de estamina gastado, esto tiene efecto incluso cuando fallas la tirada. Si tienes exito en la tirada, obtienes una mitigacion extra por cada exito por encima. Super Éxito: Mitigas por completo el daño del ataque, formando una defensa impenetrable."
+    "description": "Cuesta 1 de estamina*. Tirada: Fortitude Te preparas para absorber el impacto del ataque enemigo, minimizando el daño recibido. Mitgas puntos de daño igual a tu endurance por cada punto de estamina gastado, esto tiene efecto incluso cuando fallas la tirada. Si tienes exito en la tirada, obtienes una mitigacion extra por cada exito por encima. Super Éxito: Mitigas por completo el daño del ataque, formando una defensa impenetrable.",
+    "hasContent": false
   },
   {
     "id": "riposte",
     "aliases": ["riposte"],
     "route": "es/actions/defensive/",
-    "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Sin miedo a nada decides recibir el ataque del enemigo aprovechando la oportunidad para tu tambien conectar un golpe contra el. Si se tiene éxito en la tirada logras evitar el daño enemigo, ademas de infligir un poco de daño en respuesta, este daño sera igual al daño base indicado en el arma, ignorando la formula de daño del ataque basico utilizado para esta accion. Super éxito: Recuperas un punto de estamina utilizado."
+    "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Sin miedo a nada decides recibir el ataque del enemigo aprovechando la oportunidad para tu tambien conectar un golpe contra el. Si se tiene éxito en la tirada logras evitar el daño enemigo, ademas de infligir un poco de daño en respuesta, este daño sera igual al daño base indicado en el arma, ignorando la formula de daño del ataque basico utilizado para esta accion. Super éxito: Recuperas un punto de estamina utilizado.",
+    "hasContent": false
   },
   {
     "id": "correr",
     "aliases": ["correr"],
     "route": "es/actions/movement/",
-    "description": "Cuesta 1 de estamina. El personaje puede moverse adicionalmente su velocidad de movimiento regular con la condición de que sea en una línea recta o semirrecta. Solo puede usarse una vez por turno."
+    "description": "Cuesta 1 de estamina. El personaje puede moverse adicionalmente su velocidad de movimiento regular con la condición de que sea en una línea recta o semirrecta. Solo puede usarse una vez por turno.",
+    "hasContent": false
   },
   {
     "id": "desenganchar",
     "aliases": ["desenganchar"],
     "route": "es/actions/movement/",
-    "description": "Cuesta 2 de estamina*. El personaje se puede mover 2 casillas sin provocar ataques de oportunidad."
+    "description": "Cuesta 2 de estamina*. El personaje se puede mover 2 casillas sin provocar ataques de oportunidad.",
+    "hasContent": false
   },
   {
     "id": "levantarse",
     "aliases": ["levantarse"],
     "route": "es/actions/movement/",
-    "description": "Cuesta 1 de estamina. Si el personaje está en el estado tumbado puede salir de el con esta accion."
+    "description": "Cuesta 1 de estamina. Si el personaje está en el estado tumbado puede salir de el con esta accion.",
+    "hasContent": false
   },
   {
     "id": "movimeinto-extra",
@@ -113,7 +128,8 @@
       "movimeintoextra"
     ],
     "route": "es/actions/movement/",
-    "description": "Cuesta 1 de estamina*. Por cada punto de estamina gastado, el personaje puede moverse 2 casillas adicionales a su movimiento regular."
+    "description": "Cuesta 1 de estamina*. Por cada punto de estamina gastado, el personaje puede moverse 2 casillas adicionales a su movimiento regular.",
+    "hasContent": false
   },
   {
     "id": "movimiento-regular",
@@ -124,7 +140,8 @@
       "movimientoregular"
     ],
     "route": "es/actions/movement/",
-    "description": "No cuesta estamina. Permite moverte hasta tu velocidad base (ej: 6 casillas para humanos)."
+    "description": "No cuesta estamina. Permite moverte hasta tu velocidad base (ej: 6 casillas para humanos).",
+    "hasContent": true
   },
   {
     "id": "prueba-de-habilidad",
@@ -135,13 +152,15 @@
       "pruebadehabilidad"
     ],
     "route": "es/actions/movement/",
-    "description": "Cuesta 1 de estamina. El personaje realiza una tirada de Atletismo o alguna otra habilidad para ejecutar movimientos especializados como saltar, escalar, nadar, etc."
+    "description": "Cuesta 1 de estamina. El personaje realiza una tirada de Atletismo o alguna otra habilidad para ejecutar movimientos especializados como saltar, escalar, nadar, etc.",
+    "hasContent": false
   },
   {
     "id": "atacar",
     "aliases": ["atacar"],
     "route": "es/actions/primary/",
-    "description": "Realizas un ataque directo contra tu oponente, ya sea con un arma cuerpo a cuerpo o a distancia. El costo de stamina varía dependiendo del tipo de arma o habilidad utilizada, permitiendo flexibilidad en el uso de recursos."
+    "description": "Realizas un ataque directo contra tu oponente, ya sea con un arma cuerpo a cuerpo o a distancia. El costo de stamina varía dependiendo del tipo de arma o habilidad utilizada, permitiendo flexibilidad en el uso de recursos.",
+    "hasContent": false
   },
   {
     "id": "defensa-mejorada",
@@ -152,19 +171,22 @@
       "defensamejorada"
     ],
     "route": "es/actions/primary/",
-    "description": "No gasta estamina. Adoptas una postura defensiva, enfocándote en anticipar los ataques del enemigo. Obtienes un bonificador de +1 dado en todas tus tiradas de defensa (Defender, Resistir, Esquivar, Contragolpe) hasta el inicio de tu siguiente turno."
+    "description": "No gasta estamina. Adoptas una postura defensiva, enfocándote en anticipar los ataques del enemigo. Obtienes un bonificador de +1 dado en todas tus tiradas de defensa (Defender, Resistir, Esquivar, Contragolpe) hasta el inicio de tu siguiente turno.",
+    "hasContent": false
   },
   {
     "id": "descanso",
     "aliases": ["descanso"],
     "route": "es/actions/primary/",
-    "description": "No gasta estamina. Dedicas un breve tiempo a recuperar tu energía, analizando el campo de batalla y preparándote para el siguiente asalto. Recuperas +2 puntos de stamina al comienzo de la siguiente ronda. Eliminas el estado desestabilizado en caso de tenerlo. Para que esta accion surta efecto no debes haber gastado estamina durante tu turno, gasta estamina en acciones fuera de tu turno comno esquiar al recbir un ataque enemigo no afecta en las condificones de esta accion."
+    "description": "No gasta estamina. Dedicas un breve tiempo a recuperar tu energía, analizando el campo de batalla y preparándote para el siguiente asalto. Recuperas +2 puntos de stamina al comienzo de la siguiente ronda. Eliminas el estado desestabilizado en caso de tenerlo. Para que esta accion surta efecto no debes haber gastado estamina durante tu turno, gasta estamina en acciones fuera de tu turno comno esquiar al recbir un ataque enemigo no afecta en las condificones de esta accion.",
+    "hasContent": false
   },
   {
     "id": "maniobras",
     "aliases": ["maniobras"],
     "route": "es/actions/primary/",
-    "description": "Realizas una maniobra especial para tener una ventaja tactica. El costo de stamina varía dependiendo de la maniobra realizada, permitiendo flexibilidad en el uso de recursos."
+    "description": "Realizas una maniobra especial para tener una ventaja tactica. El costo de stamina varía dependiendo de la maniobra realizada, permitiendo flexibilidad en el uso de recursos.",
+    "hasContent": false
   },
   {
     "id": "preparar-accion",
@@ -175,7 +197,8 @@
       "prepararaccion"
     ],
     "route": "es/actions/primary/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "ataque-de-oportunidad",
@@ -186,7 +209,8 @@
       "ataquedeoportunidad"
     ],
     "route": "es/actions/reactions/",
-    "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Realizas un ataque rápido contra un enemigo que ha cometido un error estratégico al moverse fuera de tu rango de ataque."
+    "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Realizas un ataque rápido contra un enemigo que ha cometido un error estratégico al moverse fuera de tu rango de ataque.",
+    "hasContent": false
   },
   {
     "id": "ataque-de-precausaion",
@@ -197,19 +221,22 @@
       "ataquedeprecausaion"
     ],
     "route": "es/actions/reactions/",
-    "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Este ataque se realiza con armas de alcance melee que permiten atacar a un enemigo mientras entra en tu zona de amenaza. Esta es la version para armas cuerpo a cuerpo o con la propiedad reach."
+    "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Este ataque se realiza con armas de alcance melee que permiten atacar a un enemigo mientras entra en tu zona de amenaza. Esta es la version para armas cuerpo a cuerpo o con la propiedad reach.",
+    "hasContent": false
   },
   {
     "id": "interponerse",
     "aliases": ["interponerse"],
     "route": "es/actions/reactions/",
-    "description": "Puedes realizar la acción de proteger a un aliado con la opción de realizar cualquier tirada de reacción defensiva con su respectivo costo de estamina."
+    "description": "Puedes realizar la acción de proteger a un aliado con la opción de realizar cualquier tirada de reacción defensiva con su respectivo costo de estamina.",
+    "hasContent": false
   },
   {
     "id": "proteger",
     "aliases": ["proteger"],
     "route": "es/actions/reactions/",
-    "description": "Gasta 1 de stamina para recibir el golpe del enemigo protegiendo a un aliado adyacente, cuenta como si hubieses defendido con cero exitos. Se puede proteger a alguien más lejano gastando acciones de movimiento adicional"
+    "description": "Gasta 1 de stamina para recibir el golpe del enemigo protegiendo a un aliado adyacente, cuenta como si hubieses defendido con cero exitos. Se puede proteger a alguien más lejano gastando acciones de movimiento adicional",
+    "hasContent": false
   },
   {
     "id": "tiro-de-precausion",
@@ -220,7 +247,8 @@
       "tirodeprecausion"
     ],
     "route": "es/actions/reactions/",
-    "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Este ataque se realiza con armas de alcance melee que permiten atacar a un enemigo mientras entra en tu zona de amenaza. Esta es la version para armas a distancia y sigue las siguiente reglas: - Un enemigo entra en rango de ataque corto(6 casilla o menos). - El ataque siempre sera consideracion como rango corto. - Aplica para objetos arrojadizos con el ataque throw"
+    "description": "Cuesta 1 de estamina mas el costo del ataque. Tirada: Attack skill(Might, Presicion, Focus, Evoke) Solo se pueden usar ataques del armma que esten marcados como basicos. Este ataque se realiza con armas de alcance melee que permiten atacar a un enemigo mientras entra en tu zona de amenaza. Esta es la version para armas a distancia y sigue las siguiente reglas: - Un enemigo entra en rango de ataque corto(6 casilla o menos). - El ataque siempre sera consideracion como rango corto. - Aplica para objetos arrojadizos con el ataque throw",
+    "hasContent": false
   },
   {
     "id": "accion-rapida",
@@ -231,7 +259,8 @@
       "accionrapida"
     ],
     "route": "es/actions/secondary/",
-    "description": "Puedes elegir una de las acciones adicionales y llevarla a cabo con un punto menos de stamina del requerido habitualmente. Esta acción te ofrece flexibilidad para realizar tareas importantes sin agotar tanto tus recursos."
+    "description": "Puedes elegir una de las acciones adicionales y llevarla a cabo con un punto menos de stamina del requerido habitualmente. Esta acción te ofrece flexibilidad para realizar tareas importantes sin agotar tanto tus recursos.",
+    "hasContent": false
   },
   {
     "id": "ataque-rapido",
@@ -242,13 +271,15 @@
       "ataquerapido"
     ],
     "route": "es/actions/secondary/",
-    "description": "Realizas un ataque directo contra tu oponente, ya sea con un arma cuerpo a cuerpo o a distancia. El costo de stamina varía dependiendo del tipo de arma o habilidad utilizada, permitiendo flexibilidad en el uso de recursos. El ataque o habilidad utilziados deben estar marcados con la propiedad sencundario."
+    "description": "Realizas un ataque directo contra tu oponente, ya sea con un arma cuerpo a cuerpo o a distancia. El costo de stamina varía dependiendo del tipo de arma o habilidad utilizada, permitiendo flexibilidad en el uso de recursos. El ataque o habilidad utilziados deben estar marcados con la propiedad sencundario.",
+    "hasContent": false
   },
   {
     "id": "ayudar",
     "aliases": ["ayudar"],
     "route": "es/actions/secondary/",
-    "description": "Cuesta 1 de estamina. Te enfocas en apoyar a un miembro de tu equipo cercano proporcionándole algún tipo de ayuda coordinada. Tu aliado gana un bonificador de 1 dados a su siguiente tirada de ataque, habilidad o defensa."
+    "description": "Cuesta 1 de estamina. Te enfocas en apoyar a un miembro de tu equipo cercano proporcionándole algún tipo de ayuda coordinada. Tu aliado gana un bonificador de 1 dados a su siguiente tirada de ataque, habilidad o defensa.",
+    "hasContent": false
   },
   {
     "id": "maniobra-rapida",
@@ -259,7 +290,8 @@
       "maniobrarapida"
     ],
     "route": "es/actions/secondary/",
-    "description": "Realizas una maniobra especial para tener una ventaja tactica. El costo de stamina varía dependiendo de la maniobra realizada, permitiendo flexibilidad en el uso de recursos. La maniobra tiene que estar marcada con la propiedad secundaria."
+    "description": "Realizas una maniobra especial para tener una ventaja tactica. El costo de stamina varía dependiendo de la maniobra realizada, permitiendo flexibilidad en el uso de recursos. La maniobra tiene que estar marcada con la propiedad secundaria.",
+    "hasContent": false
   },
   {
     "id": "preparar-accion-secundaria",
@@ -270,61 +302,71 @@
       "prepararaccionsecundaria"
     ],
     "route": "es/actions/secondary/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "agonizando",
     "aliases": ["agonizando"],
     "route": "es/ailments/",
-    "description": ""
+    "description": "Agonizando Te han dado un golpe que ha sobrepasado tus hit-points restantes, por lo que no podrás realizar acciones aun y cuando cuentes con stamina para realizarlas. Haces una prueba de endurance con dificultad igual al numero de heridas abiertas, si se logra te recuperas con hit-points equivalentes a tu umbral de heridas mas tu endurance. No todos los items curativos pueden sacarte de este estado, usar un item curativo fuerza la tirada si la pasas obtienen ambos beneficios, si no solo los del item. Un jugador puedo usar su accion de apoyo para darte ventaja en esta tirada",
+    "hasContent": false
   },
   {
     "id": "aturdido",
     "aliases": ["aturdido"],
     "route": "es/ailments/",
-    "description": ""
+    "description": "El personaje esta fuera de combate, incapaz de defenderse o usar cualquier reacción, este estado termina al principio de su turno o una vez que se ha recibido daño.",
+    "hasContent": false
   },
   {
     "id": "defensivo",
     "aliases": ["defensivo"],
     "route": "es/ailments/",
-    "description": ""
+    "description": "Estado que se obtiene al usar la accion primaria de defensa mejorada",
+    "hasContent": false
   },
   {
     "id": "desestabilizado",
     "aliases": ["desestabilizado"],
     "route": "es/ailments/",
-    "description": ""
+    "description": "Te encuentras tambaleando, incapaz de hacer movimientos con precisión, tienes un penalizador de 1 dado a cualquier tirada de ataque o defensa. Una de la formas de eliminar el estado es gastar tu acción de movimiento en ello.",
+    "hasContent": false
   },
   {
     "id": "envenenado",
     "aliases": ["envenenado"],
     "route": "es/ailments/",
-    "description": ""
+    "description": "Al final de tu turno puedes realizar una prueba de tolerancia para mitigar el daño del veneno o incluso quitarte por completo este estado. Cada veneno tiene definida su duración, daño y la dificultad necesaria para contrarrestarlo, estos valores pueden cambiar durante el combate.",
+    "hasContent": false
   },
   {
     "id": "quemado",
     "aliases": ["quemado"],
     "route": "es/ailments/",
-    "description": ""
+    "description": "Recibes 5 puntos de daño de fuego, este daño no puede ser mitigado por armaduras normales, para quitarte el fuego puedes usar tu acción secundaria, tirada de cunning o athetics, superando 2 exitos.",
+    "hasContent": false
   },
   {
     "id": "restringido",
     "aliases": ["restringido"],
     "route": "es/ailments/",
-    "description": ""
+    "description": "Tienes desventaja en todas las tiradas de ataque o defensa. Una de la formas de quitarse el estado es con tirada enfrentada al inicio de tu turno.",
+    "hasContent": false
   },
   {
     "id": "sangrando",
     "aliases": ["sangrando"],
     "route": "es/ailments/",
-    "description": ""
+    "description": "Cada punto de sangrado te quita 1 punto de vida al final de tu turno, el sangrado termina automáticamente al terminar la batalla, o pues ir tratándolo con tiradas de supervivencia (a debatir cuanto sangrado te quitas con cada intento y que dificultad representa)",
+    "hasContent": false
   },
   {
     "id": "tumbado",
     "aliases": ["tumbado"],
     "route": "es/ailments/",
-    "description": ""
+    "description": "Movimiento limitado, igual a la mitad de tu velocidad base Los atacantes a melee tienen ventajas Los atacantes a distancia tienen desventaja Tienes desventaja en los ataques a melee",
+    "hasContent": false
   },
   {
     "id": "ataque-basico",
@@ -335,7 +377,8 @@
       "ataquebasico"
     ],
     "route": "es/attack/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "ataque-de-lanzamiento",
@@ -346,7 +389,8 @@
       "ataquedelanzamiento"
     ],
     "route": "es/attack/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "ataque-no-letal",
@@ -357,7 +401,8 @@
       "ataquenoletal"
     ],
     "route": "es/attack/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "ataque-secundario",
@@ -368,13 +413,15 @@
       "ataquesecundario"
     ],
     "route": "es/attack/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "agarre",
     "aliases": ["agarre"],
     "route": "es/attack/maneuvers/",
-    "description": ""
+    "description": "Cuesta 2 de stamina Tirada de Fortitude vs Fortitude Solo se puede agarrar creaturas de un tamaño de hasta una escala mayor a la tuya, ambos atacante y defensor pasan a estar en estado Restringido. No hace daño. Super éxito: 1 menos de estamina. Si tu acción de agarra es la causante de este estado puedes librarte de el cuando quieras, liberando al enemigo en consecuencia.",
+    "hasContent": false
   },
   {
     "id": "ataque-apoyado",
@@ -385,7 +432,8 @@
       "ataqueapoyado"
     ],
     "route": "es/attack/maneuvers/",
-    "description": ""
+    "description": "Solo aplica a distancia Tienes que usar el ataque basico del arma. El costo de estamina depende de los indicado por el ataque Tienes que estar en estado tumbado Ganas ventaja en las tiradas de ataque",
+    "hasContent": false
   },
   {
     "id": "ataque-en-altura",
@@ -396,7 +444,8 @@
       "ataqueenaltura"
     ],
     "route": "es/attack/maneuvers/",
-    "description": ""
+    "description": "Tienes que usar el ataque basico del arma. El costo de estamina depende de los indicado por el ataque Requieres tener ventaja de altura(5 pies) Tienes un dado extra a la tirada de ataque",
+    "hasContent": false
   },
   {
     "id": "ataque-en-carrera",
@@ -407,25 +456,29 @@
       "ataqueencarrera"
     ],
     "route": "es/attack/maneuvers/",
-    "description": ""
+    "description": "Solo aplica para armas a mele. Tienes que usar el ataque basico del arma. El costo de estamina depende de los indicado por el ataque mas 1(si precede a la accion de correr no se gasta este punto de estamina adicional) Requieres tener 2 casillas minimo de distancia contra el enemigo. Tienes +2 puntos al daño del arma",
+    "hasContent": false
   },
   {
     "id": "desarmar",
     "aliases": ["desarmar"],
     "route": "es/attack/maneuvers/",
-    "description": ""
+    "description": "Tienes que usar el ataque basico del arma. El costo de estamina depende de los indicado por el ataque mas 1 Realizas un golpe cuerpo a cuerpo dirigido hacia el agarre del arma del enemigo, buscando que suelte esta misma. Se tira con desventaja Super éxito: Consigues desarmar al enemigo.",
+    "hasContent": true
   },
   {
     "id": "desestabilizar",
     "aliases": ["desestabilizar"],
     "route": "es/attack/maneuvers/",
-    "description": ""
+    "description": "Tienes que usar el ataque basico del arma. El costo de estamina depende de los indicado por el ataque mas 2 Haces que el enemigo pierda el equilibrio. Realizas un ataque contra la defensa del enemigo y si acierta, este gana el estado desestabilizado hasta que realice una acción de descanso. Super éxito: Aturdes al enemigo en lugar de desestabilizarlo.",
+    "hasContent": false
   },
   {
     "id": "empuje",
     "aliases": ["empuje"],
     "route": "es/attack/maneuvers/",
-    "description": ""
+    "description": "Cuesta 2 de stamina Funciona como accion secundaria tambien Tirada de Fortitude vs Fortitude Mueves el enemigo según la diferencia de exitos, solo puedes empujar a enemigos de hasta una escala por encima Super éxito: Tumba al enemigo",
+    "hasContent": false
   },
   {
     "id": "reducir-armadura",
@@ -436,7 +489,8 @@
       "reducirarmadura"
     ],
     "route": "es/attack/maneuvers/",
-    "description": ""
+    "description": "Solo aplica para armas a mele. Tienes que usar el ataque basico del arma. El costo de estamina depende de los indicado por el ataque mas 1 Gastando 1 punt5o de durabilidad en tu arma puedes reducir la armadura de tu enemigo en 1 Super éxito: la armadura del enemigo reduce en 2",
+    "hasContent": false
   },
   {
     "id": "tajo-circular",
@@ -447,13 +501,15 @@
       "tajocircular"
     ],
     "route": "es/attack/maneuvers/",
-    "description": ""
+    "description": "Haces una tirada de ataque contra el primer enemigo y vas reduciendo tus éxitos contra los demás.",
+    "hasContent": false
   },
   {
     "id": "super-exito",
     "aliases": ["super-exito", "super exito", "super_exito", "superexito"],
     "route": "es/attack/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "combat-points",
@@ -464,192 +520,224 @@
       "combatpoints"
     ],
     "route": "es/character/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "cleanroll",
     "aliases": ["cleanroll"],
     "route": "es/character/skills/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "cunning",
     "aliases": ["cunning"],
     "route": "es/character/skills/dexterity/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "infiltration",
     "aliases": ["infiltration"],
     "route": "es/character/skills/dexterity/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "precision",
     "aliases": ["precision"],
     "route": "es/character/skills/dexterity/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "reflexes",
     "aliases": ["reflexes"],
     "route": "es/character/skills/dexterity/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "focus",
     "aliases": ["focus"],
     "route": "es/character/skills/mental/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "investigation",
     "aliases": ["investigation"],
     "route": "es/character/skills/mental/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "survive",
     "aliases": ["survive"],
     "route": "es/character/skills/mental/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "willpower",
     "aliases": ["willpower"],
     "route": "es/character/skills/mental/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "evoke",
     "aliases": ["evoke"],
     "route": "es/character/skills/presence/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "insight",
     "aliases": ["insight"],
     "route": "es/character/skills/presence/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "instinct",
     "aliases": ["instinct"],
     "route": "es/character/skills/presence/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "resilence",
     "aliases": ["resilence"],
     "route": "es/character/skills/presence/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "reroll",
     "aliases": ["reroll"],
     "route": "es/character/skills/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "saferoll",
     "aliases": ["saferoll"],
     "route": "es/character/skills/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "athletics",
     "aliases": ["athletics"],
     "route": "es/character/skills/strength/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "fortitude",
     "aliases": ["fortitude"],
     "route": "es/character/skills/strength/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "might",
     "aliases": ["might"],
     "route": "es/character/skills/strength/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "resistance",
     "aliases": ["resistance"],
     "route": "es/character/skills/strength/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "desterity",
     "aliases": ["desterity"],
     "route": "es/character/stats/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "endurance",
     "aliases": ["endurance"],
     "route": "es/character/stats/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "mental",
     "aliases": ["mental"],
     "route": "es/character/stats/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "presence",
     "aliases": ["presence"],
     "route": "es/character/stats/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "stamine",
     "aliases": ["stamine"],
     "route": "es/character/stats/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "strength",
     "aliases": ["strength"],
     "route": "es/character/stats/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "stress",
     "aliases": ["stress"],
     "route": "es/character/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "wounds",
     "aliases": ["wounds"],
     "route": "es/character/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "adventage",
     "aliases": ["adventage"],
     "route": "es/general/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "bonus-dice",
     "aliases": ["bonus-dice", "bonus dice", "bonus_dice", "bonusdice"],
     "route": "es/general/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "disventage",
     "aliases": ["disventage"],
     "route": "es/general/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   },
   {
     "id": "penalty-dice",
     "aliases": ["penalty-dice", "penalty dice", "penalty_dice", "penaltydice"],
     "route": "es/general/",
-    "description": ""
+    "description": "",
+    "hasContent": false
   }
 ]
