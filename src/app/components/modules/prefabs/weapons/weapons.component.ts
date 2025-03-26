@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Weapon } from '../../../../models/weapon.model';
+import { WeaponService } from '../../../../services/weapon.service';
 
 @Component({
   selector: 'app-weapons',
@@ -22,32 +23,17 @@ export class WeaponsComponent {
     { label: 'Armas de fuego', value: 'firearm' },
   ];
 
-  constructor() {}
+  constructor(private readonly weaponservice: WeaponService) {}
 
   ngOnInit(): void {
-    this.loadWeapons();
+    this.weapons = this.weaponservice.getWeapons();
+    this.filteredWeapons = this.weapons;
+    this.obtenerArmasAsync();
   }
 
-  loadWeapons(): void {
-    try {
-      const weaponsData = localStorage.getItem('weapons');
-      if (weaponsData) {
-        this.weapons = JSON.parse(weaponsData);
-        this.weapons = this.weapons.filter((item: Weapon) => {
-          return item.is_alternate_form != true;
-        });
-
-        this.filteredWeapons = [...this.weapons];
-        // Si hay armas, selecciona la primera por defecto
-        if (this.weapons.length > 0) {
-          this.selectedWeapon = this.weapons[0];
-        }
-      } else {
-        console.log('No se encontraron armas en localStorage');
-      }
-    } catch (error) {
-      console.error('Error al cargar las armas:', error);
-    }
+  async obtenerArmasAsync() {
+    this.weapons = await this.weaponservice.getWeapons();
+    //linea siguiente
   }
 
   selectWeapon(weapon: Weapon): void {

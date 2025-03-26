@@ -207,7 +207,7 @@ export class NavComponent implements OnInit {
   }
 
   dummy() {
-    this.weapon_service.loadDummyData();
+    this.weapon_service.loadWeaponCoreData();
   }
 
   isSelected(item: MenuItem): boolean {
@@ -250,7 +250,7 @@ export class NavComponent implements OnInit {
       alert('Check your email for the login link!');
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message);
+        alert(error);
       }
     } finally {
       this.email_form.reset();
