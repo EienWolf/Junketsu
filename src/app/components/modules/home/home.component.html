@@ -9,10 +9,7 @@
         class="flex items-center justify-between overflow-x-auto pb-1 whitespace-nowrap"
       >
         <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
-          >Manuales</a
-        >
-        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
-          >Clases</a
+          >Arquetipos</a
         >
         <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
           >Linajes</a
@@ -22,16 +19,15 @@
           class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
           >Armas</a
         >
-        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
-          >Objetos</a
+        <a
+          [routerLink]="['prefabs/attires']"
+          class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
+          >Attires</a
         >
-        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
-          >Hechizos</a
-        >
-        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
-          >Bestiario</a
-        >
-        <a href="#" class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
+
+        <a
+          [routerLink]="['prefabs/items']"
+          class="px-3 py-1 text-sm text-gray-300 hover:text-red-500"
           >Herramientas</a
         >
       </div>
@@ -50,7 +46,7 @@
 
       <!-- Contenido del hero -->
       <div
-        class="relative container mx-auto flex flex-col items-center px-4 py-16 md:flex-row"
+        class="relative mx-auto flex flex-col items-center px-4 py-16 md:flex-row"
       >
         <!-- Texto del hero -->
         <div class="mb-10 text-center md:mb-0 md:w-1/2 md:text-left">
@@ -77,7 +73,7 @@
         </div>
 
         <!-- Tarjeta de personaje destacado - Similar a D&D Beyond -->
-        <div class="flex justify-center md:w-1/2 md:justify-end">
+        <div class="mt-6 flex justify-center md:w-1/2 md:justify-end">
           <p-card
             styleClass="bg-gray-800 border border-red-900 w-full max-w-sm"
           >
@@ -234,7 +230,7 @@
           <div class="lg:w-8/12"></div>
 
           <!-- Columna lateral (30%) -->
-          <div class="lg:w-4/12">
+          <div class="">
             <!-- Tus Personajes -->
             <div class="mb-6 rounded-lg bg-gray-800 p-5">
               <h3 class="mb-4 flex items-center text-xl font-medium">

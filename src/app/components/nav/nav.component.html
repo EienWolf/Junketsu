@@ -16,12 +16,6 @@
     </a>
   </ng-template>
   <ng-template #item let-item>
-    <ng-container *ngIf="item.routerLink; else urlRef">
-      <a [routerLink]="[item.routerLink]" class="p-menubar-item-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label | translate }}</span>
-      </a>
-    </ng-container>
     <ng-template #urlRef>
       <a
         *ngIf="item.url; else noLink"

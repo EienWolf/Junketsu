@@ -1,38 +1,5 @@
 import { Component } from '@angular/core';
-
-interface Attack {
-  attack_name: string;
-  stamina: number;
-  damage_type: string;
-  damage_formula: string;
-  ability: string;
-  description: string;
-  critical_success: string;
-  is_basic: boolean;
-  is_secondary: boolean;
-}
-
-interface Weapon {
-  name: string;
-  durability: number;
-  weapon_type: string;
-  durability_type: string;
-  is_throwable: boolean;
-  is_block: boolean;
-  is_agile: boolean;
-  description: string;
-  notes: string;
-  base_damage: string;
-  ability: string;
-  attack_range: string;
-  grip_mode: string;
-  wield_effect: string;
-  ammo_capacity: string;
-  reloadrate: string;
-  attacks: Attack[];
-  image: string;
-  id: string;
-}
+import { Weapon } from '../../../../models/weapon.model';
 
 @Component({
   selector: 'app-weapons',
@@ -66,8 +33,11 @@ export class WeaponsComponent {
       const weaponsData = localStorage.getItem('weapons');
       if (weaponsData) {
         this.weapons = JSON.parse(weaponsData);
-        this.filteredWeapons = [...this.weapons];
+        this.weapons = this.weapons.filter((item: Weapon) => {
+          return item.is_alternate_form != true;
+        });
 
+        this.filteredWeapons = [...this.weapons];
         // Si hay armas, selecciona la primera por defecto
         if (this.weapons.length > 0) {
           this.selectedWeapon = this.weapons[0];
@@ -124,8 +94,8 @@ export class WeaponsComponent {
       const matchesSearch =
         this.searchTerm === '' ||
         weapon.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        weapon.description
-          .toLowerCase()
+        weapon
+          .description!.toLowerCase()
           .includes(this.searchTerm.toLowerCase());
 
       return matchesType && matchesSearch;

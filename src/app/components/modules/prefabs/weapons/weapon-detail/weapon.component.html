@@ -45,6 +45,12 @@
             </div>
           </div>
 
+          <div class="my-3">
+            <h2 class="text-2xl font-bold">
+              <i class="ra ra-sapphire text-yellow-600"></i> {{ weapon.cost }}
+            </h2>
+          </div>
+
           <!-- Durabilidad -->
           <div class="mb-6 flex items-center">
             <div class="icon-svg-container mr-2 h-8 w-8">
@@ -58,12 +64,8 @@
                 *ngFor="let item of [].constructor(10); let i = index"
               >
                 <app-svg-icon
-                  [iconClass]="
-                    weapon.durability > i
-                      ? ''
-                      : 'fill-[var(--p-content-background)] hover:fill-[var(--p-content-hover-color)]'
-                  "
-                  class="icon-svg h-7 w-7"
+                  [iconClass]="weapon.durability > i ? '' : 'fill-[#ccc3]'"
+                  class="icon-svg h-7 w-7 fill-[#b22f3c]"
                   [iconName]="'--icon-tracker'"
                 ></app-svg-icon>
               </ng-container>
@@ -87,6 +89,30 @@
               class="h-44 drop-shadow-[0_0_10px_rgba(153,27,27,0.5)]"
             />
           </div>
+
+          @if (weapon.shape) {
+            <div
+              [routerLink]="['/prefabs/weapons/', weapon.shape]"
+              class="alternate flex cursor-pointer grid-cols-12 flex-wrap"
+            >
+              <div class="mr-3 flex">
+                <div class="icon-svg-container h-12 w-12" style="">
+                  <app-svg-icon
+                    class="icon-svg h-8 w-8"
+                    [iconName]="'--icon-switch-weapon'"
+                  ></app-svg-icon>
+                </div>
+              </div>
+              <div class="flex">
+                <div>
+                  <p class="text-left text-[14px]">Alternate Form:</p>
+                  <p class="text-left">
+                    <strong>{{ weapon.shape }}</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          }
 
           <!-- Propiedades en iconos -->
           <div class="mb-6 grid grid-cols-12 place-items-center">
@@ -194,21 +220,6 @@
                 'weapon.reload-rate' | translate
               }}</span>
             </div>
-
-            @if (weapon.shape) {
-              <div
-                [routerLink]="['/prefabs/weapons/', weapon.shape]"
-                class="xs:col-span-3 attribute col-span-4 cursor-pointer"
-              >
-                <div class="icon-svg-container h-16 w-16">
-                  <app-svg-icon
-                    class="icon-svg h-11 w-11"
-                    [iconName]="'--icon-switch-weapon'"
-                  ></app-svg-icon>
-                </div>
-                <span class="text-[12px]"> Change Form</span>
-              </div>
-            }
           </div>
 
           <!-- Notas -->

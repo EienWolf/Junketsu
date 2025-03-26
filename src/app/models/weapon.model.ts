@@ -245,6 +245,8 @@ export class Weapon {
    */
   name: string = '';
 
+  cost: number = 0;
+
   /**
    * Descripcion corta del arma, especial para mostrar dentro de una tarjeta
    * @maxLength 144
@@ -356,6 +358,11 @@ export class Weapon {
    */
   shape?: string;
 
+  /**
+   * El arma es una forma alterna y no la forma basica
+   */
+  is_alternate_form: boolean = false;
+
   constructor(data: Partial<Weapon> = {}) {
     this.name = data.name ?? '';
     this.durability = data.durability ?? 0; //respetar las reglas del valor por defecto si el valor inicial es null
@@ -367,6 +374,7 @@ export class Weapon {
     this.short_description = data.short_description;
     this.description = data.description;
     this.notes = data.notes;
+    this.cost = data.cost ?? 0;
     this.base_damage = data.base_damage ?? 1;
     this.ability = data.ability ?? Ability.MIGHT;
     this.attack_range = data.attack_range ?? Attack_Range.MELEE;
@@ -378,6 +386,7 @@ export class Weapon {
     this.ammo_capacity = data.ammo_capacity;
     this.reloadrate = data.reloadrate;
     this.shape = data.shape;
+    this.is_alternate_form = data.is_alternate_form ?? false;
 
     this.attacks = (data.attacks ?? []).map((a) => {
       const attack = new Attack(a, this);

@@ -25,9 +25,18 @@ import { WeaponDetailComponent } from './weapons/weapon-detail/weapon.component'
 import { TranslateModule } from '@ngx-translate/core';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { AttiresComponent } from './attires/attires.component';
+import { AttireDetailComponent } from './attires/attire-detail/attire-detail.component';
+import { ItemsComponent } from './items/items.component';
 
 @NgModule({
-  declarations: [WeaponsComponent, WeaponDetailComponent],
+  declarations: [
+    WeaponsComponent,
+    WeaponDetailComponent,
+    AttiresComponent,
+    AttireDetailComponent,
+    ItemsComponent,
+  ],
   imports: [
     CommonModule,
     IconFieldModule,

@@ -1,0 +1,305 @@
+[
+  {
+    "id": "hunter_set",
+    "name": "Hunter Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/beast_hide_garb.png",
+    "description": "Standard attire worn by hunters who stalk and kill beasts. The cape and coat are made of high-quality materials, providing excellent defense against blood and pathogens.",
+    "mitigation": 4,
+    "resistances": {
+      "bleed": 3,
+      "piercing": 2
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 2,
+    "set_bonus": "+1d6 to Reflexes rolls",
+    "weight_class": "medium",
+    "origin": "Standard issue for new hunters of the Workshop.",
+    "cost": 120
+  },
+  {
+    "id": "yharnam_hunter_set",
+    "name": "Yharnam Hunter Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/cainhurst_armor.png",
+    "description": "Attire of the hunters of old Yharnam, who dedicated themselves to the containment and eradication of the plague. Features a distinctive mask that filters out poisonous fumes.",
+    "mitigation": 4,
+    "resistances": {
+      "poison": 3,
+      "toxicity": 3
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 2,
+    "set_bonus": "+1d6 to poison detection",
+    "weight_class": "medium",
+    "origin": "Old Yharnam Hunting District",
+    "cost": 150
+  },
+  {
+    "id": "charred_hunter_set",
+    "name": "Charred Hunter Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/constables_garb.png",
+    "description": "Attire worn by hunters who ventured into flaming areas. The fabric has been treated with fire-resistant coating, scorched black by its many encounters with fire.",
+    "mitigation": 3,
+    "resistances": {
+      "fire": 3
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 1,
+    "set_bonus": "Immune to burning status",
+    "weight_class": "medium",
+    "origin": "Crafted by hunters who specialize in hunting fire beasts",
+    "cost": 125
+  },
+  {
+    "id": "cainhurst_set",
+    "name": "Cainhurst Knight Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/decorative_old_hunter_garb.png",
+    "description": "Armor of the royal guards of Cainhurst Castle. The intricate silver plating provides excellent protection against physical attacks but is quite heavy.",
+    "mitigation": 6,
+    "resistances": {
+      "slashing": 3,
+      "piercing": 3
+    },
+    "stamina_regeneration": -1,
+    "additional_slots": 1,
+    "set_bonus": "+1 bonus die to Intimidation",
+    "weight_class": "heavy",
+    "origin": "Cainhurst Castle, home of the nobles of blood",
+    "cost": 350
+  },
+  {
+    "id": "tomb_prospector_set",
+    "name": "Tomb Prospector Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/gascoignes_garb.png",
+    "description": "Attire worn by the tomb prospectors of the Healing Church. Made with a special fabric that resists arcane attacks, essential for exploring the labyrinthine catacombs.",
+    "mitigation": 3,
+    "resistances": {
+      "arcane": 3,
+      "frenzy": 3
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 3,
+    "set_bonus": "Advantage to Investigation when exploring dungeons",
+    "weight_class": "medium",
+    "origin": "Healing Church, Tomb Prospector Division",
+    "cost": 220
+  },
+  {
+    "id": "crowfeather_set",
+    "name": "Crowfeather Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/henryks_hunter_garb.png",
+    "description": "Attire worn by the hunters of hunters. Light and allows for quick movement. The crow feather cape grants a mysterious power that helps track prey.",
+    "mitigation": 2,
+    "resistances": {
+      "blood": 3,
+      "frenzy": 2
+    },
+    "stamina_regeneration": 1,
+    "additional_slots": 2,
+    "set_bonus": "Advantage on backstab attempts",
+    "weight_class": "light",
+    "origin": "Worn by Eileen the Crow and other hunters of hunters",
+    "cost": 280
+  },
+  {
+    "id": "executioner_set",
+    "name": "Executioner Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/madman_garb.png",
+    "description": "Gold ardor worn by the executioners of the Healing Church. The conical gold helmet symbolizes their resolve to cleanse the streets of the impure vilebloods.",
+    "mitigation": 5,
+    "resistances": {
+      "cosmic": 3,
+      "blunt": 3
+    },
+    "stamina_regeneration": -1,
+    "additional_slots": 1,
+    "set_bonus": "+3 Mitigation from Aberations creatures",
+    "weight_class": "heavy",
+    "origin": "Healing Church, Executioner Division",
+    "cost": 320
+  },
+  {
+    "id": "choir_set",
+    "name": "Choir Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/student_uniform.png",
+    "description": "Attire worn by the Choir, the highest ranking members of the Healing Church. Features a blindfold that enhances insight and communion with the Great Ones.",
+    "mitigation": 2,
+    "resistances": {
+      "arcane": 3,
+      "frenzy": 3
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 3,
+    "set_bonus": "+2 to Arcane damage and +1d6 to Insight checks",
+    "weight_class": "light",
+    "origin": "Upper Cathedral Ward, secret research division",
+    "cost": 260
+  },
+  {
+    "id": "bone_ash_set",
+    "name": "Bone Ash Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/yharnam_hunter_garb.png",
+    "description": "Attire of the old Keepers of the Old Lords, featuring a distinctive bone ash mask. Offers great fire protection with decent physical defense.",
+    "mitigation": 4,
+    "resistances": {
+      "fire": 3,
+      "cosmic": 2
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 2,
+    "set_bonus": "+1 Point to Lore skill checks",
+    "weight_class": "medium",
+    "origin": "Worn by the Keepers of the Old Lords in the Chalice Dungeons",
+    "cost": 240
+  },
+  {
+    "id": "white_church_set",
+    "name": "White Church Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/decorative_old_hunter_garb.png",
+    "description": "The pure white attire worn by clerics of the Healing Church, specialists in blood ministration and antidotes. Offers good protection against poison.",
+    "mitigation": 3,
+    "resistances": {
+      "poison": 3,
+      "blood": 3
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 2,
+    "set_bonus": "Blood vials heal +2 additional points",
+    "weight_class": "medium",
+    "origin": "Healing Church, Blood Ministration Division",
+    "cost": 190
+  },
+  {
+    "id": "black_church_set",
+    "name": "Black Church Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/executioner_garb.png",
+    "description": "Attire worn by hunters of the Healing Church. The black garb signifies their role as specialized hunters who answer directly to the higher echelons of the Church.",
+    "mitigation": 4,
+    "resistances": {
+      "bleed": 3,
+      "piercing": 2
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 2,
+    "set_bonus": "Gain advantage to remove Bleed Status.",
+    "weight_class": "medium",
+    "origin": "Healing Church, Hunter Division",
+    "cost": 210
+  },
+  {
+    "id": "student_uniform",
+    "name": "Student Uniform",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/graveguard_robe.png",
+    "description": "Attire worn by the students of Byrgenwerth, the academic institute that discovered the old blood. Light clothing that allows free movement and has decent arcane resistance.",
+    "mitigation": 1,
+    "resistances": {
+      "arcane": 3
+    },
+    "stamina_regeneration": 1,
+    "additional_slots": 4,
+    "set_bonus": "Advantaje to Investigation skill checks",
+    "weight_class": "light",
+    "origin": "Byrgenwerth College, academic institute",
+    "cost": 160
+  },
+  {
+    "id": "madmans_set",
+    "name": "Madman's Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/harrowed_garb.png",
+    "description": "Tattered garb worn by those who have lost their minds to frenzy and insight. Despite its ragged appearance, it offers remarkable protection against arcane and frenzy.",
+    "mitigation": 2,
+    "resistances": {
+      "frenzy": 3,
+      "madness": 3
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 3,
+    "set_bonus": "Immunity to first frenzy effect in combat",
+    "weight_class": "light",
+    "origin": "Found among the insane patients of the Research Hall",
+    "cost": 230
+  },
+  {
+    "id": "graveguard_set",
+    "name": "Graveguard Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/tomb_prospector_garb.png",
+    "description": "Ancient burial clothes worn by the guardians of forbidden graves. Provides strong protection against arcane attacks and the maddening effects of insight.",
+    "mitigation": 3,
+    "resistances": {
+      "arcane": 3,
+      "decay": 2
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 2,
+    "set_bonus": "Advantage to Stealth checkss",
+    "weight_class": "medium",
+    "origin": "Ancient burial sites connected to the Pthumerians",
+    "cost": 200
+  },
+  {
+    "id": "knights_set",
+    "name": "Knight's Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/ashen_hunter_garb.png",
+    "description": "Heavy armor worn by knights who served in foreign lands before coming to Yharnam. Provides excellent physical protection at the cost of mobility.",
+    "mitigation": 5,
+    "resistances": {
+      "slashing": 3,
+      "blunt": 3
+    },
+    "stamina_regeneration": -1,
+    "additional_slots": 1,
+    "set_bonus": "Advantage on Strength checks",
+    "weight_class": "heavy",
+    "origin": "Foreign lands, brought to Yharnam by traveling knights",
+    "cost": 290
+  },
+  {
+    "id": "doll_set",
+    "name": "Doll Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/hunter_garb.png",
+    "description": "Elegant attire worn by the plain doll in the Hunter's Dream. Made with incredibly fine craftsmanship, it provides minimal protection but doesn't hinder movement.",
+    "mitigation": 1,
+    "resistances": {
+      "arcane": 3
+    },
+    "stamina_regeneration": 1,
+    "additional_slots": 2,
+    "set_bonus": "Blood echo acquisition increased by 1 point",
+    "weight_class": "light",
+    "origin": "Created by Gehrman for the Plain Doll in the Hunter's Dream",
+    "cost": 300
+  },
+  {
+    "id": "ashen_hunter_set",
+    "name": "Ashen Hunter Set",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/charred_hunter_garb.png",
+    "description": "Garb worn by hunters of the old workshop, charred by countless encounters with fire-breathing beasts. The ashen coating provides excellent resistance to flames.",
+    "mitigation": 3,
+    "resistances": {
+      "fire": 3,
+      "lightning": 2
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 2,
+    "set_bonus": "Extinguish burning status with a free action",
+    "weight_class": "medium",
+    "origin": "Old Hunter's Workshop, forged in battle against fire beasts",
+    "cost": 220
+  },
+  {
+    "id": "foreign_garb",
+    "name": "Foreign Garb",
+    "image": "https://bloodborne.wiki.fextralife.com/file/Bloodborne/foreign_garb.png",
+    "description": "Strange attire from lands far beyond Yharnam, offering protection against elemental forces rarely encountered in the city of blood.",
+    "mitigation": 2,
+    "resistances": {
+      "lightning": 3,
+      "frost": 3
+    },
+    "stamina_regeneration": 0,
+    "additional_slots": 2,
+    "set_bonus": "Resistance to extreme environments",
+    "weight_class": "medium",
+    "origin": "Distant lands beyond the mountains",
+    "cost": 250
+  }
+]

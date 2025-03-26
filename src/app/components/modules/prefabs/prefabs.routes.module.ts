@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WeaponsComponent } from './weapons/weapons.component';
 import { WeaponDetailComponent } from './weapons/weapon-detail/weapon.component';
+import { AttiresComponent } from './attires/attires.component';
+import { AttireDetailComponent } from './attires/attire-detail/attire-detail.component';
+import { ItemsComponent } from './items/items.component';
 
 // Importa los componentes de este módulo
 
@@ -16,6 +19,15 @@ const routes: Routes = [
     component: WeaponsComponent,
   },
   { path: 'weapons/:index', component: WeaponDetailComponent },
+  {
+    path: 'attires',
+    component: AttiresComponent,
+  },
+  { path: 'attires/:id', component: AttireDetailComponent },
+  {
+    path: 'items',
+    component: ItemsComponent,
+  },
 ];
 
 @NgModule({
