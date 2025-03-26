@@ -70,23 +70,31 @@ export class NavComponent implements OnInit {
       this.is_login = b != null;
       this.cdr.markForCheck();
     });
+
     this.items = [
       {
-        label: 'nav.items.weapon.label',
-        icon: 'pi pi-shield',
-        items: this.weapon_service.getWeapons().map((weapon) => ({
-          label: weapon.name,
-          id: weapon.id,
-          routerLink: '/weapons/' + weapon.id,
-        })),
+        label: 'nav.items.arquetypes.label',
+      },
+      {
+        label: 'nav.items.lineages.label',
+      },
+      {
+        label: 'nav.items.weapons.label',
+        routerLink: 'prefabs/weapons',
+      },
+      {
+        label: 'nav.items.attires.label',
+        routerLink: 'prefabs/attires',
+      },
+      {
+        label: 'nav.items.items.label',
+        routerLink: 'prefabs/items',
+      },
+      {
+        label: 'nav.items.wiki.label',
+        routerLink: 'wiki/',
       },
     ];
-    this.items
-      .find((m) => m.label == 'nav.items.weapon.label')
-      ?.items?.push({
-        label: 'Create new +',
-        routerLink: '/weapons',
-      });
 
     this.config_Items = [
       {
