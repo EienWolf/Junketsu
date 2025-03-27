@@ -81,6 +81,10 @@ _"Tras ser derribado, arrastras tu cuerpo 2 casillas (de 3 disponibles) para cub
 > _"Moverte es gratis, pero cada paso tiene precio. El sabio paga con astucia, no con sangre."_  
 > **— Manual del Mercenario Prudente, Fragmento V**
 
-<!--
-   No cuesta estamina. Permite moverte hasta tu velocidad base (ej: 6 casillas para humanos).
--->
+<!-- description: No cuesta estamina. Permite moverte hasta tu velocidad base(6 casillas). -->
+<!-- category: Accion en turno -->
+<!-- type: Accion simple -->
+<!-- cost: No cuesta -->
+<!-- repeat: 1/turno -->
+<!-- exclude: Ninguno -->
+<!-- tags: Movement Actions -->

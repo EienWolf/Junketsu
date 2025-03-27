@@ -16,9 +16,20 @@ function extractMetadata(filePath) {
     const commentMatches = [...content.matchAll(/<!--([\s\S]*?)-->/g)];
     const metadata = {
       description: '',
+      category: '',
+      type: '',
+      tags: [],
       aliases: [],
+      roll: '',
+      rollEnemy: '',
+      stat: '',
+      trigger: '',
+      great_success: '',
+      cost: '',
+      repeat: '',
+      exclude: '',
       custom: {},
-      hasContent: false, // Nueva propiedad
+      hasContent: false,
     };
 
     // Procesar todos los comentarios
@@ -26,13 +37,46 @@ function extractMetadata(filePath) {
     let lastGenericComment = '';
 
     for (const comment of allComments) {
-      if (comment.match(/^\w+:/)) {
+      if (comment.match(/^.*:.*$/)) {
         const [key, ...values] = comment.split(':');
         const value = values.join(':').trim();
 
         switch (key.toLowerCase()) {
           case 'description':
             metadata.description = value;
+            break;
+          case 'cost':
+            metadata.cost = value;
+            break;
+          case 'great_success':
+            metadata.great_success = value;
+            break;
+          case 'category':
+            metadata.category = value;
+            break;
+          case 'type':
+            metadata.type = value;
+            break;
+          case 'detonante':
+            metadata.trigger = value;
+            break;
+          case 'stat':
+            metadata.stat = value;
+            break;
+          case 'tirada':
+            metadata.roll = value;
+            break;
+          case 'tirada enemiga':
+            metadata.rollEnemy = value;
+            break;
+          case 'repeat':
+            metadata.repeat = value;
+            break;
+          case 'exclude':
+            metadata.exclude = value;
+            break;
+          case 'tags':
+            metadata.tags = value.split(',').map((t) => t.trim());
             break;
           case 'aliases':
             metadata.aliases = value
@@ -105,71 +149,78 @@ function generateManifest(dir = WIKI_DIR, baseRoute = '') {
           (v, i, a) => a.indexOf(v) === i,
         ),
         route: baseRoute,
-        description: metadata.description,
-        hasContent: metadata.hasContent, // Se agrega la propiedad al manifiesto
-        ...metadata.custom,
+        ...metadata,
       });
     }
   }
   return result;
 }
 
-function generateGlossary(manifest) {
-  // Agrupar entradas por ruta
+function generateLLMGlossary(manifest) {
+  // 1. Agrupar por categorías principales
   const grouped = manifest.reduce((acc, entry) => {
-    const category = entry.route.replace('es/', '').replace(/\//g, ' > ');
-    if (!acc[category]) acc[category] = [];
-    acc[category].push(entry);
+    acc[entry.category] = acc[entry.category] || [];
+    acc[entry.category].push(entry);
     return acc;
   }, {});
 
-  let glossary = '# Glosario de Acciones y Estados\n\n';
-
-  for (const [category, entries] of Object.entries(grouped)) {
-    glossary += `## ${category.toUpperCase()}\n\n`;
-
-    for (const entry of entries) {
-      glossary += `### ${entry.id}\n`;
-
-      if (entry.description) {
-        const cleanDescription = entry.description
-          .replace(/\n/g, ' ')
-          .replace(/\s{2,}/g, ' ')
-          .trim();
-        glossary += `- Descripción: ${cleanDescription}\n`;
+  // 2. Generar estructura delimitada
+  return Object.entries(grouped)
+    .map(([category, entries]) => {
+      if (category == '') {
+        return '';
       }
+      const categoryHeader = `[CATEGORÍA] ${category}`;
+      const entriesText = entries
+        .map((entry) => {
+          const custom = [];
+          custom.push(`[TIPO] ${entry.type}`);
+          if (entry.type.toLowerCase() == 'skill') {
+            custom.push(`<<Stat>> ${entry.stat}`);
+          }
+          if (
+            (entry.type.toLowerCase() == 'accion simple') |
+            (entry.type.toLowerCase() == 'reaction')
+          ) {
+            custom.push(`<<COSTO>> ${entry.cost}`);
+          }
+          if (entry.type.toLowerCase() == 'accion simple') {
+            custom.push(`<<REPETIR>> ${entry.repeat}`);
+            custom.push(`<<EXCLUSIÓN>> ${entry.exclude}`);
+          }
+          if (entry.type.toLowerCase() == 'accion simple') {
+            custom.push(`<<REPETIR>> ${entry.repeat}`);
+            custom.push(`<<EXCLUSIÓN>> ${entry.exclude}`);
+          }
+          if (entry.type.toLowerCase() == 'reaccion') {
+            custom.push(`<<Detonante>> ${entry.trigger}`);
+            custom.push(`<<Tirada>> ${entry.roll}`);
+            custom.push(`<<Tirada Enemiga>> ${entry.rollEnemy}`);
+            custom.push(`<<Super Exito>> ${entry.great_success}`);
+          }
+          const tags = entry.tags
+            .map((t) => `${t.replace(/\s/g, '_')}`)
+            .join(' | ');
 
-      // if (Object.keys(entry.custom).length > 0) {
-      //   glossary += `- Custom:\n${Object.entries(entry.custom)
-      //     .map(([k, v]) => `  - ${k}: ${v}`)
-      //     .join('\n')}\n`;
-      // }
-    }
-  }
+          return [
+            `[[${entry.id}]]`,
+            custom.join('\n'),
+            `[TAGS] ${tags}`,
+            `[DESCRIPCIÓN] ${entry.description}`,
+            '----',
+          ].join('\n');
+        })
+        .join('\n');
 
-  return glossary;
-}
-
-function generateLLMGlossary(manifest) {
-  return manifest
-    .map((entry) => {
-      const cleanDescription = entry.description
-        .replace(/\n/g, ' ')
-        .replace(/\s{2,}/g, ' ')
-        .trim();
-
-      return `[ENTRY]
-ID: ${entry.id}
-DESCRIPTION: ${cleanDescription}
-[/ENTRY]`;
+      return `${categoryHeader}\n${entriesText}\n[/CATEGORÍA]\n`;
     })
-    .join('\n\n');
+    .join('\n');
 }
 
 const manifest = generateManifest();
 fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2));
 console.log('Manifest generated successfully!');
 
-const glossaryContent = generateGlossary(manifest);
+const glossaryContent = generateLLMGlossary(manifest);
 fs.writeFileSync(GLOSSARY_PATH, glossaryContent);
 console.log('Glossary generated successfully!');

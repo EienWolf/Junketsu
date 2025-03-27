@@ -21,4 +21,5 @@ export const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'weapons/:index', component: WeaponComponent },
   { path: 'wiki/:slug', component: WikiComponent },
+  { path: 'wiki/tag/:slug', component: WikiComponent },
 ];

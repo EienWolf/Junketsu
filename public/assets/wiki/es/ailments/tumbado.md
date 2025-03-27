@@ -2,3 +2,6 @@
     Los atacantes a melee tienen ventajas
     Los atacantes a distancia tienen desventaja
 Tienes desventaja en los ataques a melee -->
+<!-- category: Ailments -->
+<!-- type: Ailment -->
+<!-- tags: Movement Actions -->
