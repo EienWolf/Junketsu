@@ -1,6 +1,104 @@
 {
-  "Durability": "Durabilidad",
+  "nav": {
+    "items": {
+      "weapons": {
+        "label": "Armas"
+      },
+      "arquetypes": {
+        "label": "Arquetipos"
+      },
+      "lineages": {
+        "label": "Líneas"
+      },
+      "attires": {
+        "label": "Atuendos"
+      },
+      "wiki": {
+        "label": "Wiki"
+      },
+      "items": {
+        "label": "Items"
+      }
+    },
+    "config": {
+      "language": {
+        "label": "Idioma"
+      },
+      "theme": {
+        "label": "Tema",
+        "light": "Claro",
+        "os": "Preferencia del navegador(Valor)",
+        "dark": "Oscuro"
+      },
+      "data": {
+        "label": "Datos",
+        "export": "Exportar",
+        "import": "Importar"
+      },
+      "session": {
+        "label": "Sesión",
+        "connect": "Conectar"
+      }
+    },
+    "sign-in": {
+      "label": "Iniciar sesión",
+      "login-by": "Iniciar sesión por",
+      "email": "Correo electrónico",
+      "magic-link": "Enlace mágico",
+      "or": "o"
+    }
+  },
   "weapon": {
-    "Download": "Descargar PDF"
+    "Download": "Descargar PDF",
+    "enum": {
+      "ability": {
+        "evoke": "Invocar",
+        "precision": "Precisión",
+        "focus": "Enfoque",
+        "might": "Fuerza"
+      },
+      "grip": {
+        "0h": "Mano libre",
+        "1h": "Una mano",
+        "2h": "Dos manos",
+        "2hr": "Manos dedicadas"
+      },
+      "range": {
+        "melee": "Cuerpo a cuerpo",
+        "reach": "Alcance",
+        "short": "Corta",
+        "medium": "Media",
+        "large": "Grande"
+      },
+      "wield": {
+        "finesse": "Finesse",
+        "versatile": "Versátil",
+        "heavy": "Pesado"
+      },
+      "notes": {
+        "grip": {
+          "2h": "Tienes dos dados de penalización cuando atacas con solo una mano.",
+          "2hr": "No puedes usar esta arma con una sola mano."
+        },
+        "wield": {
+          "versatile": "El ataque gana +2 a daño cuando la arma se wielding en dos manos.",
+          "heavy": "El ataque pierde -2 a daño cuando la arma se wielding en una mano."
+        },
+        "guard": {
+          "agile": "Esta arma puede ser usada en acción de riposte.",
+          "block": "Esta arma puede ser usada en acción de bloque sin perder durabilidad."
+        },
+        "range": {
+          "reach": "Tu rango de ataque es más grande."
+        }
+      }
+    },
+    "reload-rate": "Recarga",
+    "basic-damage": "Daño",
+    "ammo-capacity": "Munición",
+    "notes": "Notas:"
+  },
+  "attack": {
+    "critical-success": "Éxito crítico"
   }
 }

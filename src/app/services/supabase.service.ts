@@ -99,7 +99,6 @@ export class SupabaseService {
 
   uploadConfig(file: File) {
     if (this.session) {
-      //const filePath = `${Math.random()}.json`;
       const { user } = this.session;
       this.profile(user).then((result) => {
         const random =

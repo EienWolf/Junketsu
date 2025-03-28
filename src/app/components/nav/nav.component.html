@@ -1,4 +1,4 @@
-<p-menubar [model]="items" [styleClass]="' bg-black border-b border-red-900'">
+<p-menubar [styleClass]="'bg-black border-b border-red-900 rounded-none'">
   <ng-template #start>
     <a
       [routerLink]="['/']"
@@ -15,31 +15,7 @@
       >
     </a>
   </ng-template>
-  <ng-template #item let-item>
-    <ng-container *ngIf="item.routerLink; else urlRef">
-      <a [routerLink]="[item.routerLink]" class="p-menubar-item-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label | translate }}</span>
-      </a>
-    </ng-container>
-    <ng-template #urlRef>
-      <a
-        *ngIf="item.url; else noLink"
-        [href]="item.url"
-        class="p-menubar-item-link"
-      >
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label | translate }}</span>
-      </a>
-    </ng-template>
-    <ng-template #noLink>
-      <div class="p-menubar-item-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label | translate }}</span>
-        <span class="pi pi-fw pi-angle-down ml-2"></span>
-      </div>
-    </ng-template>
-  </ng-template>
+
   <ng-template #end>
     <p-button icon="pi pi-bell" />
     <p-button
@@ -227,6 +203,38 @@
         </a>
       </ng-template>
     </p-menu>
+  </ng-template>
+</p-menubar>
+<p-menubar
+  [model]="items"
+  styleClass="border-b border-gray-700 bg-gray-800 py-2 rounded-none"
+>
+  <ng-template #item let-item>
+    <ng-container *ngIf="item.routerLink; else urlRef">
+      <a [routerLink]="[item.routerLink]" class="p-menubar-item-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label | translate }}</span>
+      </a>
+    </ng-container>
+    <ng-template #urlRef>
+      <a
+        *ngIf="item.url; else noLink"
+        [href]="item.url"
+        class="p-menubar-item-link"
+      >
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label | translate }}</span>
+      </a>
+    </ng-template>
+    <ng-template #noLink>
+      <div class="p-menubar-item-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label | translate }}</span>
+        @if (item.items) {
+          <span class="pi pi-fw pi-angle-down ml-2"></span>
+        }
+      </div>
+    </ng-template>
   </ng-template>
 </p-menubar>
 

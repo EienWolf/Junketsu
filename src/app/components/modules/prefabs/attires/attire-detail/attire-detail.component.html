@@ -1,0 +1,256 @@
+<!-- attire-detail.component.html -->
+<div class="min-h-screen bg-slate-900 text-gray-100">
+  <!-- Cabecera -->
+  <div class="border-b border-red-900 bg-gray-800 py-4">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between">
+        <a
+          [routerLink]="['/prefabs/attires/']"
+          class="flex items-center text-gray-400 hover:text-red-500"
+        >
+          <i class="pi pi-arrow-left mr-2"></i>
+          <span>Back to Attires</span>
+        </a>
+        <h1 class="text-center font-serif text-2xl text-red-600">
+          ATTIRE DETAILS
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="container mx-auto px-4 py-8">
+    <div
+      class="attire-card overflow-hidden rounded-lg border border-gray-700 bg-[var(--p-content-background)] shadow-lg"
+    >
+      <!-- Información principal y propiedades -->
+      <div class="grid grid-cols-1 gap-6 p-6 xl:grid-cols-2">
+        <!-- Columna izquierda - Información básica -->
+        <div class="relative">
+          <!-- Nombre y clase de peso -->
+          <div class="flex items-center justify-between">
+            <h2 class="font-serif text-3xl font-bold text-red-600">
+              {{ attire.name }}
+            </h2>
+          </div>
+          <div class="my-3">
+            <h2 class="text-2xl font-bold">
+              <i class="ra ra-sapphire text-yellow-600"></i> {{ attire.cost }}
+            </h2>
+          </div>
+
+          <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <!-- Mitigación -->
+            <div class="rounded-lg bg-gray-800/70 p-4">
+              <h4 class="mb-3 text-sm font-medium text-gray-400">
+                <span
+                  class="rounded-full px-3 py-1 text-sm"
+                  [ngClass]="{
+                    'bg-green-900 text-green-300':
+                      attire.weight_class === 'light',
+                    'bg-yellow-900 text-yellow-300':
+                      attire.weight_class === 'medium',
+                    'bg-red-900 text-red-300': attire.weight_class === 'heavy',
+                  }"
+                >
+                  {{ attire.weight_class | titlecase }} Armor Class
+                </span>
+              </h4>
+              <div class="flex items-center">
+                <span class="mr-2 text-4xl font-medium">{{
+                  attire.mitigation
+                }}</span>
+                <i class="pi pi-shield mr-3 text-3xl text-blue-500"></i>
+                <div>
+                  <div class="flex items-center">
+                    <div class="flex">
+                      <ng-container
+                        *ngFor="let item of [].constructor(6); let i = index"
+                      >
+                        <i
+                          class="pi pi-circle-fill mx-[1px] text-xs"
+                          [ngClass]="
+                            i < attire.mitigation
+                              ? 'text-red-600'
+                              : 'text-gray-700'
+                          "
+                        ></i>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Descripción -->
+          <div
+            class="mb-6 rounded-lg border-l-4 border-red-800 bg-gray-700/40 p-4"
+          >
+            <p class="text-gray-200">{{ attire.description }}</p>
+          </div>
+
+          <!-- Imagen central -->
+          <div class="mb-6 flex justify-center">
+            <img
+              [src]="attire.image"
+              [alt]="attire.name"
+              class="h-64 drop-shadow-[0_0_10px_rgba(153,27,27,0.5)]"
+            />
+          </div>
+
+          <!-- Origen -->
+          <div class="mb-6 rounded-lg bg-gray-700/40 p-4">
+            <h3 class="mb-2 text-sm font-medium text-gray-400">ORIGIN</h3>
+            <p class="text-gray-200">{{ attire.origin }}</p>
+          </div>
+
+          <!-- Set Bonus -->
+          <div
+            class="mb-6 rounded-lg border-l-2 border-red-700 bg-gradient-to-r from-red-900/30 to-transparent p-4"
+          >
+            <h3 class="mb-2 text-sm font-medium text-gray-400">SET BONUS</h3>
+            <p class="text-gray-200">{{ attire.set_bonus }}</p>
+          </div>
+        </div>
+
+        <!-- Columna derecha - Resistencias y estadísticas -->
+        <div class="stats-section">
+          <h3 class="mb-4 flex items-center font-serif text-xl text-red-600">
+            <i class="pi pi-shield mr-2"></i>
+            RESISTANCES
+          </h3>
+
+          <!-- Grid de resistencias -->
+          <div class="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+            <ng-container *ngFor="let res of getFullResistances(attire)">
+              <div
+                class="flex flex-col items-center rounded-lg bg-gray-800/70 p-3"
+              >
+                <div
+                  class="mb-2 flex h-14 w-14 items-center justify-center rounded-full"
+                  [ngClass]="'bg-gray-700'"
+                >
+                  <i
+                    class="ra text-3xl"
+                    [ngClass]="getResistanceIcon(res.type)"
+                  ></i>
+                </div>
+                <span class="text-sm font-medium capitalize">{{
+                  res.type
+                }}</span>
+                <div class="mt-2 flex">
+                  <ng-container
+                    *ngFor="let item of [].constructor(5); let i = index"
+                  >
+                    <i
+                      class="pi pi-circle-fill mx-[2px] text-xs"
+                      [ngClass]="
+                        i < res.value ? 'text-red-900' : 'text-gray-700'
+                      "
+                    ></i>
+                  </ng-container>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <h3 class="mb-4 flex items-center font-serif text-xl text-red-600">
+            <i class="pi pi-cog mr-2"></i>
+            ATTRIBUTES
+          </h3>
+
+          <!-- Grid de atributos -->
+          <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <!-- Mitigación -->
+
+            <!-- Regeneración de stamina -->
+            <div class="rounded-lg bg-gray-800/70 p-4">
+              <h4 class="mb-3 text-sm font-medium text-gray-400">
+                STAMINA REGENERATION
+              </h4>
+              <div class="flex items-center">
+                <i
+                  class="pi mr-3 text-3xl"
+                  [ngClass]="{
+                    'pi-arrow-up text-green-500':
+                      attire.stamina_regeneration > 0,
+                    'pi-minus text-gray-500': attire.stamina_regeneration === 0,
+                    'pi-arrow-down text-red-500':
+                      attire.stamina_regeneration < 0,
+                  }"
+                ></i>
+                <div>
+                  <span class="text-lg font-medium">{{
+                    getStaminaText(attire.stamina_regeneration)
+                  }}</span>
+                  <p class="mt-1 text-xs text-gray-400">
+                    {{ getStaminaDescription(attire.stamina_regeneration) }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Espacios de items adicionales -->
+            <div class="rounded-lg bg-gray-800/70 p-4">
+              <h4 class="mb-3 text-sm font-medium text-gray-400">
+                ADDITIONAL ITEM SLOTS
+              </h4>
+              <div class="flex items-center">
+                <i class="pi pi-briefcase mr-3 text-3xl text-yellow-600"></i>
+                <div>
+                  <span class="text-lg font-medium"
+                    >+{{ attire.additional_slots }}</span
+                  >
+                  <p class="mt-1 text-xs text-gray-400">
+                    Extra slots for carrying consumables and tools
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Peso -->
+            <div class="rounded-lg bg-gray-800/70 p-4">
+              <h4 class="mb-3 text-sm font-medium text-gray-400">
+                WEIGHT CLASS
+              </h4>
+              <div class="flex items-center">
+                <i
+                  class="pi pi-box mr-3 text-3xl"
+                  [ngClass]="{
+                    'text-green-500': attire.weight_class === 'light',
+                    'text-yellow-500': attire.weight_class === 'medium',
+                    'text-red-500': attire.weight_class === 'heavy',
+                  }"
+                ></i>
+                <div>
+                  <span class="text-lg font-medium capitalize">{{
+                    attire.weight_class
+                  }}</span>
+                  <p class="mt-1 text-xs text-gray-400">
+                    {{ getWeightClassDescription(attire.weight_class) }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de descarga para dispositivos pequeños (visible solo en móvil) -->
+      <div class="p-4 md:hidden">
+        <button
+          (click)="generatePDF()"
+          class="flex w-full items-center justify-center rounded bg-red-700 px-4 py-3 text-white hover:bg-red-800"
+        >
+          <i class="pi pi-download mr-2"></i>
+          <span>Download Sheet</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Estilos para la tarjeta de attire */
+</style>

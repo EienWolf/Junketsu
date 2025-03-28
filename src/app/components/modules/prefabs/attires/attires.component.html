@@ -1,0 +1,131 @@
+<!-- armor-list.component.html -->
+<div class="min-h-screen bg-slate-900 text-gray-100">
+  <!-- Cabecera -->
+  <div class="border-b border-red-900 bg-gray-800 py-6">
+    <div class="container mx-auto px-4">
+      <h1 class="text-center font-serif text-3xl text-red-600">
+        HUNTER'S ATTIRE
+      </h1>
+      <p class="mt-2 text-center text-gray-400">
+        Choose your attire for the night hunt
+      </p>
+    </div>
+  </div>
+
+  <!-- Filtros y búsqueda -->
+  <div
+    class="sticky top-0 z-10 border-b border-gray-700 bg-gray-800 py-4 shadow-lg"
+  >
+    <div
+      class="container mx-auto flex flex-col items-center justify-between space-y-4 px-4 md:flex-row md:space-y-0"
+    >
+      <div class="flex w-full items-center md:w-auto">
+        <span class="p-input-icon-left w-full md:w-auto">
+          <input
+            type="text"
+            pInputText
+            placeholder="Search attire..."
+            [(ngModel)]="searchTerm"
+            (input)="filterArmors()"
+            class="w-full border-gray-600 bg-gray-700 px-3 py-2 md:w-64"
+          />
+        </span>
+      </div>
+
+      <div class="mt-3 flex w-full items-center space-x-4 md:w-auto">
+        <p-dropdown
+          [options]="weightClasses"
+          [(ngModel)]="selectedWeightClass"
+          optionLabel="label"
+          optionValue="value"
+          (onChange)="filterArmors()"
+          styleClass="bg-gray-700 border-gray-600"
+        >
+        </p-dropdown>
+
+        <span class="text-sm text-gray-400">
+          {{ filteredArmors.length }} attire found
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6">
+      <!-- Lista de armaduras -->
+      <div class="custom-scrollbar overflow-y-auto pr-2">
+        <div class="grid grid-cols-1 gap-4" style="padding-top: 12px">
+          <div
+            *ngFor="let armor of filteredArmors"
+            class="transform cursor-pointer overflow-hidden rounded-lg border border-gray-700 bg-gray-800 transition-all duration-300 hover:translate-y-[-4px] hover:border-red-800"
+            [class.border-red-600]="selectedArmor?.id === armor.id"
+            [routerLink]="['/prefabs/attires/', armor.id]"
+          >
+            <div class="flex items-center p-4">
+              <div
+                class="mr-4 flex h-16 w-16 items-center justify-center overflow-hidden rounded-lg bg-gray-700"
+              >
+                <img
+                  onerror="{ src='https://static.vecteezy.com/system/resources/previews/041/686/099/non_2x/armor-glyph-inverted-icon-vector.jpg'}"
+                  [src]="armor.image"
+                  [alt]="armor.name"
+                  class="h-12 w-12 object-contain"
+                />
+              </div>
+              <div class="flex-grow">
+                <h3 class="text-lg font-medium">{{ armor.name }}</h3>
+                <div class="mt-1 flex items-center">
+                  <!-- Etiqueta de clase de peso -->
+                  <span
+                    class="mr-2 rounded px-2 py-0.5 text-xs"
+                    [ngClass]="{
+                      'bg-green-800': armor.weight_class === 'light',
+                      'bg-yellow-800': armor.weight_class === 'medium',
+                      'bg-red-800': armor.weight_class === 'heavy',
+                    }"
+                  >
+                    {{ armor.weight_class }}
+                  </span>
+
+                  <!-- Indicador de mitigación -->
+                  <span class="flex items-center text-xs text-gray-400">
+                    <i class="pi pi-shield mr-1"></i>
+                    <div class="mr-1 flex">
+                      <ng-container
+                        *ngFor="let item of [].constructor(6); let i = index"
+                      >
+                        <i
+                          class="pi pi-circle-fill mx-[1px] text-[6px]"
+                          [ngClass]="
+                            i < armor.mitigation
+                              ? 'text-red-600'
+                              : 'text-gray-700'
+                          "
+                        ></i>
+                      </ng-container>
+                    </div>
+                    {{ armor.mitigation }}/6
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          *ngIf="filteredArmors.length === 0"
+          class="py-12 text-center text-gray-500"
+        >
+          <i class="pi pi-search mb-4 text-4xl"></i>
+          <p>No attire found matching your search</p>
+          <button
+            (click)="resetFilters()"
+            class="mt-4 rounded bg-red-800 px-4 py-2 text-white"
+          >
+            Reset Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

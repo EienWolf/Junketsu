@@ -13,30 +13,39 @@ export class WeaponService {
     private readonly supabase: SupabaseService,
     private readonly http: HttpClient,
   ) {
-    if (this.supabase.session) {
-      const { user } = this.supabase.session;
-      // let profile: Profile;
-      this.supabase.profile(user).then((data) => {
-        if (data?.data?.config_url) {
-          this.supabase
-            .downLoadConfig(data?.data?.config_url)
-            .then((config) => {
-              console.log(config.data);
-            });
-        }
-      });
-    }
+    this.supabase.authChanges((a, b) => {
+      if (b != null && a == 'INITIAL_SESSION') {
+        const { user } = b;
+        this.supabase.profile(user).then((data) => {
+          if (data?.data?.config_url) {
+            this.supabase
+              .downLoadConfig(data?.data?.config_url)
+              .then((config) => {
+                config.data?.arrayBuffer().then((arrayBuffer) => {
+                  const jsonString = new TextDecoder().decode(arrayBuffer);
+                  console.log(jsonString);
+                });
+              });
+          }
+        });
+      }
+    });
+
+    this.loadWeaponCoreData();
     this.loadFromLocalStorage();
   }
 
-  loadDummyData() {
+  loadWeaponCoreData() {
     return this.http
       .get('assets/data/weapons.json', { responseType: 'text' })
       .pipe(catchError(() => of([])))
       .subscribe({
         next: (dataStr) => {
-          console.log(dataStr);
-          localStorage.setItem('weapons', dataStr.toString());
+          this.weapons.push(
+            ...JSON.parse(dataStr.toString()).map(
+              (data: Weapon) => new Weapon(data),
+            ),
+          );
         },
       });
   }
@@ -49,7 +58,9 @@ export class WeaponService {
   }
 
   private saveToLocalStorage() {
-    const serializedWeapons = this.weapons.map((weapon) => weapon.toJSON());
+    const serializedWeapons = this.weapons
+      .filter((w) => w.source != 'core')
+      .map((weapon) => weapon.toJSON());
     const dataStr = JSON.stringify(serializedWeapons, null, 2);
     if (this.supabase.session) {
       const blob = new Blob([dataStr], { type: 'application/json' });
@@ -72,27 +83,36 @@ export class WeaponService {
   }
 
   addWeapon(weapon: Weapon) {
+    weapon.source = 'user_[userid]';
     this.weapons.push(weapon);
     this.saveToLocalStorage();
   }
 
   updateWeapon(weapon: Weapon) {
     const index = this.weapons.findIndex((w) => w.id === weapon.id);
-    if (index !== -1) {
+    if (index !== -1 && weapon.source != 'core') {
       this.weapons[index] = weapon;
     } else {
+      weapon.source =
+        weapon.source == 'core' ? 'edited_[coreid]_[userid]' : 'user_[userid]';
       this.addWeapon(weapon);
     }
     this.saveToLocalStorage();
   }
 
   deleteWeapon(index: string | number) {
+    const weapon = this.weapons.find((weapon) => weapon.id == index);
+    if (weapon?.source == 'core') {
+      return;
+    }
     this.weapons = this.weapons.filter((weapon) => weapon.id !== index);
     this.saveToLocalStorage();
   }
 
   exportWeapons() {
-    const serializedWeapons = this.weapons.map((weapon) => weapon.toJSON());
+    const serializedWeapons = this.weapons
+      .filter((w) => w.source != 'core')
+      .map((weapon) => weapon.toJSON());
     const dataStr = JSON.stringify(serializedWeapons, null, 2);
     const blob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(blob);

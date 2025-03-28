@@ -60,7 +60,6 @@
             [routerLink]="['/prefabs/weapons/', weapon.id]"
             class="transform cursor-pointer overflow-hidden rounded-lg border border-gray-700 bg-gray-800 transition-all duration-300 hover:translate-y-[-4px] hover:border-red-800"
             [class.border-red-600]="selectedWeapon?.id === weapon.id"
-            (click)="selectWeapon(weapon)"
           >
             <div class="flex items-center p-4">
               <div
@@ -74,19 +73,20 @@
               </div>
               <div class="flex-grow">
                 <h3 class="text-lg font-medium">{{ weapon.name }}</h3>
-                <div class="mt-1 flex items-center">
+                <div class="mt-1 flex items-center justify-between">
                   <span
                     [class]="
                       'mr-2 rounded px-2 py-0.5 text-xs ' +
-                      getClassForWeaponType(weapon.weapon_type)
+                      getClassForWeaponType(weapon.weapon_type!)
                     "
                   >
-                    {{ getWeaponTypeLabel(weapon.weapon_type) }}
+                    {{ getWeaponTypeLabel(weapon.weapon_type!) }}
                   </span>
-                  <!-- <span class="text-xs text-gray-400 flex items-center">
-                      <i class="pi pi-sword mr-1"></i>DMG: {{ weapon.base_damage }}
-                    </span>
-                --></div>
+                  <span class="font-bold">
+                    <i class="ra ra-sapphire text-yellow-600"></i>
+                    {{ weapon.cost }}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
