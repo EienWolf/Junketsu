@@ -1,8 +1,23 @@
 {
   "nav": {
     "items": {
-      "weapon": {
+      "weapons": {
         "label": "Weapons"
+      },
+      "arquetypes": {
+        "label": "Arquetypes"
+      },
+      "lineages": {
+        "label": "Lineages"
+      },
+      "attires": {
+        "label": "Attires"
+      },
+      "wiki": {
+        "label": "Wiki"
+      },
+      "items": {
+        "label": "Items"
       }
     },
     "config": {

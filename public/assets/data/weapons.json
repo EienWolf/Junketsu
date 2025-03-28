@@ -29,8 +29,9 @@
         "is_secondary": false
       }
     ],
-    "image": "https://cdn-icons-png.flaticon.com/512/7985/7985417.png",
-    "id": "rifle"
+    "image": "https://th.bing.com/th/id/R.3b96d0a9d54648e60fab382768f0db17?rik=IatVEbju0oJ4oA&pid=ImgRaw&r=0",
+    "id": "rifle",
+    "cost": 200
   },
   {
     "name": "Serated Blade (Saw)",
@@ -75,7 +76,8 @@
       }
     ],
     "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhmVK95QFxj-s8D_vsRUk4GUPyNtdPwr1V9lmjtwtnK0Mr0IcGp4e-NfMwvDr2__2eQK6m42Q0rW7eLudMvhZ3VM-jMSqd0SCZXKAmbl2oLegygOHG0_4oFNOM-8d_BQUmPSZMj66zxP8rX/s250/01.+Saw+Cleaver+Descr.png",
-    "id": "Serated_Blade"
+    "id": "Serated_Blade",
+    "cost": 180
   },
   {
     "name": "Serated Blade (Cleaver)",
@@ -120,7 +122,9 @@
       }
     ],
     "image": "https://fbi.cults3d.com/uploaders/14854341/illustration-file/17495627-6a4c-49a5-b6ec-e4300d1fb080/Open2.jpg",
-    "id": "Serated_Blade_2"
+    "id": "Serated_Blade_2",
+    "is_alternate_form": true,
+    "cost": 180
   },
   {
     "name": "Peñachas (Mace)",
@@ -175,7 +179,8 @@
       }
     ],
     "image": "https://www.eliteguias.com/img/juegos/elden-ring/maza.jpg",
-    "id": "penachas"
+    "id": "penachas",
+    "cost": 160
   },
   {
     "name": "Peñachas (Axe)",
@@ -208,7 +213,9 @@
       }
     ],
     "image": "https://www.eliteguias.com/img/juegos/elden-ring/maza.jpg",
-    "id": "penachas2"
+    "id": "penachas2",
+    "is_alternate_form": true,
+    "cost": 160
   },
   {
     "name": "Hunter Claymore",
@@ -263,7 +270,8 @@
       }
     ],
     "image": "https://monsterhunterrise.wiki.fextralife.com/file/Monster-Hunter-Rise/redwing_claymore_i-mhr-wiki-guide.png",
-    "id": "hunter_claymore"
+    "id": "hunter_claymore",
+    "cost": 180
   },
   {
     "name": "Katana BloodLust",
@@ -296,7 +304,8 @@
       }
     ],
     "image": "https://tr.rbxcdn.com/180DAY-0e69b4ebf77d79e98ad26a78a19401f4/420/420/Hat/Webp/noFilter",
-    "id": "katana"
+    "id": "katana",
+    "cost": 250
   },
   {
     "name": "Katana BloodLust",
@@ -351,7 +360,9 @@
       }
     ],
     "image": "https://tr.rbxcdn.com/180DAY-0e69b4ebf77d79e98ad26a78a19401f4/420/420/Hat/Webp/noFilter",
-    "id": "katana2"
+    "id": "katana2",
+    "is_alternate_form": true,
+    "cost": 250
   },
   {
     "name": "Hunter Spear",
@@ -406,6 +417,7 @@
       }
     ],
     "image": "https://i.pinimg.com/736x/69/e5/ae/69e5aeee498f0f89aacb32eb2559ee10.jpg",
-    "id": "hunter"
+    "id": "hunter",
+    "cost": 170
   }
 ]

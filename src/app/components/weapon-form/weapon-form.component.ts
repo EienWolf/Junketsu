@@ -14,7 +14,6 @@ import {
 } from '@angular/forms';
 import {
   Weapon,
-  Attack,
   Durability_Type,
   Ability,
   Attack_Range,
@@ -41,6 +40,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { TooltipModule } from 'primeng/tooltip';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectModule } from 'primeng/select';
+import { Attack } from '../../models/attack.model';
 
 @Component({
   selector: 'app-weapon-form',
