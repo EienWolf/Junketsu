@@ -3,6 +3,7 @@ import { WeaponFormComponent } from './components/weapon-form/weapon-form.compon
 import { WeaponComponent } from './components/weapon/weapon.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { WikiComponent } from './components/wiki/wiki.component';
+import { WikiDirectoryComponent } from './components/wikiDirectory/wikiDirectory.component';
 
 export const routes: Routes = [
   {
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'weapons/:index', component: WeaponComponent },
   { path: 'wiki/:slug', component: WikiComponent },
-  { path: 'wiki/tag/:slug', component: WikiComponent },
+  { path: 'wiki', component: WikiDirectoryComponent },
+  { path: 'wiki/tag/:slug', component: WikiDirectoryComponent },
 ];

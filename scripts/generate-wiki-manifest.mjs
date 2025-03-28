@@ -28,6 +28,7 @@ function extractMetadata(filePath) {
       cost: '',
       repeat: '',
       exclude: '',
+      notes: '',
       custom: {},
       hasContent: false,
     };
@@ -74,6 +75,9 @@ function extractMetadata(filePath) {
             break;
           case 'exclude':
             metadata.exclude = value;
+            break;
+          case 'notes':
+            metadata.notes = value;
             break;
           case 'tags':
             metadata.tags = value.split(',').map((t) => t.trim());
@@ -174,26 +178,29 @@ function generateLLMGlossary(manifest) {
       const entriesText = entries
         .map((entry) => {
           const custom = [];
+          custom.push(`[[${entry.id}]]`);
           custom.push(`[TIPO] ${entry.type}`);
           if (entry.type.toLowerCase() == 'skill') {
             custom.push(`<<Stat>> ${entry.stat}`);
           }
           if (
             (entry.type.toLowerCase() == 'accion simple') |
-            (entry.type.toLowerCase() == 'reaction')
+            (entry.type.toLowerCase() == 'reaction') |
+            (entry.type.toLowerCase() == 'attack')
           ) {
             custom.push(`<<COSTO>> ${entry.cost}`);
           }
           if (entry.type.toLowerCase() == 'accion simple') {
-            custom.push(`<<REPETIR>> ${entry.repeat}`);
-            custom.push(`<<EXCLUSIÓN>> ${entry.exclude}`);
-          }
-          if (entry.type.toLowerCase() == 'accion simple') {
-            custom.push(`<<REPETIR>> ${entry.repeat}`);
-            custom.push(`<<EXCLUSIÓN>> ${entry.exclude}`);
+            // custom.push(`<<REPETIR>> ${entry.repeat}`);
+            // custom.push(`<<EXCLUSIÓN>> ${entry.exclude}`);
           }
           if (entry.type.toLowerCase() == 'reaccion') {
             custom.push(`<<Detonante>> ${entry.trigger}`);
+          }
+          if (
+            (entry.type.toLowerCase() == 'reaccion') |
+            (entry.type.toLowerCase() == 'attack')
+          ) {
             custom.push(`<<Tirada>> ${entry.roll}`);
             custom.push(`<<Tirada Enemiga>> ${entry.rollEnemy}`);
             custom.push(`<<Super Exito>> ${entry.great_success}`);
@@ -201,14 +208,13 @@ function generateLLMGlossary(manifest) {
           const tags = entry.tags
             .map((t) => `${t.replace(/\s/g, '_')}`)
             .join(' | ');
-
-          return [
-            `[[${entry.id}]]`,
-            custom.join('\n'),
-            `[TAGS] ${tags}`,
-            `[DESCRIPCIÓN] ${entry.description}`,
-            '----',
-          ].join('\n');
+          custom.push(`[TAGS] ${tags}`);
+          custom.push(`[Efecto] ${entry.description}`);
+          if (entry.notes) {
+            custom.push(`[Notas] ${entry.notes}`);
+          }
+          custom.push('----');
+          return custom.join('\n');
         })
         .join('\n');
 

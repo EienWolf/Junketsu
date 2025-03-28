@@ -36,7 +36,7 @@ de dejar al objetivo indefenso si logras un [Super Éxito](/great-sucess).
 
 ---
 
-## 🎮 Ejemplos de Uso
+## Ejemplos de Uso
 
 ### Escenario 1: Combate Cuerpo a Cuerpo
 
@@ -52,23 +52,23 @@ _"Disparas con tu arco (ataque básico) + 1 Stamina. Tirás 2d6 → 0 dados. Sac
 
 ---
 
-## ❓ Preguntas Frecuentes
+## Preguntas Frecuentes
 
 1. **¿Puedo combinar Desarmar con [Acción Rápida](#link)?**  
-   ✅ **No**, pues Desarmar ya es una acción primaria.
+   **No**, pues Desarmar ya es una acción primaria.
 
 2. **¿El enemigo puede contraatacar si fallo el desarme?**  
-   ⚠️ **Sí**, el daño normal no bloquea su turno.
+   **Sí**, el daño normal no bloquea su turno.
 
 3. **¿Funciona contra enemigos con armas encadenadas?**  
-   🚫 **No**, requieren [Maniobras Especializadas](#link) no básicas.
+   **No**, requieren [Maniobras Especializadas](#link) no básicas.
 
 4. **¿Puedo usar esto con [Preparar Acción](#link)?**  
-   ✅ **Sí**, ej: _"Si el enemigo ataca, Desarmo su espada."_
+   **Sí**, ej: _"Si el enemigo ataca, Desarmo su espada."_
 
 ---
 
-## 🛠️ Estrategias Avanzadas
+## Estrategias Avanzadas
 
 1. **Combo de Control**
 
@@ -84,7 +84,7 @@ _"Disparas con tu arco (ataque básico) + 1 Stamina. Tirás 2d6 → 0 dados. Sac
 
 ---
 
-## 🔗 Acciones Relacionadas
+## Acciones Relacionadas
 
 - **Grupo Primario**: [Atacar](#link), [Maniobras](#link).
 - **Sinergias Clave**:

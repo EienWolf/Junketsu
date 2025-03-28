@@ -1,0 +1,22 @@
+<div class="directory-container">
+  <div *ngFor="let letter of getObjectKeys(groupedItems)" class="letter-group">
+    <h2 class="letter-header">{{ letter }}</h2>
+    <div class="items-container">
+      <ng-container *ngFor="let item of groupedItems[letter]">
+        <a
+          *ngIf="item.route"
+          [routerLink]="['/wiki', item.id]"
+          class="item-link"
+        >
+          {{ item.id }}
+        </a>
+        <span
+          *ngIf="item.route === null || item.route === undefined"
+          class="item-disabled"
+        >
+          {{ item.id }}
+        </span>
+      </ng-container>
+    </div>
+  </div>
+</div>

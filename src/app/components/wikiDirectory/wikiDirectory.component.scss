@@ -1,0 +1,44 @@
+.directory-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.letter-group {
+  flex: 1 1 300px;
+  min-width: 300px;
+  margin-bottom: 1.5rem;
+}
+
+.letter-header {
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item-link {
+  color: #2980b9;
+  text-decoration: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f0f8ff;
+  }
+}
+
+.item-disabled {
+  color: #95a5a6;
+  padding: 0.3rem 0.5rem;
+  cursor: not-allowed;
+  opacity: 0.7;
+  text-decoration: line-through;
+}

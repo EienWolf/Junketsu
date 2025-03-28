@@ -5,7 +5,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-class SlugInterface {
+export class SlugInterface {
   id: string = '';
   route: string = '';
 
