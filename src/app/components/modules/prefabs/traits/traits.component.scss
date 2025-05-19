@@ -1,0 +1,356 @@
+/* traits.component.scss */
+
+/* Importación de fuentes góticas para el estilo Bloodborne */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&family=EB+Garamond:wght@400;500;600;700&display=swap');
+
+/* Personalización de elementos PrimeNG */
+:host ::ng-deep {
+  /* Personalización de inputs */
+  .p-inputtext {
+    background-color: #374151 !important;
+    border-color: #4b5563 !important;
+    color: #e5e7eb !important;
+
+    &:focus {
+      border-color: #991b1b !important;
+      box-shadow: 0 0 0 1px #991b1b !important;
+    }
+  }
+
+  /* Personalización del dropdown */
+  .p-dropdown {
+    background-color: #374151 !important;
+    border-color: #4b5563 !important;
+
+    .p-dropdown-label {
+      color: #e5e7eb !important;
+    }
+
+    .p-dropdown-trigger {
+      color: #e5e7eb !important;
+    }
+
+    &.p-focus {
+      border-color: #991b1b !important;
+      box-shadow: 0 0 0 1px #991b1b !important;
+    }
+
+    .p-dropdown-panel {
+      background-color: #1f2937 !important;
+      border: 1px solid #4b5563 !important;
+
+      .p-dropdown-items {
+        .p-dropdown-item {
+          color: #e5e7eb !important;
+
+          &:hover {
+            background-color: #374151 !important;
+            color: #f87171 !important;
+          }
+
+          &.p-highlight {
+            background-color: #991b1b !important;
+            color: #f3f4f6 !important;
+          }
+        }
+      }
+    }
+  }
+
+  /* Personalización del diálogo */
+  .p-dialog {
+    .p-dialog-content {
+      background-color: transparent !important;
+      color: #e5e7eb !important;
+      padding: 0 !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+    }
+
+    .p-dialog-mask {
+      background-color: rgba(0, 0, 0, 0.8) !important;
+      backdrop-filter: blur(4px) !important;
+    }
+  }
+
+  .ability-detail-dialog {
+    .p-dialog-content {
+      border: none !important;
+      box-shadow: 0 0 20px rgba(153, 27, 27, 0.6) !important;
+    }
+  }
+}
+
+/* Estilos generales */
+:host {
+  display: block;
+  font-family: 'EB Garamond', serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+/* Efecto de sangre en hover para las tarjetas de habilidades */
+.border-red-800 {
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0 15px rgba(153, 27, 27, 0.5);
+  }
+}
+
+/* Efecto de desvanecimiento para los contenedores */
+.bg-gray-800 {
+  background-color: rgba(31, 41, 55, 0.95);
+  backdrop-filter: blur(4px);
+}
+
+/* Estilos para el contenedor de habilidad seleccionado */
+.border-red-600 {
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
+  transform: translateY(-4px);
+}
+
+/* Animación para iconos */
+.pi {
+  transition: transform 0.3s ease;
+}
+
+.bg-gray-700:hover .pi {
+  transform: scale(1.2);
+}
+
+/* Estilo para la imagen de la habilidad */
+.bg-gray-700 img {
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.bg-gray-700:hover img {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(153, 27, 27, 0.3));
+}
+
+/* Efecto de sangre para los bordes */
+.border-red-900,
+.border-red-800,
+.border-red-600 {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(220, 38, 38, 0.7),
+      transparent
+    );
+    // animation: bloodFlow 3s infinite;
+  }
+}
+
+@keyframes bloodFlow {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Estilos para las descripciones de efectos */
+.border-l-4.border-red-900 {
+  border-image: linear-gradient(to bottom, #991b1b, transparent) 1 100%;
+}
+
+.border-l-4.border-blue-900 {
+  border-image: linear-gradient(to bottom, #1e3a8a, transparent) 1 100%;
+}
+
+/* Efecto de niebla para el fondo */
+.min-h-screen {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/fog-texture.png');
+    opacity: 0.03;
+    pointer-events: none;
+    // animation: fogMovement 100s infinite linear;
+  }
+}
+
+@keyframes fogMovement {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1000px 1000px;
+  }
+}
+
+/* Estilos específicos para los tipos de habilidad */
+.bg-red-900 {
+  background-color: rgba(127, 29, 29, 0.9);
+}
+
+.bg-blue-900 {
+  background-color: rgba(30, 58, 138, 0.9);
+}
+
+.bg-green-900 {
+  background-color: rgba(6, 78, 59, 0.9);
+}
+
+.bg-purple-900 {
+  background-color: rgba(76, 29, 149, 0.9);
+}
+
+.bg-orange-900 {
+  background-color: rgba(124, 45, 18, 0.9);
+}
+
+.bg-indigo-900 {
+  background-color: rgba(49, 46, 129, 0.9);
+}
+
+.bg-yellow-900 {
+  background-color: rgba(120, 53, 15, 0.9);
+}
+
+.bg-teal-900 {
+  background-color: rgba(19, 78, 74, 0.9);
+}
+
+/* Estilo para los requisitos de la habilidad */
+.border-l-4.border-red-800 {
+  position: relative;
+
+  &::before {
+    content: 'Requisito';
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background-color: #991b1b;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0 8px;
+    border-radius: 4px;
+  }
+}
+
+/* Estilización para datos adicionales */
+.text-red-400 {
+  position: relative;
+}
+
+.requiered-label {
+  background-color: #3b1717;
+  color: #cdcdcd;
+  font-weight: 600;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+/* Mejora para el modo oscuro */
+.bg-slate-900 {
+  background-color: #0b1120;
+  background-image:
+    radial-gradient(circle at 50% 0, rgba(30, 41, 59, 0.7), transparent 70%),
+    radial-gradient(circle at 10% 90%, rgba(76, 29, 49, 0.3), transparent 50%);
+}
+
+/* Estilos específicos para las tarjetas de habilidades */
+.grid-cols-3 > div {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Efecto de pulsación para las tarjetas cuando se seleccionan */
+.border-red-600 {
+  //animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
+  }
+}
+
+/* Estilos específicos para el diálogo de detalle de habilidad */
+.ability-detail-container {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/parchment-texture.png');
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(153, 27, 27, 0.2) 0%,
+      rgba(0, 0, 0, 0) 70%
+    );
+    pointer-events: none;
+    opacity: 0.6;
+  }
+}
+
+/* Efectos de entrada para el diálogo */
+.p-dialog-enter {
+  // animation: dialogEnter 0.3s forwards;
+}
+
+@keyframes dialogEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

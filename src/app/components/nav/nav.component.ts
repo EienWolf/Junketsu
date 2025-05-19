@@ -91,6 +91,10 @@ export class NavComponent implements OnInit {
         routerLink: 'prefabs/items',
       },
       {
+        label: 'nav.items.traits.label',
+        routerLink: 'prefabs/traits',
+      },
+      {
         label: 'nav.items.wiki.label',
         routerLink: 'wiki/',
       },

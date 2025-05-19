@@ -6,6 +6,7 @@ import { WeaponDetailComponent } from './weapons/weapon-detail/weapon.component'
 import { AttiresComponent } from './attires/attires.component';
 import { AttireDetailComponent } from './attires/attire-detail/attire-detail.component';
 import { ItemsComponent } from './items/items.component';
+import { TraitsComponent } from './traits/traits.component';
 
 // Importa los componentes de este módulo
 
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'items',
     component: ItemsComponent,
+  },
+  {
+    path: 'traits',
+    component: TraitsComponent,
   },
 ];
 

@@ -28,6 +28,9 @@ import { InputIconModule } from 'primeng/inputicon';
 import { AttiresComponent } from './attires/attires.component';
 import { AttireDetailComponent } from './attires/attire-detail/attire-detail.component';
 import { ItemsComponent } from './items/items.component';
+import { TraitsComponent } from './traits/traits.component';
+import { TraitsService } from '../../../services/traits.service';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { ItemsComponent } from './items/items.component';
     AttiresComponent,
     AttireDetailComponent,
     ItemsComponent,
+    TraitsComponent,
   ],
   imports: [
     CommonModule,
@@ -67,7 +71,7 @@ import { ItemsComponent } from './items/items.component';
     TooltipModule,
     RippleModule,
   ],
-  providers: [WeaponService],
+  providers: [WeaponService, TraitsService, DialogService],
   exports: [WeaponDetailComponent],
 })
 export class PrefabsModule {}
